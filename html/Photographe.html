@@ -20,22 +20,20 @@
                 Contactez-moi
             </button>
         </header>
-        <div hidden> <!--Modal Form-->
-            <form>
-                <h1>Contactez-moi</h1>
-                <!--Inject nom photographe-->
-                <label for="first-name">Prénom</label>
-                <input type="texte" id="first-name" name="first-name" aria-labelledby="First Name">
-                <label for="last-name">Nom</label>
-                <input type="texte" id="last-name" name="last-name" aria-labelledby="Last Name">
-                <label for="email">Email</label>
-                <input type="texte" id="email" name="email" aria-labelledby="Email">
-                <label for="your-message">Votre message</label>
-                <input type="texte" id="your-message" name="your-message" aria-labelledby="Your message">
-                <button type="submit" aria-labelledby="Send">Envoyer</button>
-                <button type="button" aria-label="Close Contact form"></button> <!--Bouton pour fermer la modale-->
-            </form>
-        </div>
+        <form hidden> <!--Modal Form-->
+            <h1>Contactez-moi</h1>
+            <!--Inject nom photographe-->
+            <label for="first-name">Prénom</label>
+            <input type="texte" id="first-name" name="first-name" aria-labelledby="First Name">
+            <label for="last-name">Nom</label>
+            <input type="texte" id="last-name" name="last-name" aria-labelledby="Last Name">
+            <label for="email">Email</label>
+            <input type="texte" id="email" name="email" aria-labelledby="Email">
+            <label for="your-message">Votre message</label>
+            <input type="texte" id="your-message" name="your-message" aria-labelledby="Your message">
+            <button type="submit" aria-labelledby="Send">Envoyer</button>
+            <button type="button" aria-label="Close Contact form"></button> <!--Bouton pour fermer la modale-->
+        </form>
         <label for="orderBy">Trier par</label>
         <select id="orderBy" aria-labelledby="Order By">
             <option value="Popularité">Popularité</option>
