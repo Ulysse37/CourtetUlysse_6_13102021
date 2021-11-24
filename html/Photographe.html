@@ -10,38 +10,42 @@
 
 <body>
     <header>
-        <a href="#" class="logo">
-            <img src="../images/Logo/logo-fisheye.svg" alt="FishEye Home page">
-        </a>
+        <img src="../images/Logo/logo-fisheye.svg" class="logo" />
     </header>
     <main>
-        <header><!--inject du photographe-->
-            <button type="button" aria-labelledby="Contact Me">
+        <div class="photograph-header">
+            <button type="button" class="contact_button" onclick="displayModal()" aria-labelledby="Contact Me">
                 Contactez-moi
             </button>
-        </header>
-        <form hidden> <!--Modal Form-->
-            <h1>Contactez-moi</h1>
-            <!--Inject nom photographe-->
-            <label for="first-name">Prénom</label>
-            <input type="texte" id="first-name" name="first-name" aria-labelledby="First Name">
-            <label for="last-name">Nom</label>
-            <input type="texte" id="last-name" name="last-name" aria-labelledby="Last Name">
-            <label for="email">Email</label>
-            <input type="texte" id="email" name="email" aria-labelledby="Email">
-            <label for="your-message">Votre message</label>
-            <input type="texte" id="your-message" name="your-message" aria-labelledby="Your message">
-            <button type="submit" aria-labelledby="Send">Envoyer</button>
-            <button type="button" aria-label="Close Contact form"></button> <!--Bouton pour fermer la modale-->
-        </form>
+        </div>
         <label for="orderBy">Trier par</label>
         <select id="orderBy" aria-labelledby="Order By">
             <option value="Popularité">Popularité</option>
             <option value="Date">Date</option>
             <option value="Titre">Titre</option>
         </select>
-        <ul></ul> <!--Liste des photo-->
     </main>
+    <div id="contact_modal">
+        <div class="modal">
+            <header>
+                <h2>Contactez-moi</h2>
+                <img src="assets/icons/close.svg" onclick="closeModal()" />
+            </header>
+            <form hidden>
+                <div>
+                    <label for="first-name">Prénom</label>
+                    <input type="texte" id="first-name" name="first-name" aria-labelledby="First Name">
+                    <label for="last-name">Nom</label>
+                    <input type="texte" id="last-name" name="last-name" aria-labelledby="Last Name">
+                    <label for="email">Email</label>
+                    <input type="texte" id="email" name="email" aria-labelledby="Email">
+                    <label for="your-message">Votre message</label>
+                    <input type="texte" id="your-message" name="your-message" aria-labelledby="Your message">
+                </div>
+                <button class="contact_button">Envoyer</button>
+            </form>
+        </div>
+    </div>
 </body>
 <script src="../js/utils/contactForm.js"></script>
 </html>
