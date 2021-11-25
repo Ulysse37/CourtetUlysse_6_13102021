@@ -1,6 +1,6 @@
 async function getPhotographers() {
     // Penser à remplacer par les données récupérées dans le json
-    fetch('../../FishEyeData.json')
+    fetch('../FishEyeData.json')
     .then(response => {
         if (!response.ok) {
             throw new Error("HTTP error" + response.status);
