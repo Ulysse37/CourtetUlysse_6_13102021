@@ -26,7 +26,7 @@ async function getPhotographers() {
             "country": "France",
             "tagline": "Ceci est ma data test",
             "price": 400,
-            "portrait": "account.png"
+            //"portrait": "account.png"
         },
         {
             "name": "Autre data test",
@@ -35,7 +35,7 @@ async function getPhotographers() {
             "country": "UK",
             "tagline": "Ceci est ma data test 2",
             "price": 500,
-            "portrait": "account.png"
+            //"portrait": "account.png"
         },
     ]
     // et bien retourner le tableau photographers seulement une fois
