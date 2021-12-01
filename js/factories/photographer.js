@@ -1,7 +1,7 @@
 function photographerFactory(data) {
     const { name, portrait } = data;
 
-    const picture = `assets/photographers/${portrait}`;
+    const picture = `images/photographers/${portrait}`;  // CHANGER L'URL POUR LE JSON?
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );

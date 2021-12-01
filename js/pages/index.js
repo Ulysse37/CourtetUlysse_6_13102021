@@ -1,5 +1,6 @@
 async function getPhotographers() {
     // Penser à remplacer par les données récupérées dans le json
+    
     fetch('FishEyeData.json')
     .then(response => {
         if (!response.ok) {
@@ -14,6 +15,7 @@ async function getPhotographers() {
     .catch(function () {
         this.dataError = true;
     }) 
+
     
 
     const photographers = [
