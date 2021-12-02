@@ -9,7 +9,7 @@ async function getPhotographers() {
         return response.json();
     })
     .then(json => {
-        console.log(json);
+        console.log(json.photographers);
     })
     .catch(function () {
         dataError = true;
