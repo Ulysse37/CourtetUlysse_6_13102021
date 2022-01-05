@@ -1,42 +1,20 @@
 async function getPhotographers() {
     // Penser à remplacer par les données récupérées dans le json
     
-    fetch('FishEyeData.json')
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            photographerFactory(data);
-            console.log(data.photographers[2].name);
-        })
-        .catch(function (err) {
-            console.log(err);
-        })
+    let url = 'FishEyeData.json';
+    try {
+        let res = await fetch(url);
+        return await res.json();
+    } catch (error) {
+        console.log(error);
+    }
+    console.log(res);
     
-
-    const photographers = [
-        {
-            "name": "Ma data test",
-            "id": 1,
-            "city": "Paris",
-            "country": "France",
-            "tagline": "Ceci est ma data test",
-            "price": 400,
-            //"portrait": "account.png"
-        },
-        {
-            "name": "Autre data test",
-            "id": 2,
-            "city": "Londres",
-            "country": "UK",
-            "tagline": "Ceci est ma data test 2",
-            "price": 500,
-            //"portrait": "account.png"
-        }, 
-    ]
+    /*   
+    const photographers = data;
     // et bien retourner le tableau photographers seulement une fois
     return ({
-        photographers: [...photographers, ...photographers, ...photographers]})
+        photographers: [...photographers]}) */
 }
 
 async function displayData(photographers) {

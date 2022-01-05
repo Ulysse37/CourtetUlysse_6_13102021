@@ -8,10 +8,13 @@ function photographerFactory(data) {
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         const h2 = document.createElement( 'h2' );
-        h2.textContent = name;  //data.photographers[0].name
+        h2.textContent = name;  
+       /* const h3 = document.createElement( 'h3' );
+        h3.textContent = city;*/
         article.appendChild(img);
         article.appendChild(h2);
+        //article.appendChild(h3);
         return (article);
     }
-    return { name, picture, getUserCardDOM }
+    return { name, picture, getUserCardDOM } //, city
 }
