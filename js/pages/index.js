@@ -1,15 +1,17 @@
 async function getPhotographers() {
     // Penser à remplacer par les données récupérées dans le json
     
-    let url = 'FishEyeData.json';
+    const url = 'FishEyeData.json';
     try {
         let res = await fetch(url);
+
         return await res.json();
+
     } catch (error) {
         console.log(error);
     }
-    console.log(res);
     
+
     /*   
     const photographers = data;
     // et bien retourner le tableau photographers seulement une fois
