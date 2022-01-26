@@ -20,13 +20,15 @@ function photographerFactory(data) {
         taglineElt.textContent  = tagline;
         priceElt.textContent    = price + "€/jour";
         priceElt.className      = "prix";
-        cityElt.className       = "location";
+        //cityElt.className       = "location";
 
+        article.style.margin            = "0 5rem 6rem 5rem"
         pictureElt.style.width          = "100%";
         pictureElt.style.height         = "100%";
         pictureElt.style.objectFit      = "cover";
-        figureElt.style.width           = "350px";
-        figureElt.style.height          = "350px";
+        figureElt.style.width           = "300px";
+        figureElt.style.height          = "300px";
+        //figureElt.style.marginBottom    = "40px"
         figureElt.style.borderRadius    = "50%";
         figureElt.style.overflow        = "hidden";
         article.style.display           = "flex";
@@ -35,11 +37,15 @@ function photographerFactory(data) {
         figureElt.style.display         = "flex";
         figureElt.style.flexDirection   = "column";
         figureElt.style.alignItems      = "center";
+        figureElt.style.marginBottom    = "65px"
         figCaptionElt.style.color       = "#D3573C";
         figCaptionElt.style.position    = "absolute";
-        //figCaptionElt.style.bottom      = "-2px";
+        cityElt.style.margin            = "0";
         cityElt.style.color             = "#901C1C";
+        priceElt.style.margin           = "0";
         priceElt.style.color            = "#525252";
+        taglineElt.style.margin         = "5px";
+        
         
         article.appendChild(figureElt);
         figureElt.appendChild(pictureElt);
