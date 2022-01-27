@@ -23,7 +23,6 @@ function photographerFactory(data) {
         //cityElt.className       = "location";
         pictureElt.alt          = name;
 
-        article.style.margin            = "0 5rem 6rem 5rem"
         pictureElt.style.width          = "100%";
         pictureElt.style.height         = "100%";
         pictureElt.style.objectFit      = "cover";
@@ -35,12 +34,15 @@ function photographerFactory(data) {
         article.style.display           = "flex";
         article.style.flexDirection     = "column"; 
         article.style.alignItems        = "center";
+        article.style.margin            = "0 5rem 6rem 5rem"
         figureElt.style.display         = "flex";
         figureElt.style.flexDirection   = "column";
         figureElt.style.alignItems      = "center";
         figureElt.style.marginBottom    = "65px"
         figCaptionElt.style.color       = "#D3573C";
         figCaptionElt.style.position    = "absolute";
+        nameElt.style.position          = "relative";
+        nameElt.style.top               = "300px"
         cityElt.style.margin            = "0";
         cityElt.style.color             = "#901C1C";
         priceElt.style.margin           = "0";
