@@ -19,8 +19,9 @@ function photographerFactory(data) {
         cityElt.textContent     = city + ", " + country;
         taglineElt.textContent  = tagline;
         priceElt.textContent    = price + "€/jour";
-        priceElt.className      = "prix";
+        //priceElt.className      = "prix";
         //cityElt.className       = "location";
+        pictureElt.alt          = name;
 
         article.style.margin            = "0 5rem 6rem 5rem"
         pictureElt.style.width          = "100%";
