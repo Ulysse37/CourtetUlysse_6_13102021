@@ -1,0 +1,31 @@
+:root {
+    --red-color: #901C1C; 
+    --beige-color: #D3573C;
+    --grey-color: #525252;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-bottom: 5rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+h1 {
+    color: var(--red-color);
+}
+
+.photographer_section {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row; 
+    justify-content: center;
+}
+
