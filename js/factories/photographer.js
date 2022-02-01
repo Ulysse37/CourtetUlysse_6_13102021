@@ -41,6 +41,7 @@ function photographerFactory(data) {
         figureElt.style.marginBottom    = "65px"
         figCaptionElt.style.color       = "#D3573C";
         figCaptionElt.style.position    = "absolute";
+        //figCaptionElt.style.bottom      = "-5px";
         nameElt.style.position          = "relative";
         nameElt.style.top               = "300px"
         cityElt.style.margin            = "0";
