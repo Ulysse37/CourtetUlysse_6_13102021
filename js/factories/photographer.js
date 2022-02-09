@@ -1,7 +1,7 @@
 "use strict";
 
 function photographerFactory(data) {
-    const { name, portrait, city, country, tagline, price } = data;
+    const { id, name, portrait, city, country, tagline, price } = data;
     console.log(data);
 
     const picture = `images/photographers/${portrait}`;  
@@ -18,7 +18,7 @@ function photographerFactory(data) {
         const priceElt      = document.createElement( "p" );
 
         
-        linkElt.href            = "#";
+        linkElt.href            = `html/photographe.html?id=${this.id}`;
         pictureElt.src          = picture;
         pictureElt.alt          = name;
         nameElt.textContent     = name;  
@@ -66,5 +66,5 @@ function photographerFactory(data) {
 
         return (article);
     }
-    return { name, picture, city, country, tagline, price, getUserCardDOM } 
+    return { id, name, picture, city, country, tagline, price, getUserCardDOM } 
 }
