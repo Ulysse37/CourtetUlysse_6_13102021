@@ -1,3 +1,5 @@
+"use strict";
+
 function photographerFactory(data) {
     const { name, portrait, city, country, tagline, price } = data;
     console.log(data);
@@ -6,6 +8,7 @@ function photographerFactory(data) {
 
     function getUserCardDOM() {
         const article       = document.createElement("article");
+        const linkElt       = document.createElement("a");
         const figureElt     = document.createElement("figure");
         const pictureElt    = document.createElement("img");
         const figCaptionElt = document.createElement("figcaption");
@@ -14,15 +17,17 @@ function photographerFactory(data) {
         const taglineElt    = document.createElement( "p" );
         const priceElt      = document.createElement( "p" );
 
+        
+        linkElt.href            = "#";
         pictureElt.src          = picture;
+        pictureElt.alt          = name;
         nameElt.textContent     = name;  
         cityElt.textContent     = city + ", " + country;
         taglineElt.textContent  = tagline;
         priceElt.textContent    = price + "€/jour";
         //priceElt.className      = "prix";
         //cityElt.className       = "location";
-        pictureElt.alt          = name;
-
+        
         pictureElt.style.width          = "100%";
         pictureElt.style.height         = "100%";
         pictureElt.style.objectFit      = "cover";
@@ -50,8 +55,8 @@ function photographerFactory(data) {
         priceElt.style.color            = "#525252";
         taglineElt.style.margin         = "5px";
         
-        
-        article.appendChild(figureElt);
+        article.appendChild(linkElt);
+        linkElt.appendChild(figureElt);
         figureElt.appendChild(pictureElt);
         figureElt.appendChild(figCaptionElt);
         figCaptionElt.appendChild(nameElt);
