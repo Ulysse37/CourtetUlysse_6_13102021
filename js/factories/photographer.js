@@ -18,7 +18,7 @@ function photographerFactory(data) {
         const priceElt      = document.createElement( "p" );
 
         
-        linkElt.href            = `html/photographe.html?id=${this.id}`;
+        linkElt.href            = `html/Photographe.html?id=${this.id}`;
         pictureElt.src          = picture;
         pictureElt.alt          = name;
         nameElt.textContent     = name;  
