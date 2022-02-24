@@ -3,24 +3,42 @@
 
 async function fetchPhotographer() {
     
-    const url = '../../FishEyeData.json';
+    const url = '../FishEyeData.json';
     try {
         let res = await fetch(url);
-        
+        //console.log(res.json());
         return await res.json();
         
     } catch (error) {
         console.log(error);
     }
 }
-fetchPhotographer();
 
-const getUrlID = location.pathname.split('=')[0]; 
-console.log(getUrlID);
+const photographerId = location.href.split("=")[1]; 
 
-
-/*async function displayPhotographer(photographer) {
-    const photographerHeader = document.querySelector(".photograph-header");
+function photographerInfo(data) {
+    const { id, name, city, country, tagline, portrait, price } = data;
+    console.log(data);
+    
+    return { id, name, city, country, tagline, portrait, price }
 }
 
-*/
+
+async function displayPhotographer(photographers) {
+    const photographerHeader = document.querySelector(".photograph-header");
+
+    photographers.forEach((photographer) => {
+        const photographerModel = photographerInfo(photographer);
+        
+    });
+}
+
+
+
+async function init() {
+
+    const { photographers } = await fetchPhotographer();
+    displayPhotographer(photographers);
+};
+
+init();
