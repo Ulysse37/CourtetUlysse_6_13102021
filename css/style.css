@@ -3,7 +3,7 @@
     --beige-color: #D3573C;
     --grey-color: #525252;
 }
-
+/* Css global */
 header {
     display: flex;
     justify-content: space-between;
@@ -21,6 +21,7 @@ img {
 h1 {
     color: var(--red-color);
 }
+/* css index */
 
 .photographer_section {
     display: flex;
@@ -28,4 +29,24 @@ h1 {
     flex-direction: row; 
     justify-content: center;
 }
+
+/* Css page photographe */
+
+.contact_button {
+    height: 50px;
+    padding: 10px;
+    border: none;
+    border-radius: 6%;
+    background-color: var(--red-color);
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+#contact_modal {
+    display: none;
+}
+
+
+
 

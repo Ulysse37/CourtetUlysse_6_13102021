@@ -14,8 +14,8 @@ function photographerFactory(data) {
         const figCaptionElt = document.createElement("figcaption");
         const nameElt       = document.createElement("h2");
         const cityElt       = document.createElement("p");
-        const taglineElt    = document.createElement( "p" );
-        const priceElt      = document.createElement( "p" );
+        const taglineElt    = document.createElement("p");
+        const priceElt      = document.createElement("p");
 
         
         linkElt.href            = `html/Photographe.html?id=${this.id}`;
