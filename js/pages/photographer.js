@@ -13,7 +13,7 @@ async function fetchPhotographer() {
     }
 }
 
-const photographerId = parseInt(location.href.split("=")[1], 10); // va chercher l'id du photographe dans l'url
+const photographUrlId = parseInt(location.href.split("=")[1], 10); // va chercher l'id du photographe dans l'url
 
 // Affiche le header sur la page photographe
 function showPhotographerInfo(data) {
@@ -37,8 +37,10 @@ function showPhotographerInfo(data) {
     pictureElt.alt          = name;
 
     photographerHeader.style.display            = "flex";
-    photographerHeader.style.justifyContent     = "space-between"
+    photographerHeader.style.justifyContent     = "space-around";
     photographerHeader.style.alignItems         = "center";
+    photographerHeader.style.backgroundColor    = "#FAFAFA";
+    photographerHeader.style.margin             = "0 3rem";
     nameElt.style.color                         = "#D3573C"
     locationElt.style.color                     = "#901C1C"
     tagElt.style.color                          = "#525252"
@@ -56,29 +58,42 @@ function showPhotographerInfo(data) {
     photographerHeader.appendChild(figureElt);
     figureElt.appendChild(pictureElt);
 
-    console.log(data);
+    //console.log(nameElt);
     
     //return { id, name, city, country, tagline, portrait, price }
 }
 
-// Sort les data du photographe de la page
-async function displayPhotographer(photographers) {
+// Affiche la gallery du photographe
+function showPhotographerGallery() {
 
+}
+
+// Sort les data du photographe de la page
+async function displayPhotographer(photographers, media) {
+    
     for (let i = 0; i < photographers.length; i++) {
         
-        if (photographers[i].id === photographerId) {
+        if (photographers[i].id === photographUrlId) {
             showPhotographerInfo(photographers[i]);
             //console.log(photographers[i]);
             return photographers[i];    
         }  
     };
+    for (let i = 0; i < media.length; i++) {
+
+        if (media[i].photographerId === photographUrlId) {
+            showPhotographerGallery(media[i]); // à tester
+            
+            
+            return media[i];
+        }
+    }
 }
 
 async function init() {
 
-    const { photographers } = await fetchPhotographer();
-    let photographer = displayPhotographer(photographers);
-    showPhotographerInfo(photographer);
+    const { photographers, media } = await fetchPhotographer();
+    displayPhotographer(photographers, media);  
 };
 
 init();
