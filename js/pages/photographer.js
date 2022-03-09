@@ -64,12 +64,14 @@ function showPhotographerInfo(data) {
 }
 
 // Affiche la gallery du photographe
-function showPhotographerGallery() {
-
+function showPhotographerGallery(data) {
+    const { date, id, image, likes, photographerId, price, title } = data;
+    //console.log(data);
+    
 }
 
 // Sort les data du photographe de la page
-async function displayPhotographer(photographers, media) {
+async function displayPhotographer(photographers) {
     
     for (let i = 0; i < photographers.length; i++) {
         
@@ -79,21 +81,51 @@ async function displayPhotographer(photographers, media) {
             return photographers[i];    
         }  
     };
+    /*for (let i = 0; i < media.length; i++) {
+
+        if (media[i].photographerId === photographUrlId) {
+            showPhotographerGallery(media[i]); // à tester
+            console.log(media[i]);
+            
+            return media[i];
+        }
+    }*/
+}
+
+async function displayPhotographerGallery(media) {
+
     for (let i = 0; i < media.length; i++) {
 
         if (media[i].photographerId === photographUrlId) {
             showPhotographerGallery(media[i]); // à tester
-            
+            console.log(media[i]);
             
             return media[i];
         }
     }
 }
 
+/*async function displayPhotographerGallery(media) {
+
+        media.forEach((id) => {
+            for (let i = 0; i < media.length; i++) {
+
+                if (media[i].photographerId === photographUrlId) {
+                    showPhotographerGallery(media[i]); // à tester
+                    console.log(media[i]);
+                    
+                    return media[i];
+                }
+            }
+        })
+}*/
+
 async function init() {
 
-    const { photographers, media } = await fetchPhotographer();
-    displayPhotographer(photographers, media);  
+    const { photographers } = await fetchPhotographer();
+    const { media } = await fetchPhotographer();
+    displayPhotographer(photographers);  
+    displayPhotographerGallery(media);
 };
 
 init();
