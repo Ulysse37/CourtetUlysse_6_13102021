@@ -15,7 +15,11 @@ async function fetchPhotographer() {
 
 const photographUrlId = parseInt(location.href.split("=")[1], 10); // va chercher l'id du photographe dans l'url
 
-// Affiche le header sur la page photographe
+
+/**
+ * Affiche le header sur la page photographe
+ * @param {object} data 
+ */
 function showPhotographerInfo(data) {
     const { id, name, city, country, tagline, portrait, price } = data;
 
@@ -58,19 +62,25 @@ function showPhotographerInfo(data) {
     photographerHeader.appendChild(figureElt);
     figureElt.appendChild(pictureElt);
 
-    //console.log(nameElt);
+    //console.log(data);
     
     //return { id, name, city, country, tagline, portrait, price }
 }
 
-// Affiche la gallery du photographe
-function showPhotographerGallery(data) {
+/**
+ * Affiche la gallery du photographe
+ * @param {object} data 
+ */
+function createPhotographerGallery(data) {
     const { date, id, image, likes, photographerId, price, title } = data;
     //console.log(data);
     
 }
 
-// Sort les data du photographe de la page
+/**
+ * Sort les data du photographe de la page
+ * @param {object} photographers 
+ */
 async function displayPhotographer(photographers) {
     
     for (let i = 0; i < photographers.length; i++) {
@@ -78,47 +88,27 @@ async function displayPhotographer(photographers) {
         if (photographers[i].id === photographUrlId) {
             showPhotographerInfo(photographers[i]);
             //console.log(photographers[i]);
-            return photographers[i];    
+            //return photographers[i];    
         }  
     };
-    /*for (let i = 0; i < media.length; i++) {
-
-        if (media[i].photographerId === photographUrlId) {
-            showPhotographerGallery(media[i]); // à tester
-            console.log(media[i]);
-            
-            return media[i];
-        }
-    }*/
 }
 
+/**
+ * sort les photo du photographe de la page
+ * @param {object} media 
+ */
 async function displayPhotographerGallery(media) {
-
+    let photographerGallery = [];
+    
     for (let i = 0; i < media.length; i++) {
-
         if (media[i].photographerId === photographUrlId) {
-            showPhotographerGallery(media[i]); // à tester
-            console.log(media[i]);
             
-            return media[i];
+            photographerGallery.push(media[i]);
         }
     }
+    //console.log(photographerGallery);
+    createPhotographerGallery(photographerGallery);
 }
-
-/*async function displayPhotographerGallery(media) {
-
-        media.forEach((id) => {
-            for (let i = 0; i < media.length; i++) {
-
-                if (media[i].photographerId === photographUrlId) {
-                    showPhotographerGallery(media[i]); // à tester
-                    console.log(media[i]);
-                    
-                    return media[i];
-                }
-            }
-        })
-}*/
 
 async function init() {
 
