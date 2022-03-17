@@ -63,7 +63,6 @@ function showPhotographerInfo(data) {
     figureElt.appendChild(pictureElt);
 
     //console.log(data);
-    
     //return { id, name, city, country, tagline, portrait, price }
 }
 
@@ -73,7 +72,20 @@ function showPhotographerInfo(data) {
  */
 function createPhotographerGallery(data) {
     const { date, id, image, likes, photographerId, price, title } = data;
-    //console.log(data);
+    console.log(data);
+    const photographerGallery = document.querySelector(".photograph-gallery")
+    
+    
+    const liElt = document.createElement("li");
+    const figureElt = document.createElement("figure");
+    const figcaptionElt = document.createElement("figcaption");
+
+    figcaptionElt.innerText = title;
+
+    photographerGallery.appendChild(liElt);
+    liElt.appendChild(figureElt);
+    figureElt.appendChild(figcaptionElt);
+
     
 }
 
@@ -110,6 +122,9 @@ async function displayPhotographerGallery(media) {
     createPhotographerGallery(photographerGallery);
 }
 
+/**
+ * Initialise le code
+ */
 async function init() {
 
     const { photographers } = await fetchPhotographer();
@@ -117,5 +132,4 @@ async function init() {
     displayPhotographer(photographers);  
     displayPhotographerGallery(media);
 };
-
 init();
