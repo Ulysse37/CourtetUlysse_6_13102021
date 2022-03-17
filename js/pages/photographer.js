@@ -14,7 +14,7 @@ async function fetchPhotographer() {
 }
 
 const photographUrlId = parseInt(location.href.split("=")[1], 10); // va chercher l'id du photographe dans l'url
-
+const photographerGallery = document.querySelector(".photograph-gallery");
 
 /**
  * Affiche le header sur la page photographe
@@ -71,23 +71,37 @@ function showPhotographerInfo(data) {
  * @param {object} data 
  */
 function createPhotographerGallery(data) {
-    const { date, id, image, likes, photographerId, price, title } = data;
-    console.log(data);
-    const photographerGallery = document.querySelector(".photograph-gallery")
     
+    for (let i = 0; i < data.length; i++) {
+        createPhotographerMedia(data[i]);
+    }
+}
+
+function createPhotographerMedia(data) {
     
     const liElt = document.createElement("li");
     const figureElt = document.createElement("figure");
     const figcaptionElt = document.createElement("figcaption");
 
-    figcaptionElt.innerText = title;
+    if (data.image) {
+        const imgElt = document.createElement("img");
+        imgElt.src = "../images/" + data.photographerId + "/" + data.image;
+        figureElt.appendChild(imgElt);
+    }
+
+    if (data.video) {
+        const videoElt = document.createElement("video");
+        videoElt.src = "../images/" + data.photographerId + "/" + data.video;
+        figureElt.appendChild(videoElt);
+    }
+    //console.log(data.id)
+    figcaptionElt.innerText = data.title;
 
     photographerGallery.appendChild(liElt);
     liElt.appendChild(figureElt);
-    figureElt.appendChild(figcaptionElt);
-
-    
+    figureElt.appendChild(figcaptionElt);  
 }
+
 
 /**
  * Sort les data du photographe de la page
