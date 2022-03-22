@@ -18,9 +18,16 @@ img {
     object-fit: contain;
 }
 
+video {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
 h1 {
     color: var(--red-color);
 }
+
 /* css index */
 
 .photographer_section {
@@ -31,6 +38,12 @@ h1 {
 }
 
 /* Css page photographe */
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+}
 
 .contact_button {
     height: 50px;

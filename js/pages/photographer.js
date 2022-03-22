@@ -45,8 +45,10 @@ function showPhotographerInfo(data) {
     photographerHeader.style.alignItems         = "center";
     photographerHeader.style.backgroundColor    = "#FAFAFA";
     photographerHeader.style.margin             = "0 3rem";
-    nameElt.style.color                         = "#D3573C"
-    locationElt.style.color                     = "#901C1C"
+    nameElt.style.color                         = "#D3573C";
+    nameElt.style.fontSize                      = "250%";
+    locationElt.style.color                     = "#901C1C";
+    locationElt.style.fontSize                  = "125%";
     tagElt.style.color                          = "#525252"
     figureElt.style.width                       = "250px";
     figureElt.style.height                      = "250px";
@@ -79,24 +81,45 @@ function createPhotographerGallery(data) {
 
 function createPhotographerMedia(data) {
     
-    const liElt = document.createElement("li");
-    const figureElt = document.createElement("figure");
+    const liElt         = document.createElement("li");
+    const figureElt     = document.createElement("figure");
     const figcaptionElt = document.createElement("figcaption");
 
     if (data.image) {
         const imgElt = document.createElement("img");
-        imgElt.src = "../images/" + data.photographerId + "/" + data.image;
+
+        imgElt.src      = "../images/" + data.photographerId + "/" + data.image;
+        imgElt.alt      = data.title;
+
+        imgElt.style.width          = "100%";
+        imgElt.style.height         = "100%";
+        imgElt.style.objectFit      = "cover";
+        imgElt.style.borderRadius   = "2%";
+
         figureElt.appendChild(imgElt);
     }
 
     if (data.video) {
         const videoElt = document.createElement("video");
-        videoElt.src = "../images/" + data.photographerId + "/" + data.video;
+
+        videoElt.src                    = "../images/" + data.photographerId + "/" + data.video;
+        videoElt.style.width            = "100%";
+        videoElt.style.height           = "100%";
+        videoElt.style.objectFit        = "cover";
+        videoElt.style.borderRadius     = "2%";
+
         figureElt.appendChild(videoElt);
+        //videoElt.type = "video/mp4";
     }
-    //console.log(data.id)
+    //console.log(data.id);
     figcaptionElt.innerText = data.title;
 
+    liElt.style.margin              = "2rem";
+    figureElt.style.width           = "400px";
+    figureElt.style.height          = "400px";
+    figcaptionElt.style.color       = "#901C1C";
+    figcaptionElt.style.fontSize    = "120%";
+    
     photographerGallery.appendChild(liElt);
     liElt.appendChild(figureElt);
     figureElt.appendChild(figcaptionElt);  
@@ -132,7 +155,7 @@ async function displayPhotographerGallery(media) {
             photographerGallery.push(media[i]);
         }
     }
-    //console.log(photographerGallery);
+    console.log(photographerGallery);
     createPhotographerGallery(photographerGallery);
 }
 
