@@ -44,7 +44,7 @@ function showPhotographerInfo(data) {
     photographerHeader.style.justifyContent     = "space-around";
     photographerHeader.style.alignItems         = "center";
     photographerHeader.style.backgroundColor    = "#FAFAFA";
-    photographerHeader.style.margin             = "0 3rem";
+    photographerHeader.style.margin             = "2rem 6rem";
     nameElt.style.color                         = "#D3573C";
     nameElt.style.fontSize                      = "250%";
     locationElt.style.color                     = "#901C1C";
@@ -79,8 +79,12 @@ function createPhotographerGallery(data) {
     }
 }
 
+/**
+ * Affiche la photo ou la video
+ * @param {object} data 
+ */
 function createPhotographerMedia(data) {
-    
+
     const liElt         = document.createElement("li");
     const figureElt     = document.createElement("figure");
     const figcaptionElt = document.createElement("figcaption");
@@ -102,19 +106,21 @@ function createPhotographerMedia(data) {
     if (data.video) {
         const videoElt = document.createElement("video");
 
+        videoElt.controls               = "controls";
         videoElt.src                    = "../images/" + data.photographerId + "/" + data.video;
+        videoElt.type                   = "video/mp4";
+
         videoElt.style.width            = "100%";
         videoElt.style.height           = "100%";
         videoElt.style.objectFit        = "cover";
         videoElt.style.borderRadius     = "2%";
 
         figureElt.appendChild(videoElt);
-        //videoElt.type = "video/mp4";
     }
     //console.log(data.id);
     figcaptionElt.innerText = data.title;
 
-    liElt.style.margin              = "2rem";
+    liElt.style.margin              = "2rem 0rem";
     figureElt.style.width           = "400px";
     figureElt.style.height          = "400px";
     figcaptionElt.style.color       = "#901C1C";

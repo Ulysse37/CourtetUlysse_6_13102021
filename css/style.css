@@ -41,8 +41,28 @@ h1 {
 ul {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+    margin: 0rem 3.5rem 0rem 1rem;
     list-style: none;
+}
+
+label {
+    margin-left: 6rem;
+    margin-right: 1rem;
+    font-weight: bold;
+}
+
+select {
+    border: none;
+    border-radius: 5px;
+    padding: 12px 10px;
+    background-color: var(--red-color);
+    color: white;
+    font-weight: bold;
+}
+
+.logo {
+    margin: 1rem 3.2rem;
 }
 
 .contact_button {
@@ -54,6 +74,10 @@ ul {
     color: white;
     text-decoration: none;
     font-size: 14px;
+}
+
+.contact_button:hover {
+    background-color: var(--beige-color);
 }
 
 #contact_modal {

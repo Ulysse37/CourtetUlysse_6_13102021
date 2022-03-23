@@ -21,6 +21,12 @@
       <div class="photograph-header-info"></div>
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
     </div>
+    <label for="orderBy">Trier par</label>
+    <select id="orderBy" name="Triage" aria-labelledby="Trier par">
+      <option value="Popularité">Popularité</option>
+      <option value="Date">Date</option>
+      <option value="Titre">Titre</option>
+  </select>
     <ul class="photograph-gallery"></ul> <!-- ajout des li incluant les figure / figcaption via js -->
   </article>
   <div id="contact_modal">
