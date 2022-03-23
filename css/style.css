@@ -3,7 +3,7 @@
     --beige-color: #D3573C;
     --grey-color: #525252;
 }
-
+/* Css global */
 header {
     display: flex;
     justify-content: space-between;
@@ -18,9 +18,17 @@ img {
     object-fit: contain;
 }
 
+video {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
 h1 {
     color: var(--red-color);
 }
+
+/* css index */
 
 .photographer_section {
     display: flex;
@@ -28,4 +36,54 @@ h1 {
     flex-direction: row; 
     justify-content: center;
 }
+
+/* Css page photographe */
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0rem 3.5rem 0rem 1rem;
+    list-style: none;
+}
+
+label {
+    margin-left: 6rem;
+    margin-right: 1rem;
+    font-weight: bold;
+}
+
+select {
+    border: none;
+    border-radius: 5px;
+    padding: 12px 10px;
+    background-color: var(--red-color);
+    color: white;
+    font-weight: bold;
+}
+
+.logo {
+    margin: 1rem 3.2rem;
+}
+
+.contact_button {
+    height: 50px;
+    padding: 10px;
+    border: none;
+    border-radius: 6%;
+    background-color: var(--red-color);
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.contact_button:hover {
+    background-color: var(--beige-color);
+}
+
+#contact_modal {
+    display: none;
+}
+
+
+
 

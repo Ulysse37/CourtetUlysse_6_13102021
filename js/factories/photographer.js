@@ -1,28 +1,33 @@
+"use strict";
+
 function photographerFactory(data) {
-    const { name, portrait, city, country, tagline, price } = data;
-    console.log(data);
+    const { id, name, portrait, city, country, tagline, price } = data;
+    //console.log(data);
 
     const picture = `images/photographers/${portrait}`;  
 
     function getUserCardDOM() {
         const article       = document.createElement("article");
+        const linkElt       = document.createElement("a");
         const figureElt     = document.createElement("figure");
         const pictureElt    = document.createElement("img");
         const figCaptionElt = document.createElement("figcaption");
         const nameElt       = document.createElement("h2");
         const cityElt       = document.createElement("p");
-        const taglineElt    = document.createElement( "p" );
-        const priceElt      = document.createElement( "p" );
+        const taglineElt    = document.createElement("p");
+        const priceElt      = document.createElement("p");
 
+        
+        linkElt.href            = `html/Photographe.html?id=${this.id}`;
         pictureElt.src          = picture;
+        pictureElt.alt          = name;
         nameElt.textContent     = name;  
         cityElt.textContent     = city + ", " + country;
         taglineElt.textContent  = tagline;
         priceElt.textContent    = price + "€/jour";
         //priceElt.className      = "prix";
         //cityElt.className       = "location";
-        pictureElt.alt          = name;
-
+        
         pictureElt.style.width          = "100%";
         pictureElt.style.height         = "100%";
         pictureElt.style.objectFit      = "cover";
@@ -50,8 +55,8 @@ function photographerFactory(data) {
         priceElt.style.color            = "#525252";
         taglineElt.style.margin         = "5px";
         
-        
-        article.appendChild(figureElt);
+        article.appendChild(linkElt);
+        linkElt.appendChild(figureElt);
         figureElt.appendChild(pictureElt);
         figureElt.appendChild(figCaptionElt);
         figCaptionElt.appendChild(nameElt);
@@ -61,5 +66,5 @@ function photographerFactory(data) {
 
         return (article);
     }
-    return { name, picture, city, country, tagline, price, getUserCardDOM } 
+    return { id, name, picture, city, country, tagline, price, getUserCardDOM } 
 }
