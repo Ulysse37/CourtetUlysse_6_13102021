@@ -46,12 +46,6 @@ ul {
     list-style: none;
 }
 
-label {
-    margin-left: 6rem;
-    margin-right: 1rem;
-    font-weight: bold;
-}
-
 select {
     border: none;
     border-radius: 5px;
@@ -61,11 +55,21 @@ select {
     font-weight: bold;
 }
 
+i {
+    font-size: 2em;
+    cursor: pointer;
+}
+
+label {
+    font-size: 25px;
+}
+
 .logo {
     margin: 1rem 3.2rem;
 }
 
 .contact_button {
+    min-width: 120px;
     height: 50px;
     padding: 10px;
     border: none;
@@ -80,10 +84,43 @@ select {
     background-color: var(--beige-color);
 }
 
-#contact_modal {
-    display: none;
+.modal {
+    margin: auto 3%;
+    
 }
 
+.formData {
+    margin: 1.5rem auto;
+}
 
+.text-control {
+    width: 100%;
+    border: 0.8px solid var(--grey-color);
+    border-radius: 8px;
+    font-size: 20px;
+    height: 40px;
+}
 
+#labelTriage {
+    margin-left: 6rem;
+    margin-right: 1rem;
+    font-weight: bold;
+    font-size: medium;
+}
 
+#contact_modal {
+    /*display: none;*/
+    margin: 5% 33%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 35%;
+    height: 80%;
+    overflow: auto;
+    background-color: var(--beige-color);
+}
+
+#message {
+    height: 150px;
+}

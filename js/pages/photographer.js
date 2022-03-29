@@ -14,7 +14,7 @@ async function fetchPhotographer() {
 }
 
 const photographUrlId = parseInt(location.href.split("=")[1], 10); // va chercher l'id du photographe dans l'url
-const photographerGallery = document.querySelector(".photograph-gallery");
+const photographerSection = document.querySelector(".photograph-gallery");
 
 /**
  * Affiche le header sur la page photographe
@@ -126,7 +126,7 @@ function createPhotographerMedia(data) {
     figcaptionElt.style.color       = "#901C1C";
     figcaptionElt.style.fontSize    = "120%";
     
-    photographerGallery.appendChild(liElt);
+    photographerSection.appendChild(liElt);
     liElt.appendChild(figureElt);
     figureElt.appendChild(figcaptionElt);  
 }
@@ -161,7 +161,7 @@ async function displayPhotographerGallery(media) {
             photographerGallery.push(media[i]);
         }
     }
-    console.log(photographerGallery);
+    //console.log(photographerGallery);
     createPhotographerGallery(photographerGallery);
 }
 
