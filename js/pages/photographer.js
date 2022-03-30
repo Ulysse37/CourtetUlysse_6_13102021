@@ -25,6 +25,7 @@ function showPhotographerInfo(data) {
 
     const photographerHeader    = document.querySelector(".photograph-header");
     const photographerInfo      = document.querySelector(".photograph-header-info");
+    const photographerName      = document.querySelector(".photographer-name");
 
     const picture       = `../images/photographers/${portrait}`; 
 
@@ -34,11 +35,12 @@ function showPhotographerInfo(data) {
     const figureElt     = document.createElement("figure");
     const pictureElt    = document.createElement("img");
 
-    nameElt.innerText       = name;
-    locationElt.innerText   = city + ", " + country;
-    tagElt.innerText        = tagline;
-    pictureElt.src          = picture;
-    pictureElt.alt          = name;
+    nameElt.innerText           = name;
+    photographerName.innerText  = name;
+    locationElt.innerText       = city + ", " + country;
+    tagElt.innerText            = tagline;
+    pictureElt.src              = picture;
+    pictureElt.alt              = name;
 
     photographerHeader.style.display            = "flex";
     photographerHeader.style.justifyContent     = "space-around";

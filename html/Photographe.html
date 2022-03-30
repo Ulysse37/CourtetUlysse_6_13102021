@@ -32,10 +32,9 @@
   </article>
   <div id="contact_modal">
     <div class="modal">
+      <span class="close_modal"><i class="fa-solid fa-xmark" onclick="closeModal()"></i></span>
       <header>
         <h2>Contactez-moi</h2>
-        <i class="fa-solid fa-xmark" onclick="closeModal()"></i>
-        <br>
         <h2 class="photographer-name"></h2>
         <!--<img src="assets/icons/close.svg" onclick="closeModal()" /> -->
         </header>
@@ -60,7 +59,7 @@
           <br>
           <input class="text-control" type="text" id="message" name="Your message">
         </div>
-        <button class="contact_button">Envoyer</button>
+        <button class="contact_button" id="modal_button">Envoyer</button>
       </form>
     </div>
   </div>
