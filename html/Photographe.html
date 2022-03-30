@@ -32,7 +32,9 @@
   </article>
   <div id="contact_modal">
     <div class="modal">
-      <span class="close_modal"><i class="fa-solid fa-xmark" onclick="closeModal()"></i></span>
+      <span class="close_modal">
+        <i class="fa-solid fa-xmark" onclick="closeModal()"></i>
+      </span>
       <header>
         <h2>Contactez-moi</h2>
         <h2 class="photographer-name"></h2>
@@ -42,24 +44,24 @@
         <div class="formData">
           <label for="firstName">Prénom</label>
           <br>
-          <input class="text-control" type="text" id="firstName" name="First name">
+          <input class="text-control" type="text" id="firstName" name="First name" aria-labelledby="First name" required="" minlength="2">
         </div>
         <div class="formData">
           <label for="lastName">Nom</label>
           <br>
-          <input class="text-control" type="text" id="lastName" name="Last name">
+          <input class="text-control" type="text" id="lastName" name="Last name" aria-labelledby="Last name" required="" minlength="2">
         </div>
         <div class="formData">
           <label for="email">Email</label>
           <br>
-          <input class="text-control" type="text" id="email" name="Email">
+          <input class="text-control" type="email" id="email" name="Email" aria-labelledby="Email" required="">
         </div>
         <div class="formData">
           <label for="message">Votre message</label>
           <br>
-          <input class="text-control" type="text" id="message" name="Your message">
+          <textarea class="text-control" type="text" id="message" name="Your message" aria-labelledby="Your message" required="" minlength="10"></textarea>
         </div>
-        <button class="contact_button" id="modal_button">Envoyer</button>
+        <button class="contact_button" id="modal_button" onclick="validate()">Envoyer</button>
       </form>
     </div>
   </div>

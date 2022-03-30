@@ -114,6 +114,7 @@ label {
     border-radius: 8px;
     font-size: 20px;
     height: 40px;
+    margin: 0;
 }
 
 .modal header {
@@ -134,7 +135,7 @@ label {
 }
 
 #contact_modal {
-    /*display: none;*/
+    display: none;
     position: fixed;
     left: 0;
     top: 0;
@@ -146,6 +147,8 @@ label {
 
 #message {
     height: 150px;
+    font-size: 22px;
+    font-family: inherit;
 }
 
 #modal_button {

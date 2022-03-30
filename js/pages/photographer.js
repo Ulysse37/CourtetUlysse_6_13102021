@@ -36,7 +36,7 @@ function showPhotographerInfo(data) {
     const pictureElt    = document.createElement("img");
 
     nameElt.innerText           = name;
-    photographerName.innerText  = name;
+    photographerName.innerText  = name; // Affiche le nom du photographe dans la modale 
     locationElt.innerText       = city + ", " + country;
     tagElt.innerText            = tagline;
     pictureElt.src              = picture;
