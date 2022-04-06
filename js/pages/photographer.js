@@ -14,7 +14,7 @@ async function fetchPhotographer() {
 }
 
 const photographUrlId = parseInt(location.href.split("=")[1], 10); // va chercher l'id du photographe dans l'url
-const photographerGallery = document.querySelector(".photograph-gallery");
+const photographerSection = document.querySelector(".photograph-gallery");
 
 /**
  * Affiche le header sur la page photographe
@@ -25,6 +25,7 @@ function showPhotographerInfo(data) {
 
     const photographerHeader    = document.querySelector(".photograph-header");
     const photographerInfo      = document.querySelector(".photograph-header-info");
+    const photographerName      = document.querySelector(".photographer-name");
 
     const picture       = `../images/photographers/${portrait}`; 
 
@@ -34,11 +35,12 @@ function showPhotographerInfo(data) {
     const figureElt     = document.createElement("figure");
     const pictureElt    = document.createElement("img");
 
-    nameElt.innerText       = name;
-    locationElt.innerText   = city + ", " + country;
-    tagElt.innerText        = tagline;
-    pictureElt.src          = picture;
-    pictureElt.alt          = name;
+    nameElt.innerText           = name;
+    photographerName.innerText  = name; // Affiche le nom du photographe dans la modale 
+    locationElt.innerText       = city + ", " + country;
+    tagElt.innerText            = tagline;
+    pictureElt.src              = picture;
+    pictureElt.alt              = name;
 
     photographerHeader.style.display            = "flex";
     photographerHeader.style.justifyContent     = "space-around";
@@ -126,7 +128,7 @@ function createPhotographerMedia(data) {
     figcaptionElt.style.color       = "#901C1C";
     figcaptionElt.style.fontSize    = "120%";
     
-    photographerGallery.appendChild(liElt);
+    photographerSection.appendChild(liElt);
     liElt.appendChild(figureElt);
     figureElt.appendChild(figcaptionElt);  
 }
@@ -161,7 +163,7 @@ async function displayPhotographerGallery(media) {
             photographerGallery.push(media[i]);
         }
     }
-    console.log(photographerGallery);
+    //console.log(photographerGallery);
     createPhotographerGallery(photographerGallery);
 }
 

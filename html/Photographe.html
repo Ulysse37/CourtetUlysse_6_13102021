@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
+    <script src="https://kit.fontawesome.com/14363d8dd3.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -21,7 +22,7 @@
       <div class="photograph-header-info"></div>
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
     </div>
-    <label for="orderBy">Trier par</label>
+    <label id="labelTriage" for="orderBy">Trier par</label>
     <select id="orderBy" name="Triage" aria-labelledby="Trier par">
       <option value="Popularité">Popularité</option>
       <option value="Date">Date</option>
@@ -31,16 +32,37 @@
   </article>
   <div id="contact_modal">
     <div class="modal">
+      <span class="close_modal">
+        <i class="fa-solid fa-xmark" onclick="closeModal()"></i>
+      </span>
       <header>
         <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" onclick="closeModal()" />
+        <h2 class="photographer-name"></h2>
+        <!--<img src="assets/icons/close.svg" onclick="closeModal()" /> -->
         </header>
-      <form>
-        <div>
-          <label>Prénom</label>
-          <input />
+      <form id="form" method="post" action="photographe.html">
+        <div class="formData">
+          <label for="firstName">Prénom</label>
+          <br>
+          <input class="text-control" type="text" id="firstName" name="First name" aria-labelledby="First name" required="" minlength="2">
         </div>
-        <button class="contact_button">Envoyer</button>
+        <div class="formData">
+          <label for="lastName">Nom</label>
+          <br>
+          <input class="text-control" type="text" id="lastName" name="Last name" aria-labelledby="Last name" required="" minlength="2">
+        </div>
+        <div class="formData">
+          <label for="email">Email</label>
+          <br>
+          <input class="text-control" type="email" id="email" name="Email" aria-labelledby="Email" required="">
+        </div>
+        <div class="formData">
+          <label for="message">Votre message</label>
+          <br>
+          <textarea class="text-control" type="text" id="message" name="Your message" aria-labelledby="Your message" required="" minlength="10"></textarea>
+        </div>
+        <button class="contact_button" id="modal_button" onclick="validate()">Envoyer</button>
+        <!-- <input type="submit" class="contact_button" id="modal_button" value="Envoyer"> -->
       </form>
     </div>
   </div>
