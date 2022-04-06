@@ -26,60 +26,77 @@ let validFormEmail      = false;
 let validFormMessage    = false;
 
 function validationFirstName(e) {
+
     let value = e.target.value;
-    
+
     if((value.length >= 2) && (value != "")) {
 
         first.style.border = "6px solid green";
-        
-        return validFormFirstName = true;
+        validFormFirstName = true;
+        return true;
     }
+
     first.style.border = "5px solid red";
+    validFormFirstName = false;
 }
 
 function validationLastName(e) {
+
     let value = e.target.value;
     
     if((value.length >= 2) && (value != "")) {
 
         last.style.border = "6px solid green";
-        
-        return validFormLastName = true;
+        validFormLastName = true
+        return true;
     }
     last.style.border = "5px solid red";
+    validFormLastName = false;
 }
 
 function validationEmail(e) {
+
     let value = e.target.value;
     let validMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   
     if (value.match(validMail)) {
 
         email.style.border = "6px solid green";
-  
-        return validFormEmail = true;
+        validFormEmail = true;
+        return true;
     } 
+
     email.style.border = "6px solid red";
+    validFormEmail = false;
   }
 
   function validationMessage(e) {
+
     let value = e.target.value;
     
     if((value.length >= 10) && (value != "")) {
 
         message.style.border = "6px solid green";
-        
-        return validFormMessage = true;
+        validFormMessage = true
+        return true;
     }
+
     message.style.border = "5px solid red";
+    validFormMessage = false;
 }
 
 function validate() {
+
+    event.preventDefault();
     let validForm = validFormFirstName && validFormLastName && validFormEmail && validFormMessage;
-    console.log(validForm);
+    
     if (validForm) {
+
         closeModal();
-        // Afficher les consoles log des différents champs dans la console
+        console.log(`First name : ${first.value}`);
+        console.log(`Last name : ${last.value}`);
+        console.log(`Email : ${email.value}`);
+        console.log(`Message : ${message.value}`);
     }
 }
 
