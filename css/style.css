@@ -74,6 +74,7 @@ label {
     padding: 10px;
     border: none;
     border-radius: 6%;
+    cursor: pointer;
     background-color: var(--red-color);
     color: white;
     text-decoration: none;
@@ -153,4 +154,8 @@ label {
 
 #modal_button {
     margin: 1.5rem 1rem;
+}
+
+#modal_button:hover {
+    background-color: green;
 }
