@@ -65,8 +65,12 @@
         </form>
       </div>
     </div>
-    <div class="lightbox">
-      <div class="lightbox-container"></div>
+    <div id="lightbox">
+      <span class="close-cursor" onclick="closeModal()"></span>
+      <div class="lightbox-container">
+        <a class="prev" onclick="plusSlides(-1)"></a>
+        <a class="next" onclick="plusSlides(1)"></a>
+      </div>
     </div>
   </article>
   <script src="../js/utils/contactForm.js"></script>

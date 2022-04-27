@@ -1,5 +1,7 @@
 "use strict";
 
+//import {openLightbox} from '../utils/lightbox.js';
+
 async function fetchPhotographer() {
     
     const url = '../FishEyeData.json';
@@ -90,12 +92,15 @@ function createPhotographerMedia(data) {
     const liElt         = document.createElement("li");
     const figureElt     = document.createElement("figure");
     const figcaptionElt = document.createElement("figcaption");
+    //const linkElt       = document.createElement("a");
 
     if (data.image) {
         const imgElt = document.createElement("img");
 
+        //linkElt.href    = "../images/" + data.photographerId + "/" + data.image;
         imgElt.src      = "../images/" + data.photographerId + "/" + data.image;
         imgElt.alt      = data.title;
+        imgElt.onclick  = "openLightbox()"
 
         imgElt.style.width          = "100%";
         imgElt.style.height         = "100%";
@@ -103,14 +108,18 @@ function createPhotographerMedia(data) {
         imgElt.style.borderRadius   = "2%";
 
         figureElt.appendChild(imgElt);
+        //figureElt.appendChild(linkElt); 
+        //linkElt.appendChild(imgElt);
     }
 
     if (data.video) {
         const videoElt = document.createElement("video");
 
+        //linkElt.href                    = "../images/" + data.photographerId + "/" + data.video;
         videoElt.controls               = "controls";
         videoElt.src                    = "../images/" + data.photographerId + "/" + data.video;
         videoElt.type                   = "video/mp4";
+        videoElt.onclick                = "openLightbox()"
 
         videoElt.style.width            = "100%";
         videoElt.style.height           = "100%";
@@ -118,9 +127,12 @@ function createPhotographerMedia(data) {
         videoElt.style.borderRadius     = "2%";
 
         figureElt.appendChild(videoElt);
+        //figureElt.appendChild(linkElt); 
+        //linkElt.appendChild(videoElt);
     }
     //console.log(data.id);
     figcaptionElt.innerText = data.title;
+    figureElt.className = "media";
 
     liElt.style.margin              = "2rem 0rem";
     figureElt.style.width           = "400px";
@@ -130,7 +142,7 @@ function createPhotographerMedia(data) {
     
     photographerSection.appendChild(liElt);
     liElt.appendChild(figureElt);
-    figureElt.appendChild(figcaptionElt);  
+    figureElt.appendChild(figcaptionElt); 
 }
 
 
