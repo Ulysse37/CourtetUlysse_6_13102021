@@ -1,6 +1,12 @@
 "use strict";
 
-//import {openLightbox} from '../utils/lightbox.js';
+//import { openLightbox } from '../utils/lightbox.js';
+
+
+const photographUrlId = parseInt(location.href.split("=")[1], 10); // va chercher l'id du photographe dans l'url
+const photographerSection = document.querySelector(".photograph-gallery");
+
+// const slideIndex = 1;
 
 async function fetchPhotographer() {
     
@@ -14,9 +20,6 @@ async function fetchPhotographer() {
         console.log(error);
     }
 }
-
-const photographUrlId = parseInt(location.href.split("=")[1], 10); // va chercher l'id du photographe dans l'url
-const photographerSection = document.querySelector(".photograph-gallery");
 
 /**
  * Affiche le header sur la page photographe
@@ -83,6 +86,10 @@ function createPhotographerGallery(data) {
     }
 }
 
+function openLightbox() {
+    document.getElementById("lightbox").style.display = "block";
+}
+
 /**
  * Affiche la photo ou la video
  * @param {object} data 
@@ -93,15 +100,17 @@ function createPhotographerMedia(data) {
     const figureElt     = document.createElement("figure");
     const figcaptionElt = document.createElement("figcaption");
     //const linkElt       = document.createElement("a");
-
+    
     if (data.image) {
         const imgElt = document.createElement("img");
 
         //linkElt.href    = "../images/" + data.photographerId + "/" + data.image;
         imgElt.src      = "../images/" + data.photographerId + "/" + data.image;
         imgElt.alt      = data.title;
-        imgElt.onclick  = "openLightbox()"
-
+        //imgElt.onclick  = function() { document.getElementById("lightbox").style.display = "block"; }
+        //imgElt.onclick  = function () { document.getElementById('lightbox').style.display = 'block' };
+        //imgElt.setAttribute("onclick", document.getElementById('lightbox').style.display = 'block');
+        //imgElt.setAttribute("onclick", console.log("coucou"));
         imgElt.style.width          = "100%";
         imgElt.style.height         = "100%";
         imgElt.style.objectFit      = "cover";
@@ -110,6 +119,8 @@ function createPhotographerMedia(data) {
         figureElt.appendChild(imgElt);
         //figureElt.appendChild(linkElt); 
         //linkElt.appendChild(imgElt);
+        imgElt.addEventListener("click", openLightbox);
+        
     }
 
     if (data.video) {
@@ -129,6 +140,7 @@ function createPhotographerMedia(data) {
         figureElt.appendChild(videoElt);
         //figureElt.appendChild(linkElt); 
         //linkElt.appendChild(videoElt);
+        videoElt.addEventListener("click", openLightbox);
     }
     //console.log(data.id);
     figcaptionElt.innerText = data.title;
@@ -179,6 +191,120 @@ async function displayPhotographerGallery(media) {
     createPhotographerGallery(photographerGallery);
 }
 
+/* ---- LIGHTBOX Section ---- */
+
+function createLightboxMedia(data) {
+    const lightboxContent   = document.querySelector(".lightbox-container");
+    const liElt             = document.createElement("li");
+    const figureElt         = document.createElement("figure");
+    const figcaptionElt     = document.createElement("figcaption");
+    
+
+    if (data.image) {
+        const imgElt = document.createElement("img");
+
+        imgElt.src      = "../images/" + data.photographerId + "/" + data.image;
+        imgElt.alt      = data.title;
+        
+        imgElt.style.width          = "100%";
+        imgElt.style.height         = "100%";
+        imgElt.style.objectFit      = "cover";
+        imgElt.style.borderRadius   = "2%";
+
+        figureElt.appendChild(imgElt);
+    }
+
+    if (data.video) {
+        const videoElt = document.createElement("video");
+
+        videoElt.controls               = "controls";
+        videoElt.src                    = "../images/" + data.photographerId + "/" + data.video;
+        videoElt.type                   = "video/mp4";
+
+        videoElt.style.width            = "100%";
+        videoElt.style.height           = "100%";
+        videoElt.style.objectFit        = "cover";
+        videoElt.style.borderRadius     = "2%";
+
+        figureElt.appendChild(videoElt);
+    }
+    //console.log(data.id);
+    figcaptionElt.innerText = data.title;
+    figureElt.className = "media";
+    liElt.className = "mySlides"
+
+    liElt.style.margin              = "2rem 0rem";
+    figureElt.style.width           = "400px";
+    figureElt.style.height          = "400px";
+    figcaptionElt.style.color       = "#901C1C";
+    figcaptionElt.style.fontSize    = "120%";
+
+    lightboxContent.appendChild(liElt);
+    liElt.appendChild(figureElt);
+    figureElt.appendChild(figcaptionElt); 
+}
+
+function createLightboxGallery(data) {
+    
+    for (let i = 0; i < data.length; i++) {
+        createLightboxMedia(data[i]);
+    }
+}
+
+async function displayLightbox(media) {
+    let photographerGallery = [];
+    
+    for (let i = 0; i < media.length; i++) {
+        if (media[i].photographerId === photographUrlId) {
+            
+            photographerGallery.push(media[i]);
+        }
+    }
+    //console.log(photographerGallery);
+    createLightboxGallery(photographerGallery);
+}
+
+/* Je la met dans createPhotographerMedia
+function openLightbox() {
+    document.getElementById("lightbox").style.display = "block";
+}*/
+
+function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+}
+
+var slideIndex = 1;
+
+
+function showLightbox(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+
+    if (n > slides.length) {
+        slideIndex = 1;
+    }
+
+    if (n < 1) {
+        slideIndex = slides.length;
+    }
+
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    slides[slideIndex-1].style.display = "block";
+}
+
+function plusSlides(n) {
+  showLightbox(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showLightbox(slideIndex = n);
+}
+
+
+
 /**
  * Initialise le code
  */
@@ -188,5 +314,6 @@ async function init() {
     const { media } = await fetchPhotographer();
     displayPhotographer(photographers);  
     displayPhotographerGallery(media);
+    displayLightbox(media);
 };
 init();

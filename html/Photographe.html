@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Fisheye - photographe</title>
     <link rel="icon" type="image/png" href="../images/favicon.png"> <!--Rechanger le lien quand j'aurais l'icône -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    <script src="https://kit.fontawesome.com/14363d8dd3.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -66,15 +65,15 @@
       </div>
     </div>
     <div id="lightbox">
-      <span class="close-cursor" onclick="closeModal()"></span>
+      <span class="close cursor" onclick="closeLightbox()">&times;</span>
       <div class="lightbox-container">
-        <a class="prev" onclick="plusSlides(-1)"></a>
-        <a class="next" onclick="plusSlides(1)"></a>
+        <a class="prev control cursor" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next control cursor" onclick="plusSlides(1)">&#10095;</a>
       </div>
     </div>
   </article>
   <script src="../js/utils/contactForm.js"></script>
-  <script src="../js/pages/photographer.js"></script>
   <script src="../js/utils/lightbox.js"></script>
+  <script src="../js/pages/photographer.js"></script>
 </body>
 </html>
