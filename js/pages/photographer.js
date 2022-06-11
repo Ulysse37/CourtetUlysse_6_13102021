@@ -1,12 +1,7 @@
 "use strict";
 
-//import { openLightbox } from '../utils/lightbox.js';
-
-
 const photographUrlId = parseInt(location.href.split("=")[1], 10); // va chercher l'id du photographe dans l'url
 const photographerSection = document.querySelector(".photograph-gallery");
-
-// const slideIndex = 1;
 
 async function fetchPhotographer() {
     
@@ -20,6 +15,8 @@ async function fetchPhotographer() {
         console.log(error);
     }
 }
+
+/* ---- Header ---- */
 
 /**
  * Affiche le header sur la page photographe
@@ -76,16 +73,24 @@ function showPhotographerInfo(data) {
 }
 
 /**
- * Affiche la gallery du photographe
- * @param {object} data 
+ * Sort les data du photographe de la page
+ * @param {object} photographers 
  */
-function createPhotographerGallery(data) {
+async function displayPhotographer(photographers) {
     
-    for (let i = 0; i < data.length; i++) {
-        createPhotographerMedia(data[i]);
-    }
+    for (let i = 0; i < photographers.length; i++) {
+        
+        if (photographers[i].id === photographUrlId) {
+            showPhotographerInfo(photographers[i]);
+            //console.log(photographers[i]);
+            //return photographers[i];    
+        }
+    };
 }
 
+/* ---- Gallery ---- */
+
+/* fonction ouvrant la Lightbox */ 
 function openLightbox() {
     document.getElementById("lightbox").style.display = "block";
 }
@@ -104,29 +109,22 @@ function createPhotographerMedia(data) {
     if (data.image) {
         const imgElt = document.createElement("img");
 
-        //linkElt.href    = "../images/" + data.photographerId + "/" + data.image;
         imgElt.src      = "../images/" + data.photographerId + "/" + data.image;
         imgElt.alt      = data.title;
-        //imgElt.onclick  = function() { document.getElementById("lightbox").style.display = "block"; }
-        //imgElt.onclick  = function () { document.getElementById('lightbox').style.display = 'block' };
-        //imgElt.setAttribute("onclick", document.getElementById('lightbox').style.display = 'block');
-        //imgElt.setAttribute("onclick", console.log("coucou"));
+    
         imgElt.style.width          = "100%";
         imgElt.style.height         = "100%";
         imgElt.style.objectFit      = "cover";
         imgElt.style.borderRadius   = "2%";
 
         figureElt.appendChild(imgElt);
-        //figureElt.appendChild(linkElt); 
-        //linkElt.appendChild(imgElt);
+
         imgElt.addEventListener("click", openLightbox);
-        
     }
 
     if (data.video) {
         const videoElt = document.createElement("video");
 
-        //linkElt.href                    = "../images/" + data.photographerId + "/" + data.video;
         videoElt.controls               = "controls";
         videoElt.src                    = "../images/" + data.photographerId + "/" + data.video;
         videoElt.type                   = "video/mp4";
@@ -138,8 +136,7 @@ function createPhotographerMedia(data) {
         videoElt.style.borderRadius     = "2%";
 
         figureElt.appendChild(videoElt);
-        //figureElt.appendChild(linkElt); 
-        //linkElt.appendChild(videoElt);
+
         videoElt.addEventListener("click", openLightbox);
     }
     //console.log(data.id);
@@ -157,21 +154,15 @@ function createPhotographerMedia(data) {
     figureElt.appendChild(figcaptionElt); 
 }
 
-
 /**
- * Sort les data du photographe de la page
- * @param {object} photographers 
+ * Affiche la gallery du photographe
+ * @param {object} data 
  */
-async function displayPhotographer(photographers) {
+function createPhotographerGallery(data) {
     
-    for (let i = 0; i < photographers.length; i++) {
-        
-        if (photographers[i].id === photographUrlId) {
-            showPhotographerInfo(photographers[i]);
-            //console.log(photographers[i]);
-            //return photographers[i];    
-        }  
-    };
+    for (let i = 0; i < data.length; i++) {
+        createPhotographerMedia(data[i]);
+    }
 }
 
 /**
@@ -191,7 +182,7 @@ async function displayPhotographerGallery(media) {
     createPhotographerGallery(photographerGallery);
 }
 
-/* ---- LIGHTBOX Section ---- */
+/* ---- LIGHTBOX  ---- */
 
 function createLightboxMedia(data) {
     const lightboxContent   = document.querySelector(".lightbox-container");
@@ -264,32 +255,30 @@ async function displayLightbox(media) {
     createLightboxGallery(photographerGallery);
 }
 
-/* Je la met dans createPhotographerMedia
-function openLightbox() {
-    document.getElementById("lightbox").style.display = "block";
-}*/
-
 function closeLightbox() {
     document.getElementById("lightbox").style.display = "none";
 }
 
 var slideIndex = 1;
-
-
+//showLightbox(slideIndex);
+var slides = document.getElementsByClassName("mySlides");
+console.log(slides.length);
 function showLightbox(n) {
-    var i;
     var slides = document.getElementsByClassName("mySlides");
-
+    console.log(slides);
     if (n > slides.length) {
         slideIndex = 1;
+        //console.log("if (n > slides.length)", slideIndex);
     }
 
     if (n < 1) {
         slideIndex = slides.length;
+        //console.log("if (n < 1)", slideIndex);
     }
 
-    for (i = 0; i < slides.length; i++) {
+    for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
+        console.log("(i = 0; i < slides.length; i++)", slides[i]);
     }
 
     slides[slideIndex-1].style.display = "block";
@@ -298,12 +287,6 @@ function showLightbox(n) {
 function plusSlides(n) {
   showLightbox(slideIndex += n);
 }
-
-function currentSlide(n) {
-  showLightbox(slideIndex = n);
-}
-
-
 
 /**
  * Initialise le code
