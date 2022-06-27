@@ -128,7 +128,7 @@ function createPhotographerMedia(data) {
         videoElt.controls               = "controls";
         videoElt.src                    = "../images/" + data.photographerId + "/" + data.video;
         videoElt.type                   = "video/mp4";
-        videoElt.onclick                = "openLightbox()"
+        //videoElt.onclick                = "openLightbox()"
 
         videoElt.style.width            = "100%";
         videoElt.style.height           = "100%";
@@ -166,7 +166,7 @@ function createPhotographerGallery(data) {
 }
 
 /**
- * sort les photo du photographe de la page
+ * sort les photos du photographe de la page
  * @param {object} media 
  */
 async function displayPhotographerGallery(media) {
@@ -184,6 +184,10 @@ async function displayPhotographerGallery(media) {
 
 /* ---- LIGHTBOX  ---- */
 
+/**
+ * Affiche la photo ou la video de la lightbox
+ * @param {object} data 
+ */
 function createLightboxMedia(data) {
     const lightboxContent   = document.querySelector(".lightbox-container");
     const liElt             = document.createElement("li");
@@ -230,11 +234,16 @@ function createLightboxMedia(data) {
     figcaptionElt.style.color       = "#901C1C";
     figcaptionElt.style.fontSize    = "120%";
 
+
     lightboxContent.appendChild(liElt);
     liElt.appendChild(figureElt);
     figureElt.appendChild(figcaptionElt); 
 }
 
+/**
+ * Affiche la gallery du photographe pour la lightbox
+ * @param {object} data 
+ */
 function createLightboxGallery(data) {
     
     for (let i = 0; i < data.length; i++) {
@@ -242,6 +251,10 @@ function createLightboxGallery(data) {
     }
 }
 
+/**
+ * sort les photos du photographe de la page
+ * @param {object} media 
+ */
 async function displayLightbox(media) {
     let photographerGallery = [];
     
@@ -260,12 +273,12 @@ function closeLightbox() {
 }
 
 var slideIndex = 1;
-//showLightbox(slideIndex);
-var slides = document.getElementsByClassName("mySlides");
-console.log(slides.length);
+
 function showLightbox(n) {
     var slides = document.getElementsByClassName("mySlides");
-    console.log(slides);
+    //console.log(slideIndex);
+    //console.log(slides);
+    //console.log(slides.length);
     if (n > slides.length) {
         slideIndex = 1;
         //console.log("if (n > slides.length)", slideIndex);
@@ -278,10 +291,11 @@ function showLightbox(n) {
 
     for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
-        console.log("(i = 0; i < slides.length; i++)", slides[i]);
+        //console.log("(i = 0; i < slides.length; i++)", slides[i]);
     }
 
     slides[slideIndex-1].style.display = "block";
+    //console.log(n);
 }
 
 function plusSlides(n) {
@@ -293,10 +307,40 @@ function plusSlides(n) {
  */
 async function init() {
 
-    const { photographers } = await fetchPhotographer();
-    const { media } = await fetchPhotographer();
+    const { photographers, media } = await fetchPhotographer();
+    //const { media } = await fetchPhotographer();
     displayPhotographer(photographers);  
     displayPhotographerGallery(media);
     displayLightbox(media);
+    showLightbox(slideIndex);
+};
+
+init();
+
+// Initialise le code seulement après que le DOM soit chargé
+/*document.addEventListener('DOMContentLoaded', function(event) {
+    init();
+});*/
+
+
+//showLightbox(slideIndex); // à mettre dans init quand ça marchera
+
+/*
+document.addEventListener("DOMContentLoaded", function(event) { 
+    async function init() {
+
+    const { photographers, media } = await fetchPhotographer();
+    //const { media } = await fetchPhotographer();
+    displayPhotographer(photographers);  
+    displayPhotographerGallery(media);
+    displayLightbox(media);
+    showLightbox(slideIndex);
 };
 init();
+});
+*/
+
+
+
+
+
