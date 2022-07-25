@@ -95,6 +95,45 @@ function openLightbox() {
     document.getElementById("lightbox").style.display = "block";
 }
 
+function createImgElt(data, figureElt) {
+    let imgElt = document.createElement("img");
+
+    imgElt.src      = "../images/" + data.photographerId + "/" + data.image;
+    imgElt.alt      = data.title;
+        
+    imgElt.style.width          = "100%";
+    imgElt.style.height         = "100%";
+    imgElt.style.objectFit      = "cover";
+    imgElt.style.borderRadius   = "2%";
+        
+    figureElt.appendChild(imgElt);
+
+    imgElt.addEventListener("click", openLightbox);
+    imgElt.addEventListener("click", currentSlide);
+
+    return imgElt;
+}
+
+function createVideoElt(data, figureElt) {
+    let videoElt = document.createElement("video");
+
+    videoElt.controls               = "controls";
+    videoElt.src                    = "../images/" + data.photographerId + "/" + data.video;
+    videoElt.type                   = "video/mp4";
+    //videoElt.onclick                = "openLightbox()"
+
+    videoElt.style.width            = "100%";
+    videoElt.style.height           = "100%";
+    videoElt.style.objectFit        = "cover";
+    videoElt.style.borderRadius     = "2%";
+
+    figureElt.appendChild(videoElt);
+
+    videoElt.addEventListener("click", openLightbox);
+
+    return videoElt;
+}
+
 /**
  * Affiche la photo ou la video
  * @param {object} data 
@@ -107,43 +146,17 @@ function createPhotographerMedia(data) {
     //const linkElt       = document.createElement("a");
     
     if (data.image) {
-        const imgElt = document.createElement("img");
-
-        imgElt.src      = "../images/" + data.photographerId + "/" + data.image;
-        imgElt.alt      = data.title;
-    
-        imgElt.style.width          = "100%";
-        imgElt.style.height         = "100%";
-        imgElt.style.objectFit      = "cover";
-        imgElt.style.borderRadius   = "2%";
-
-        figureElt.appendChild(imgElt);
-
-        imgElt.addEventListener("click", openLightbox);
+        let imgElt = createImgElt(data, figureElt);
     }
 
     if (data.video) {
-        const videoElt = document.createElement("video");
-
-        videoElt.controls               = "controls";
-        videoElt.src                    = "../images/" + data.photographerId + "/" + data.video;
-        videoElt.type                   = "video/mp4";
-        //videoElt.onclick                = "openLightbox()"
-
-        videoElt.style.width            = "100%";
-        videoElt.style.height           = "100%";
-        videoElt.style.objectFit        = "cover";
-        videoElt.style.borderRadius     = "2%";
-
-        figureElt.appendChild(videoElt);
-
-        videoElt.addEventListener("click", openLightbox);
+        let videoElt = createVideoElt(data, figureElt);
     }
     //console.log(data.id);
     figcaptionElt.innerText = data.title;
     figureElt.className = "media";
 
-    liElt.style.margin              = "2rem 0rem";
+    liElt.style.margin              = "2rem 0";
     figureElt.style.width           = "400px";
     figureElt.style.height          = "400px";
     figcaptionElt.style.color       = "#901C1C";
@@ -196,39 +209,18 @@ function createLightboxMedia(data) {
     
 
     if (data.image) {
-        const imgElt = document.createElement("img");
-
-        imgElt.src      = "../images/" + data.photographerId + "/" + data.image;
-        imgElt.alt      = data.title;
-        
-        imgElt.style.width          = "100%";
-        imgElt.style.height         = "100%";
-        imgElt.style.objectFit      = "cover";
-        imgElt.style.borderRadius   = "2%";
-
-        figureElt.appendChild(imgElt);
+        let imgElt = createImgElt(data, figureElt);
     }
 
     if (data.video) {
-        const videoElt = document.createElement("video");
-
-        videoElt.controls               = "controls";
-        videoElt.src                    = "../images/" + data.photographerId + "/" + data.video;
-        videoElt.type                   = "video/mp4";
-
-        videoElt.style.width            = "100%";
-        videoElt.style.height           = "100%";
-        videoElt.style.objectFit        = "cover";
-        videoElt.style.borderRadius     = "2%";
-
-        figureElt.appendChild(videoElt);
+        let videoElt = createVideoElt(data, figureElt);
     }
     //console.log(data.id);
     figcaptionElt.innerText = data.title;
     figureElt.className = "media";
     liElt.className = "mySlides"
 
-    liElt.style.margin              = "2rem 0rem";
+    liElt.style.margin              = "2rem 0";
     figureElt.style.width           = "400px";
     figureElt.style.height          = "400px";
     figcaptionElt.style.color       = "#901C1C";
@@ -299,7 +291,11 @@ function showLightbox(n) {
 }
 
 function plusSlides(n) {
-  showLightbox(slideIndex += n);
+    showLightbox(slideIndex += n);
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
 }
 
 /**
