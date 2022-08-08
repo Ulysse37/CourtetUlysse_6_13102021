@@ -17,6 +17,49 @@ async function fetchPhotographer() {
 }
 
 /* ---- Header ---- */
+/**
+ * Affiche le style du header et son contenant
+ * @param {object} pictureElt 
+ */
+function createPhotographerStyle(pictureElt) {
+    let photographerHeader      = document.querySelector(".photograph-header");
+    let figureElt               = document.createElement("figure");
+    
+    photographerHeader.style.display            = "flex";
+    photographerHeader.style.justifyContent     = "space-around";
+    photographerHeader.style.alignItems         = "center";
+    photographerHeader.style.backgroundColor    = "#FAFAFA";
+    photographerHeader.style.margin             = "2rem 6rem";
+    figureElt.style.width                       = "250px";
+    figureElt.style.height                      = "250px";
+    figureElt.style.borderRadius                = "50%";
+    figureElt.style.overflow                    = "hidden";
+
+    photographerHeader.appendChild(figureElt);
+    figureElt.appendChild(pictureElt);
+}
+
+/*function createPhotographerInfoStyle(data) {
+
+    let photographerInfo      = document.querySelector(".photograph-header-info");
+    let nameElt       = document.createElement("h2");
+    let locationElt   = document.createElement("p");
+    let tagElt        = document.createElement("p");
+
+    nameElt.innerText           = name;
+    locationElt.innerText       = city + ", " + country;
+    tagElt.innerText            = tagline;
+
+    nameElt.style.color                         = "#D3573C";
+    nameElt.style.fontSize                      = "250%";
+    locationElt.style.color                     = "#901C1C";
+    locationElt.style.fontSize                  = "125%";
+    tagElt.style.color                          = "#525252"
+
+    photographerInfo.appendChild(nameElt);
+    photographerInfo.appendChild(locationElt);
+    photographerInfo.appendChild(tagElt);
+}*/
 
 /**
  * Affiche le header sur la page photographe
@@ -25,39 +68,32 @@ async function fetchPhotographer() {
 function showPhotographerInfo(data) {
     const { id, name, city, country, tagline, portrait, price } = data;
 
-    const photographerHeader    = document.querySelector(".photograph-header");
     const photographerInfo      = document.querySelector(".photograph-header-info");
     const photographerName      = document.querySelector(".photographer-name");
 
     const picture       = `../images/photographers/${portrait}`; 
-
     const nameElt       = document.createElement("h2");
     const locationElt   = document.createElement("p");
     const tagElt        = document.createElement("p");
     const figureElt     = document.createElement("figure");
     const pictureElt    = document.createElement("img");
 
+    let photographerHeader = createPhotographerStyle(pictureElt);
+    //let photographerInfo  = createPhotographerInfoStyle(data);
+
+    photographerName.innerText  = name; // Affiche le nom du photographe dans la modale Contactez-moi
     nameElt.innerText           = name;
-    photographerName.innerText  = name; // Affiche le nom du photographe dans la modale 
     locationElt.innerText       = city + ", " + country;
     tagElt.innerText            = tagline;
     pictureElt.src              = picture;
     pictureElt.alt              = name;
 
-    photographerHeader.style.display            = "flex";
-    photographerHeader.style.justifyContent     = "space-around";
-    photographerHeader.style.alignItems         = "center";
-    photographerHeader.style.backgroundColor    = "#FAFAFA";
-    photographerHeader.style.margin             = "2rem 6rem";
     nameElt.style.color                         = "#D3573C";
     nameElt.style.fontSize                      = "250%";
     locationElt.style.color                     = "#901C1C";
     locationElt.style.fontSize                  = "125%";
     tagElt.style.color                          = "#525252"
-    figureElt.style.width                       = "250px";
-    figureElt.style.height                      = "250px";
-    figureElt.style.borderRadius                = "50%";
-    figureElt.style.overflow                    = "hidden";
+    
     pictureElt.style.width                      = "100%";
     pictureElt.style.height                     = "100%";
     pictureElt.style.objectFit                  = "cover";
@@ -65,11 +101,6 @@ function showPhotographerInfo(data) {
     photographerInfo.appendChild(nameElt);
     photographerInfo.appendChild(locationElt);
     photographerInfo.appendChild(tagElt);
-    photographerHeader.appendChild(figureElt);
-    figureElt.appendChild(pictureElt);
-
-    //console.log(data);
-    //return { id, name, city, country, tagline, portrait, price }
 }
 
 /**
