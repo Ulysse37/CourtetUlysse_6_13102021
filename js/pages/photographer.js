@@ -16,7 +16,7 @@ async function fetchPhotographer() {
     }
 }
 
-/* ---- Header ---- */
+//! ****************************** HEADER  ******************************
 /**
  * Affiche le style du header et son contenant
  * @param {object} pictureElt 
@@ -38,17 +38,20 @@ function createPhotographerStyle(pictureElt) {
     photographerHeader.appendChild(figureElt);
     figureElt.appendChild(pictureElt);
 }
-
-/*function createPhotographerInfoStyle(data) {
+/**
+ * Crée le style des infos concernant le photographe
+ * @param {object} data 
+ */
+function createPhotographerInfoStyle(data) {
 
     let photographerInfo      = document.querySelector(".photograph-header-info");
     let nameElt       = document.createElement("h2");
     let locationElt   = document.createElement("p");
     let tagElt        = document.createElement("p");
 
-    nameElt.innerText           = name;
-    locationElt.innerText       = city + ", " + country;
-    tagElt.innerText            = tagline;
+    nameElt.innerText           = data.name;
+    locationElt.innerText       = data.city + ", " + data.country;
+    tagElt.innerText            = data.tagline;
 
     nameElt.style.color                         = "#D3573C";
     nameElt.style.fontSize                      = "250%";
@@ -59,7 +62,7 @@ function createPhotographerStyle(pictureElt) {
     photographerInfo.appendChild(nameElt);
     photographerInfo.appendChild(locationElt);
     photographerInfo.appendChild(tagElt);
-}*/
+}
 
 /**
  * Affiche le header sur la page photographe
@@ -68,39 +71,20 @@ function createPhotographerStyle(pictureElt) {
 function showPhotographerInfo(data) {
     const { id, name, city, country, tagline, portrait, price } = data;
 
-    const photographerInfo      = document.querySelector(".photograph-header-info");
     const photographerName      = document.querySelector(".photographer-name");
-
     const picture       = `../images/photographers/${portrait}`; 
-    const nameElt       = document.createElement("h2");
-    const locationElt   = document.createElement("p");
-    const tagElt        = document.createElement("p");
-    const figureElt     = document.createElement("figure");
     const pictureElt    = document.createElement("img");
 
     let photographerHeader = createPhotographerStyle(pictureElt);
-    //let photographerInfo  = createPhotographerInfoStyle(data);
+    let photographerInfo  = createPhotographerInfoStyle(data);
 
     photographerName.innerText  = name; // Affiche le nom du photographe dans la modale Contactez-moi
-    nameElt.innerText           = name;
-    locationElt.innerText       = city + ", " + country;
-    tagElt.innerText            = tagline;
     pictureElt.src              = picture;
     pictureElt.alt              = name;
 
-    nameElt.style.color                         = "#D3573C";
-    nameElt.style.fontSize                      = "250%";
-    locationElt.style.color                     = "#901C1C";
-    locationElt.style.fontSize                  = "125%";
-    tagElt.style.color                          = "#525252"
-    
     pictureElt.style.width                      = "100%";
     pictureElt.style.height                     = "100%";
     pictureElt.style.objectFit                  = "cover";
-    
-    photographerInfo.appendChild(nameElt);
-    photographerInfo.appendChild(locationElt);
-    photographerInfo.appendChild(tagElt);
 }
 
 /**
@@ -119,18 +103,18 @@ async function displayPhotographer(photographers) {
     };
 }
 
-/* ---- Gallery ---- */
+//! ****************************** GALLERY  ******************************
 
 /* fonction ouvrant la Lightbox */ 
 function openLightbox() {
     document.getElementById("lightbox").style.display = "block";
 }
 
-function createImgElt(data, figureElt) {
+function createImgElt(image, figureElt) {
     let imgElt = document.createElement("img");
 
-    imgElt.src      = "../images/" + data.photographerId + "/" + data.image;
-    imgElt.alt      = data.title;
+    imgElt.src      = "../images/" + image.photographerId + "/" + image.image;
+    imgElt.alt      = image.title;
         
     imgElt.style.width          = "100%";
     imgElt.style.height         = "100%";
@@ -140,18 +124,17 @@ function createImgElt(data, figureElt) {
     figureElt.appendChild(imgElt);
 
     imgElt.addEventListener("click", openLightbox);
-    imgElt.addEventListener("click", currentSlide);
+    //imgElt.addEventListener("click", currentSlide);
 
     return imgElt;
 }
 
-function createVideoElt(data, figureElt) {
+function createVideoElt(video, figureElt) {
     let videoElt = document.createElement("video");
 
     videoElt.controls               = "controls";
-    videoElt.src                    = "../images/" + data.photographerId + "/" + data.video;
+    videoElt.src                    = "../images/" + video.photographerId + "/" + video.video;
     videoElt.type                   = "video/mp4";
-    //videoElt.onclick                = "openLightbox()"
 
     videoElt.style.width            = "100%";
     videoElt.style.height           = "100%";
@@ -165,28 +148,30 @@ function createVideoElt(data, figureElt) {
     return videoElt;
 }
 
+
+
 /**
- * Affiche la photo ou la video
- * @param {object} data 
+ * Affiche et style la photo ou la video
+ * @param {object} media
  */
-function createPhotographerMedia(data) {
+function createPhotographerMedia(media) {
 
     const liElt         = document.createElement("li");
     const figureElt     = document.createElement("figure");
     const figcaptionElt = document.createElement("figcaption");
     //const linkElt       = document.createElement("a");
     
-    if (data.image) {
-        let imgElt = createImgElt(data, figureElt);
+    if (media.image) {
+        let imgElt = createImgElt(media, figureElt);
     }
 
-    if (data.video) {
-        let videoElt = createVideoElt(data, figureElt);
+    if (media.video) {
+        let videoElt = createVideoElt(media, figureElt);
     }
-    //console.log(data.id);
-    figcaptionElt.innerText = data.title;
+    
+    figcaptionElt.innerText = media.title;
     figureElt.className = "media";
-
+    
     liElt.style.margin              = "2rem 0";
     figureElt.style.width           = "400px";
     figureElt.style.height          = "400px";
@@ -211,43 +196,43 @@ function createPhotographerGallery(data) {
 
 /**
  * sort les photos du photographe de la page
- * @param {object} media 
+ * @param {object} allMedia
  */
-async function displayPhotographerGallery(media) {
+async function displayPhotographerGallery(allMedia) {
     let photographerGallery = [];
     
-    for (let i = 0; i < media.length; i++) {
-        if (media[i].photographerId === photographUrlId) {
+    for (let i = 0; i < allMedia.length; i++) {
+        if (allMedia[i].photographerId === photographUrlId) {
             
-            photographerGallery.push(media[i]);
+            photographerGallery.push(allMedia[i]);
         }
     }
     //console.log(photographerGallery);
     createPhotographerGallery(photographerGallery);
 }
 
-/* ---- LIGHTBOX  ---- */
+//! **************************** LIGHTBOX  ******************************
 
 /**
  * Affiche la photo ou la video de la lightbox
- * @param {object} data 
+ * @param {object} media
  */
-function createLightboxMedia(data) {
+function createLightboxMedia(media) {
     const lightboxContent   = document.querySelector(".lightbox-container");
     const liElt             = document.createElement("li");
     const figureElt         = document.createElement("figure");
     const figcaptionElt     = document.createElement("figcaption");
     
 
-    if (data.image) {
-        let imgElt = createImgElt(data, figureElt);
+    if (media.image) {
+        let imgElt = createImgElt(media, figureElt);
     }
 
-    if (data.video) {
-        let videoElt = createVideoElt(data, figureElt);
+    if (media.video) {
+        let videoElt = createVideoElt(media, figureElt);
     }
     //console.log(data.id);
-    figcaptionElt.innerText = data.title;
+    figcaptionElt.innerText = media.title;
     figureElt.className = "media";
     liElt.className = "mySlides"
 
@@ -265,26 +250,26 @@ function createLightboxMedia(data) {
 
 /**
  * Affiche la gallery du photographe pour la lightbox
- * @param {object} data 
+ * @param {object} allPhotographerMedias
  */
-function createLightboxGallery(data) {
+function createLightboxGallery(allPhotographerMedias) {
     
-    for (let i = 0; i < data.length; i++) {
-        createLightboxMedia(data[i]);
+    for (let i = 0; i < allPhotographerMedias.length; i++) {
+        createLightboxMedia(allPhotographerMedias[i]);
     }
 }
 
 /**
  * sort les photos du photographe de la page
- * @param {object} media 
+ * @param {object} allMedia
  */
-async function displayLightbox(media) {
+async function displayLightbox(allMedia) {
     let photographerGallery = [];
     
-    for (let i = 0; i < media.length; i++) {
-        if (media[i].photographerId === photographUrlId) {
+    for (let i = 0; i < allMedia.length; i++) {
+        if (allMedia[i].photographerId === photographUrlId) {
             
-            photographerGallery.push(media[i]);
+            photographerGallery.push(allMedia[i]);
         }
     }
     //console.log(photographerGallery);
@@ -299,6 +284,7 @@ var slideIndex = 1;
 
 function showLightbox(n) {
     var slides = document.getElementsByClassName("mySlides");
+    
     //console.log(slideIndex);
     //console.log(slides);
     //console.log(slides.length);
@@ -318,7 +304,7 @@ function showLightbox(n) {
     }
 
     slides[slideIndex-1].style.display = "block";
-    //console.log(n);
+    //console.log(slides[slideIndex-1]);
 }
 
 function plusSlides(n) {
@@ -326,7 +312,7 @@ function plusSlides(n) {
 }
 
 function currentSlide(n) {
-    showSlides(slideIndex = n);
+    showSlide(slideIndex = n);
 }
 
 /**
