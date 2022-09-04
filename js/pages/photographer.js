@@ -123,7 +123,7 @@ function createImgElt(image, figureElt) {
         
     figureElt.appendChild(imgElt);
 
-    imgElt.addEventListener("click", openLightbox);
+    //imgElt.addEventListener("click", openLightbox);
     //imgElt.addEventListener("click", currentSlide);
 
     return imgElt;
@@ -143,7 +143,7 @@ function createVideoElt(video, figureElt) {
 
     figureElt.appendChild(videoElt);
 
-    videoElt.addEventListener("click", openLightbox);
+    //videoElt.addEventListener("click", openLightbox);
 
     return videoElt;
 }
@@ -181,6 +181,9 @@ function createPhotographerMedia(media) {
     photographerSection.appendChild(liElt);
     liElt.appendChild(figureElt);
     figureElt.appendChild(figcaptionElt); 
+
+    figureElt.addEventListener("click", openLightbox);
+    //figureElt.addEventListener("click", currentSlide);
 }
 
 /**
@@ -312,7 +315,7 @@ function plusSlides(n) {
 }
 
 function currentSlide(n) {
-    showSlide(slideIndex = n);
+    showLightbox(slideIndex = n);
 }
 
 /**
