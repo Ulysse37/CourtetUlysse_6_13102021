@@ -20,77 +20,57 @@ const last      = document.getElementById("lastName");
 const email     = document.getElementById("email");
 const message   = document.getElementById("message");
 
-let validFormFirstName  = false;
-let validFormLastName   = false;
-let validFormEmail      = false;
-let validFormMessage    = false;
+let hasFirstName  = false;
+let hasLastName   = false;
+let hasEmail      = false;
+let hasMessage    = false;
 
-function validationFirstName(e) {
-
+function checkFirstName(e) {
     let value = e.target.value;
+    first.style.border = "5px solid red";
 
     if((value.length >= 2) && (value != "")) {
-
         first.style.border = "6px solid green";
-        validFormFirstName = true;
-        return true;
+        hasFirstName = true;
     }
-
-    first.style.border = "5px solid red";
-    validFormFirstName = false;
 }
 
-function validationLastName(e) {
-
+function checkLastName(e) {
     let value = e.target.value;
+    last.style.border = "5px solid red";
     
     if((value.length >= 2) && (value != "")) {
-
         last.style.border = "6px solid green";
-        validFormLastName = true
-        return true;
+        hasLastName = true
     }
-    last.style.border = "5px solid red";
-    validFormLastName = false;
 }
 
-function validationEmail(e) {
-
+function checkEmail(e) {
     let value = e.target.value;
     let validMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    email.style.border = "6px solid red";
   
     if (value.match(validMail)) {
-
         email.style.border = "6px solid green";
-        validFormEmail = true;
-        return true;
+        hasEmail = true;
     } 
-
-    email.style.border = "6px solid red";
-    validFormEmail = false;
   }
 
-  function validationMessage(e) {
-
+  function checkMessage(e) {
     let value = e.target.value;
-    
-    if((value.length >= 10) && (value != "")) {
-
-        message.style.border = "6px solid green";
-        validFormMessage = true
-        return true;
-    }
-
     message.style.border = "5px solid red";
-    validFormMessage = false;
+
+    if((value.length >= 10) && (value != "")) {
+        message.style.border = "6px solid green";
+        hasMessage = true
+    } 
 }
 
 function validate() {
-
     event.preventDefault();
-    let validForm = validFormFirstName && validFormLastName && validFormEmail && validFormMessage;
+    let isValidate = hasFirstName && hasLastName && hasEmail && hasMessage;
     
-    if (validForm) {
+    if (isValidate) {
 
         closeModal();
         console.log(`First name : ${first.value}`);
@@ -100,9 +80,7 @@ function validate() {
     }
 }
 
-first.addEventListener('change', validationFirstName);
-last.addEventListener('change', validationLastName);
-email.addEventListener('change', validationEmail);
-message.addEventListener('change', validationMessage);
-
-
+first.addEventListener('change', checkFirstName);
+last.addEventListener('change', checkLastName);
+email.addEventListener('change', checkEmail);
+message.addEventListener('change', checkMessage);
