@@ -105,11 +105,6 @@ async function displayPhotographer(photographers) {
 
 //! ****************************** GALLERY  ******************************
 
-/* fonction ouvrant la Lightbox */ 
-function openLightbox() {
-    document.getElementById("lightbox").style.display = "block";
-}
-
 function createImgElt(image, figureElt) {
     let imgElt = document.createElement("img");
 
@@ -123,8 +118,6 @@ function createImgElt(image, figureElt) {
         
     figureElt.appendChild(imgElt);
 
-    //imgElt.addEventListener("click", openLightbox);
-    //imgElt.addEventListener("click", currentSlide);
 
     return imgElt;
 }
@@ -142,8 +135,6 @@ function createVideoElt(video, figureElt) {
     videoElt.style.borderRadius     = "2%";
 
     figureElt.appendChild(videoElt);
-
-    //videoElt.addEventListener("click", openLightbox);
 
     return videoElt;
 }
@@ -181,9 +172,6 @@ function createPhotographerMedia(media) {
     photographerSection.appendChild(liElt);
     liElt.appendChild(figureElt);
     figureElt.appendChild(figcaptionElt); 
-
-    figureElt.addEventListener("click", openLightbox);
-    //figureElt.addEventListener("click", currentSlide);
 }
 
 /**
@@ -216,108 +204,8 @@ async function displayPhotographerGallery(allMedia) {
 
 //! **************************** LIGHTBOX  ******************************
 
-/**
- * Affiche la photo ou la video de la lightbox
- * @param {object} media
- */
-function createLightboxMedia(media) {
-    const lightboxContent   = document.querySelector(".lightbox-container");
-    const liElt             = document.createElement("li");
-    const figureElt         = document.createElement("figure");
-    const figcaptionElt     = document.createElement("figcaption");
-    
 
-    if (media.image) {
-        let imgElt = createImgElt(media, figureElt);
-    }
-
-    if (media.video) {
-        let videoElt = createVideoElt(media, figureElt);
-    }
-    //console.log(data.id);
-    figcaptionElt.innerText = media.title;
-    figureElt.className = "media";
-    liElt.className = "mySlides"
-
-    liElt.style.margin              = "2rem 0";
-    figureElt.style.width           = "400px";
-    figureElt.style.height          = "400px";
-    figcaptionElt.style.color       = "#901C1C";
-    figcaptionElt.style.fontSize    = "120%";
-
-
-    lightboxContent.appendChild(liElt);
-    liElt.appendChild(figureElt);
-    figureElt.appendChild(figcaptionElt); 
-}
-
-/**
- * Affiche la gallery du photographe pour la lightbox
- * @param {object} allPhotographerMedias
- */
-function createLightboxGallery(allPhotographerMedias) {
-    
-    for (let i = 0; i < allPhotographerMedias.length; i++) {
-        createLightboxMedia(allPhotographerMedias[i]);
-    }
-}
-
-/**
- * sort les photos du photographe de la page
- * @param {object} allMedia
- */
-async function displayLightbox(allMedia) {
-    let photographerGallery = [];
-    
-    for (let i = 0; i < allMedia.length; i++) {
-        if (allMedia[i].photographerId === photographUrlId) {
-            
-            photographerGallery.push(allMedia[i]);
-        }
-    }
-    //console.log(photographerGallery);
-    createLightboxGallery(photographerGallery);
-}
-
-function closeLightbox() {
-    document.getElementById("lightbox").style.display = "none";
-}
-
-var slideIndex = 1;
-
-function showLightbox(n) {
-    var slides = document.getElementsByClassName("mySlides");
-    
-    //console.log(slideIndex);
-    //console.log(slides);
-    //console.log(slides.length);
-    if (n > slides.length) {
-        slideIndex = 1;
-        //console.log("if (n > slides.length)", slideIndex);
-    }
-
-    if (n < 1) {
-        slideIndex = slides.length;
-        //console.log("if (n < 1)", slideIndex);
-    }
-
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-        //console.log("(i = 0; i < slides.length; i++)", slides[i]);
-    }
-
-    slides[slideIndex-1].style.display = "block";
-    //console.log(slides[slideIndex-1]);
-}
-
-function plusSlides(n) {
-    showLightbox(slideIndex += n);
-}
-
-function currentSlide(n) {
-    showLightbox(slideIndex = n);
-}
-
+//! **************************** INIT *******************************
 /**
  * Initialise le code
  */
@@ -327,8 +215,7 @@ async function init() {
     //const { media } = await fetchPhotographer();
     displayPhotographer(photographers);  
     displayPhotographerGallery(media);
-    displayLightbox(media);
-    showLightbox(slideIndex);
+    
 };
 
 init();
