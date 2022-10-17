@@ -205,6 +205,7 @@ async function displayPhotographerGallery(allMedia) {
 //! **************************** LIGHTBOX  ******************************
 
 
+
 //! **************************** INIT *******************************
 /**
  * Initialise le code
@@ -224,26 +225,3 @@ init();
 /*document.addEventListener('DOMContentLoaded', function(event) {
     init();
 });*/
-
-
-//showLightbox(slideIndex); // à mettre dans init quand ça marchera
-
-/*
-document.addEventListener("DOMContentLoaded", function(event) { 
-    async function init() {
-
-    const { photographers, media } = await fetchPhotographer();
-    //const { media } = await fetchPhotographer();
-    displayPhotographer(photographers);  
-    displayPhotographerGallery(media);
-    displayLightbox(media);
-    showLightbox(slideIndex);
-};
-init();
-});
-*/
-
-
-
-
-
