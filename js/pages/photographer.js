@@ -207,6 +207,7 @@ async function displayPhotographerGallery(allMedia) {
 
 
 //! **************************** INIT *******************************
+
 /**
  * Initialise le code
  */

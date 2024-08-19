@@ -36,6 +36,11 @@ h1 {
     flex-direction: row; 
     justify-content: center;
 }
+@media (min-width: 1700px) {
+    .photographer_section article {
+        margin: 0 5rem 6rem 5rem !important;
+    }
+}
 
 /* Css page photographe */
 ul {
@@ -44,15 +49,6 @@ ul {
     justify-content: space-between;
     margin: 0rem 3.5rem 0rem 1rem;
     list-style: none;
-}
-
-select {
-    border: none;
-    border-radius: 5px;
-    padding: 12px 10px;
-    background-color: var(--red-color);
-    color: white;
-    font-weight: bold;
 }
 
 i {
@@ -128,14 +124,25 @@ label {
     margin: 1rem auto;
 }
 
-#labelTriage {
+/*********** TRIEUR **********/
+select {
+    border: none;
+    border-radius: 5px;
+    padding: 12px 10px;
+    background-color: var(--red-color);
+    color: white;
+    font-weight: bold;
+}
+
+[id=labelTriage] {
     margin-left: 6rem;
     margin-right: 1rem;
     font-weight: bold;
     font-size: medium;
 }
 
-#contact_modal {
+/*********** MODALE CONTACT **********/
+[id=contact_modal] {
     display: none;
     position: fixed;
     left: 0;
@@ -146,22 +153,21 @@ label {
     overflow: auto;
 }
 
-#message {
+[id=message] {
     height: 150px;
     font-size: 22px;
     font-family: inherit;
 }
 
-#modal_button {
+[id=modal_button] {
     margin: 1.5rem 1rem;
 }
 
-#modal_button:hover {
+[id=modal_button]:hover {
     background-color: green;
 }
 
-/* Lightbox */
-
+/********** LIGHTBOX **********/
 .close {
     color: var(--red-color);
     font-size: 35px;
@@ -177,7 +183,7 @@ label {
     cursor: pointer;
   }
 
-/*#lightbox {
+/* [id=lightbox] {
     display:none;
     position: fixed;
     z-index: 1;
@@ -188,5 +194,4 @@ label {
     top: 0;
     overflow: auto;
     background-color: white;
-}
-*/
+} */

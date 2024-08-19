@@ -17,7 +17,6 @@ function photographerFactory(data) {
         const taglineElt    = document.createElement("p");
         const priceElt      = document.createElement("p");
 
-        
         linkElt.href            = `html/Photographe.html?id=${this.id}`;
         pictureElt.src          = picture;
         pictureElt.alt          = name;
@@ -25,8 +24,8 @@ function photographerFactory(data) {
         cityElt.textContent     = city + ", " + country;
         taglineElt.textContent  = tagline;
         priceElt.textContent    = price + "€/jour";
-        //priceElt.className      = "prix";
-        //cityElt.className       = "location";
+        /* priceElt.className      = "prix"; */
+        /* cityElt.className       = "location"; */
         
         pictureElt.style.width          = "100%";
         pictureElt.style.height         = "100%";
@@ -39,7 +38,8 @@ function photographerFactory(data) {
         article.style.display           = "flex";
         article.style.flexDirection     = "column"; 
         article.style.alignItems        = "center";
-        article.style.margin            = "0 5rem 6rem 5rem"
+        /* article.style.margin            = "0 5rem 6rem 5rem" */
+        article.style.margin            = "50px 35px"
         figureElt.style.display         = "flex";
         figureElt.style.flexDirection   = "column";
         figureElt.style.alignItems      = "center";
