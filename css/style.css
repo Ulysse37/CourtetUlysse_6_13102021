@@ -60,6 +60,13 @@ label {
     font-size: 25px;
 }
 
+@media (min-width: 1570px) { 
+    .media { /* width photo gallery */
+        width: 400px !important;
+        height: 400px !important;
+    }
+}
+
 .logo {
     margin: 1rem 3.2rem;
 }

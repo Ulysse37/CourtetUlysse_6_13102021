@@ -164,8 +164,10 @@ function createPhotographerMedia(media) {
     figureElt.className = "media";
     
     liElt.style.margin              = "2rem 0";
-    figureElt.style.width           = "400px";
-    figureElt.style.height          = "400px";
+    /* figureElt.style.width           = "400px";
+    figureElt.style.height          = "400px"; */
+    figureElt.style.width           = "330px";
+    figureElt.style.height          = "330px";
     figcaptionElt.style.color       = "#901C1C";
     figcaptionElt.style.fontSize    = "120%";
     
