@@ -78,7 +78,7 @@ function showPhotographerInfo(data) {
     let photographerHeader = createPhotographerStyle(pictureElt);
     let photographerInfo  = createPhotographerInfoStyle(data);
 
-    photographerName.innerText  = name; // Affiche le nom du photographe dans la modale Contactez-moi
+    photographerName.innerText  = "Contactez-moi \n" + name; // Affiche le nom du photographe dans la modale Contactez-moi
     pictureElt.src              = picture;
     pictureElt.alt              = name;
 

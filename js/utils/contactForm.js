@@ -29,13 +29,6 @@ function closeModal() {
     orderBy.setAttribute("aria-hidden", "false");
 }
 
-// Ferme la modale à l'utilisation de la touche Escape
-document.addEventListener('keydown', function(event) { 
-    if (event.key === 'Escape' && modal.style.display === 'block') {
-      closeModal();
-    }
-  });
-
 const first     = document.getElementById("firstName");
 const last      = document.getElementById("lastName");
 const email     = document.getElementById("email");
@@ -105,3 +98,10 @@ first.addEventListener('change', checkFirstName);
 last.addEventListener('change', checkLastName);
 email.addEventListener('change', checkEmail);
 message.addEventListener('change', checkMessage);
+
+// Ferme la modale à l'utilisation de la touche Escape
+document.addEventListener('keydown', function(event) { 
+    if (event.key === 'Escape' && modal.style.display === 'block') {
+      closeModal();
+    }
+  });
