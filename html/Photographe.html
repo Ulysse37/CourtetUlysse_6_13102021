@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <header>
+  <header role="banner">
     <a href="../index.html">
       <img src="../images/Logo/logo-fisheye.svg" class="logo" alt="Fisheye Home page"/>
     </a>
@@ -19,7 +19,7 @@
   <article id="article">
     <div class="photograph-header">
       <div class="photograph-header-info"></div>
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <button class="contact_button" onclick="displayModal()" aria-label="Contactez-moi">Contactez-moi</button>
     </div>
     <label id="labelTriage" for="orderBy">Trier par</label>
     <select id="orderBy" name="Triage" aria-labelledby="Trier par">
@@ -31,7 +31,7 @@
     <div id="contact_modal">
       <div class="modal">
         <span class="close_modal">
-          <i class="fa-solid fa-xmark" onclick="closeModal()"></i>
+          <i class="fa-solid fa-xmark" onclick="closeModal()" aria-label="Fermer le formulaire"></i>
         </span>
         <header>
           <h2>Contactez-moi</h2>
@@ -42,24 +42,24 @@
           <div class="formData">
             <label for="firstName">Prénom</label>
             <br>
-            <input class="text-control" type="text" id="firstName" name="First name" aria-labelledby="First name" required="" minlength="2">
+            <input class="text-control" type="text" id="firstName" name="First name" aria-labelledby="First name" required minlength="2">
           </div>
           <div class="formData">
             <label for="lastName">Nom</label>
             <br>
-            <input class="text-control" type="text" id="lastName" name="Last name" aria-labelledby="Last name" required="" minlength="2">
+            <input class="text-control" type="text" id="lastName" name="Last name" aria-labelledby="Last name" required minlength="2">
           </div>
           <div class="formData">
             <label for="email">Email</label>
             <br>
-            <input class="text-control" type="email" id="email" name="Email" aria-labelledby="Email" required="">
+            <input class="text-control" type="email" id="email" name="Email" aria-labelledby="Email" required>
           </div>
           <div class="formData">
             <label for="message">Votre message</label>
             <br>
-            <textarea class="text-control" type="text" id="message" name="Your message" aria-labelledby="Your message" required="" minlength="10"></textarea>
+            <textarea class="text-control" type="text" id="message" name="Your message" aria-labelledby="Your message" required minlength="10"></textarea>
           </div>
-          <button class="contact_button" id="modal_button" onclick="validate()">Envoyer</button>
+          <button type=submit class="contact_button" id="modal_button" onclick="validate()" aria-label="Envoyer">Envoyer</button>
           <!-- <input type="submit" class="contact_button" id="modal_button" value="Envoyer"> -->
         </form>
       </div>

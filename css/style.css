@@ -36,6 +36,7 @@ h1 {
     flex-direction: row; 
     justify-content: center;
 }
+
 @media (min-width: 1700px) {
     .photographer_section article {
         margin: 0 5rem 6rem 5rem !important;
