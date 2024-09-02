@@ -3,6 +3,7 @@
 const modal                 = document.getElementById("contact_modal");
 const photographerHeader    = document.querySelector(".photograph-header");
 const imageGallery          = document.querySelector(".photograph-gallery");
+const closeModalBtn         = document.querySelector(".close-modal-elt");
 const orderBy               = document.getElementById("orderBy");
 
 /**
@@ -14,6 +15,7 @@ function displayModal() {
     photographerHeader.setAttribute("aria-hidden", "true");
     imageGallery.setAttribute("aria-hidden", "true");
     orderBy.setAttribute("aria-hidden", "true");
+    closeModalBtn.focus();
 }
 
 /**
@@ -27,6 +29,13 @@ function closeModal() {
     orderBy.setAttribute("aria-hidden", "false");
 }
 
+// Ferme la modale à l'utilisation de la touche Escape
+document.addEventListener('keydown', function(event) { 
+    if (event.key === 'Escape' && modal.style.display === 'block') {
+      closeModal();
+    }
+  });
+
 const first     = document.getElementById("firstName");
 const last      = document.getElementById("lastName");
 const email     = document.getElementById("email");
@@ -37,7 +46,7 @@ let hasLastName   = false;
 let hasEmail      = false;
 let hasMessage    = false;
 
-function checkFirstName(e) {
+function checkFirstName(e) { // Vérifie que le prénom est bien > 2 caractères
     let value = e.target.value;
     first.style.border = "5px solid red";
 
@@ -47,7 +56,7 @@ function checkFirstName(e) {
     }
 }
 
-function checkLastName(e) {
+function checkLastName(e) { // vérifie que le nom est bien > 2 caractères
     let value = e.target.value;
     last.style.border = "5px solid red";
     
@@ -57,7 +66,7 @@ function checkLastName(e) {
     }
 }
 
-function checkEmail(e) {
+function checkEmail(e) { // Vérifie que l'email est valide
     let value = e.target.value;
     let validMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     email.style.border = "6px solid red";
@@ -68,7 +77,7 @@ function checkEmail(e) {
     } 
   }
 
-  function checkMessage(e) {
+  function checkMessage(e) { // Vérifie que le message est >= 10 caractères
     let value = e.target.value;
     message.style.border = "5px solid red";
 
@@ -78,7 +87,7 @@ function checkEmail(e) {
     } 
 }
 
-function validate() {
+function validate() { // Vérifie que tous les champs sont correctement remplis
     event.preventDefault();
     let isValidate = hasFirstName && hasLastName && hasEmail && hasMessage;
     
