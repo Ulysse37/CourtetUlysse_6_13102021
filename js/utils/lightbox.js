@@ -9,6 +9,24 @@ const lightboxNext = document.querySelector(".next_lightbox_btn");
 // Tableau des médias (images/vidéos)
 const medias = [];
 
+// Index de l'image/vidéo actuellement affichée
+let currentIndex = 0;
+
+// Fonction pour ajouter les médias dans le tableau
+function addMedias() {
+  const lis = document.querySelectorAll('.photograph-gallery li');
+  lis.forEach((li) => {
+    const media = li.querySelector('img, video');
+    medias.push(media);
+  });
+}
+
+// Appel de la fonction pour ajouter les médias après un délai pour laisser l'injection de la gallery
+setTimeout(() => {
+  addMedias();
+  console.log(medias);
+}, 1000);
+
 // Ajoute dans la lightbox le media cliqué
 function displayMedia(media) {
   const lightboxMedia = document.querySelector('.lightbox-media');
@@ -45,24 +63,35 @@ function closeLightbox() {
 // ajout événement clic sur les éléments de la gallery pour afficher la lightbox 
 setTimeout(() => {
   const lis = document.querySelectorAll('.photograph-gallery li');
-  console.log(lis);
+  /* console.log(lis); */
   lis.forEach((li) => {
     li.addEventListener('click', (e) => {
       const media = e.target.closest('img, video'); // target l'img/vidéo la plus proche de la <li>
-      console.log('media:', media);
+      /* console.log('media:', media); */
       displayMedia(media); // ouvre la lightbox sur le media cliqué
       openLightbox(media);
     });
   });
-}, 1000);
+}, 1000); // délai afin de laisser le temps à la gallery de s'injecter
 
+// Fonction pour afficher le média précédent
+function prevMedia() {
+  currentIndex--;
+  if (currentIndex < 0) {
+    currentIndex = medias.length - 1;
+  }
+  displayMedia(medias[currentIndex]);
+}
+
+// Fonction pour afficher le média suivant
+function nextMedia() {
+  currentIndex++;
+  if (currentIndex >= medias.length) {
+    currentIndex = 0;
+  }
+  displayMedia(medias[currentIndex]);
+}
 
 // Ajout d'un événement click sur les boutons précédent et suivant
-lightboxPrev.addEventListener("click", () => {
-    // Code pour afficher le média précédent
-    // ...
-});
-lightboxNext.addEventListener("click", () => {
-    // Code pour afficher le média suivant
-    // ...
-});
+lightboxPrev.addEventListener("click", prevMedia);
+lightboxNext.addEventListener("click", nextMedia);
