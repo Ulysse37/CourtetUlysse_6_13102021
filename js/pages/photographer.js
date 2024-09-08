@@ -44,10 +44,10 @@ function createPhotographerStyle(pictureElt) {
  */
 function createPhotographerInfoStyle(data) {
 
-    let photographerInfo      = document.querySelector(".photograph-header-info");
-    let nameElt       = document.createElement("h2");
-    let locationElt   = document.createElement("p");
-    let tagElt        = document.createElement("p");
+    let photographerInfo        = document.querySelector(".photograph-header-info");
+    let nameElt                 = document.createElement("h2");
+    let locationElt             = document.createElement("p");
+    let tagElt                  = document.createElement("p");
 
     nameElt.innerText           = data.name;
     locationElt.innerText       = data.city + ", " + data.country;
