@@ -84,18 +84,14 @@ setTimeout(() => {
 // Fonction pour afficher le média précédent
 function prevMedia() {
   currentIndex--; // décrémentation de l'index pour passer au media précédent
-  if (currentIndex < 0) { // si index < 0, on passe au dernier media de la liste
-    currentIndex = medias.length - 1;
-  }
+  if (currentIndex < 0) currentIndex = medias.length - 1; // si index < 0, on passe au dernier media de la liste
   displayMedia(medias[currentIndex]); // affichage du media correspondant au nouvel index
 }
 
 // Fonction pour afficher le média suivant
 function nextMedia() {
   currentIndex++; // incrémentation de l'index pour passer au media suivant
-  if (currentIndex >= medias.length) { // si index >= longueur du tableau, on passe au premier media de la liste
-    currentIndex = 0;
-  }
+  if (currentIndex >= medias.length) currentIndex = 0; // si index >= longueur du tableau, on passe au premier media de la liste
   displayMedia(medias[currentIndex]); // affichage du media correspondant au nouvel index
 }
 
