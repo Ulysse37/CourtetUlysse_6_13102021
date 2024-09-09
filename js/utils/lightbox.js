@@ -29,8 +29,9 @@ setTimeout(() => {
 
 // Injecte dans la lightbox le media cliqué en lui donnant les mêmes attributs que l'original
 function displayMedia(media) {
-  const lightboxMediaContainer = document.querySelector('.lightbox-media-container');
-  lightboxMediaContainer.innerHTML = '';
+  const lightboxMediaContainer      = document.querySelector('.lightbox-media-container');
+  const lightboxMediaFigcaption     = document.querySelector('.lightbox-media-figcaption');
+  lightboxMediaContainer.innerHTML  = '';
   
   if (media.tagName === 'VIDEO') { // crée une <video> dans la lightbox si le media cliqué est une <video>
     
@@ -38,29 +39,31 @@ function displayMedia(media) {
     video.src = media.src;
     video.type = media.type;
     video.controls = true;
+    lightboxMediaFigcaption.innerText = media.alt;
     lightboxMediaContainer.appendChild(video);
   } else { // crée une <img> dans la lightbox si le media cliqué est une <img>
 
     const img = document.createElement('img');
     img.src = media.src;
     img.alt = media.alt;
+    lightboxMediaFigcaption.innerText = media.alt;
     lightboxMediaContainer.appendChild(img);
   }
 }
 
 // Fonction pour ouvrir la lightbox sur le media cliqué
 function openLightbox(media) {
-  // Code pour ouvrir la lightbox
+
   lightboxId.setAttribute("aria-hidden", "false");
-  lightboxId.style.display = "block";
+  lightboxId.style.display = "flex";
   const index = medias.indexOf(media); // trouve l'index du media dans le tableau medias
-  currentIndex = index;
+  currentIndex = index; // définit l'index de l'image/vidéo actuellement affichée
   displayMedia(media);
 }
 
 // Fonction pour fermer la lightbox
 function closeLightbox() {
-  // Code pour fermer la lightbox
+
   lightboxId.setAttribute("aria-hidden", "true");
   lightboxId.style.display = "none";
 }
@@ -71,7 +74,7 @@ setTimeout(() => {
 
   lis.forEach((li) => {
     li.addEventListener('click', (e) => {
-      
+
       const media = e.target.closest('img, video'); // target l'img/vidéo la plus proche de la <li>
       openLightbox(media);
     });
@@ -80,20 +83,20 @@ setTimeout(() => {
 
 // Fonction pour afficher le média précédent
 function prevMedia() {
-  currentIndex--;
-  if (currentIndex < 0) {
+  currentIndex--; // décrémentation de l'index pour passer au media précédent
+  if (currentIndex < 0) { // si index < 0, on passe au dernier media de la liste
     currentIndex = medias.length - 1;
   }
-  displayMedia(medias[currentIndex]);
+  displayMedia(medias[currentIndex]); // affichage du media correspondant au nouvel index
 }
 
 // Fonction pour afficher le média suivant
 function nextMedia() {
-  currentIndex++;
-  if (currentIndex >= medias.length) {
+  currentIndex++; // incrémentation de l'index pour passer au media suivant
+  if (currentIndex >= medias.length) { // si index >= longueur du tableau, on passe au premier media de la liste
     currentIndex = 0;
   }
-  displayMedia(medias[currentIndex]);
+  displayMedia(medias[currentIndex]); // affichage du media correspondant au nouvel index
 }
 
 // Ajout d'un événement click sur les boutons précédent et suivant

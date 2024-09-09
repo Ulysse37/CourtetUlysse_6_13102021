@@ -176,7 +176,7 @@ select {
 }
 
 /********** LIGHTBOX **********/
-.close {
+/* .close {
     color: var(--red-color);
     font-size: 35px;
     font-weight: bold;
@@ -189,7 +189,77 @@ select {
 
 .cursor {
     cursor: pointer;
+  } */
+
+[id=lightbox] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-container {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox-media-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-media-container img,
+.lightbox-media-container video {
+    max-width: 1050px;
+    max-height: 800px;
+    object-fit: contain;
+}
+
+.lightbox-media-figcaption {
+    color: var(--red-color);
+}
+
+.prev_lightbox_btn,
+.next_lightbox_btn {
+    position: absolute;
+    top: 50%;
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    color: var(--red-color);
+    cursor: pointer;
+}
+
+.prev_lightbox_btn {
+    left: 350px;
   }
+
+.next_lightbox_btn {
+    right: 350px;
+}
+
+.close_lightbox_btn {
+    position: absolute;
+    top: 130px;
+    right: 350px;
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    color: var(--red-color);
+    cursor: pointer;
+}
 
 /* [id=lightbox] {
     display:none;
@@ -202,5 +272,4 @@ select {
     top: 0;
     overflow: auto;
     background-color: white;
-}
- */
+} */
