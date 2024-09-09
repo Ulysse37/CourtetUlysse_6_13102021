@@ -27,21 +27,24 @@ setTimeout(() => {
   console.log(medias);
 }, 1000);
 
-// Ajoute dans la lightbox le media cliqué
+// Injecte dans la lightbox le media cliqué en lui donnant les mêmes attributs que l'original
 function displayMedia(media) {
-  const lightboxMedia = document.querySelector('.lightbox-media');
-  const imageSrc = media.getAttribute('src');
-  const imageAlt = media.getAttribute('alt');
+  const lightboxMediaContainer = document.querySelector('.lightbox-media-container');
+  lightboxMediaContainer.innerHTML = '';
   
-  if (media.src.includes('mp4')) {
-    lightboxMedia.innerHTML = '';
+  if (media.tagName === 'VIDEO') { // crée une <video> dans la lightbox si le media cliqué est une <video>
+    
     const video = document.createElement('video');
-    video.src = imageSrc;
-    video.type = 'video/mp4';
-    lightboxMedia.appendChild(video);
-  } else {
-    lightboxMedia.src = imageSrc;
-    lightboxMedia.alt = imageAlt;
+    video.src = media.src;
+    video.type = media.type;
+    video.controls = true;
+    lightboxMediaContainer.appendChild(video);
+  } else { // crée une <img> dans la lightbox si le media cliqué est une <img>
+
+    const img = document.createElement('img');
+    img.src = media.src;
+    img.alt = media.alt;
+    lightboxMediaContainer.appendChild(img);
   }
 }
 
@@ -62,15 +65,14 @@ function closeLightbox() {
   lightboxId.style.display = "none";
 }
 
-// ajout événement clic sur les éléments de la gallery pour afficher la lightbox 
+// ajout événement clic sur les éléments de la gallery pour afficher la lightbox sur le media cliqué
 setTimeout(() => {
   const lis = document.querySelectorAll('.photograph-gallery li');
-  /* console.log(lis); */
+
   lis.forEach((li) => {
     li.addEventListener('click', (e) => {
+      
       const media = e.target.closest('img, video'); // target l'img/vidéo la plus proche de la <li>
-      /* console.log('media:', media); */
-      displayMedia(media); // ouvre la lightbox sur le media cliqué
       openLightbox(media);
     });
   });
