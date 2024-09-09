@@ -50,6 +50,8 @@ function openLightbox(media) {
   // Code pour ouvrir la lightbox
   lightboxId.setAttribute("aria-hidden", "false");
   lightboxId.style.display = "block";
+  const index = medias.indexOf(media); // trouve l'index du media dans le tableau medias
+  currentIndex = index;
   displayMedia(media);
 }
 
