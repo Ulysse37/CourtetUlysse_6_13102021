@@ -78,10 +78,6 @@ label {
     font-size: 25px;
 }
 
-.media { /* margin figure gallery */
-    margin: 0 2rem;;
-}
-
 @media (min-width: 1560px) { 
     .media { /* width photo gallery */
         width: 400px !important;
@@ -259,8 +255,8 @@ select {
 
 .close_lightbox_btn {
     position: absolute;
-    top: 130px;
-    right: 350px;
+    top: 20px;
+    right: 330px;
     border: none;
     background-color: transparent;
     font-size: 24px;
@@ -279,11 +275,11 @@ select {
 }
 
 .prev_lightbox_btn {
-    left: 350px;
+    left: 330px;
 }
 
 .next_lightbox_btn {
-    right: 350px;
+    right: 330px;
 }
 
 

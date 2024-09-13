@@ -163,7 +163,7 @@ function createPhotographerMedia(media) {
     figcaptionElt.innerText = media.title;
     figureElt.className = "media";
     
-    liElt.style.margin              = "2rem 0";
+    liElt.style.margin              = "2rem 2rem";
     /* figureElt.style.width           = "400px";
     figureElt.style.height          = "400px"; */
     figureElt.style.width           = "330px";
