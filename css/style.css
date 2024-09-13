@@ -44,11 +44,26 @@ h1 {
     justify-content: center;
 }
 
-@media (min-width: 1700px) {
+.photographer_section figure {
+    margin: 0 2rem;
+}
+
+@media (min-width: 1576px) {
+    .photographer_section figure {
+        margin: 0 4rem;
+    }
+}
+
+@media (min-width: 1782px) {
+    .photographer_section figure {
+        margin: 0 7rem;
+    }
+}
+/* @media (min-width: 1700px) {
     .photographer_section article {
         margin: 0 5rem 6rem 5rem !important;
     }
-}
+} */
 
 /* Css page photographe */
 ul {
