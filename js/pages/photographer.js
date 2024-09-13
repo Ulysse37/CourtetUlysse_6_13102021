@@ -30,10 +30,11 @@ function createPhotographerStyle(pictureElt) {
     photographerHeader.style.alignItems         = "center";
     photographerHeader.style.backgroundColor    = "#FAFAFA";
     photographerHeader.style.margin             = "2rem 6rem";
-    figureElt.style.width                       = "250px";
-    figureElt.style.height                      = "250px";
+    figureElt.style.width                       = "200px";
+    figureElt.style.height                      = "200px";
     figureElt.style.borderRadius                = "50%";
     figureElt.style.overflow                    = "hidden";
+    figureElt.style.margin                      = "30px";
 
     photographerHeader.appendChild(figureElt);
     figureElt.appendChild(pictureElt);
@@ -82,6 +83,7 @@ function showPhotographerInfo(data) {
     pictureElt.src              = picture;
     pictureElt.alt              = name;
 
+    /* pictureElt.style.objectPosition = "50% 20%"; */
     pictureElt.style.width                      = "100%";
     pictureElt.style.height                     = "100%";
     pictureElt.style.objectFit                  = "cover";
@@ -168,8 +170,9 @@ function createPhotographerMedia(media) {
     figureElt.style.height          = "400px"; */
     figureElt.style.width           = "330px";
     figureElt.style.height          = "330px";
+    figcaptionElt.style.fontWeight  = "400";
+    figcaptionElt.style.fontSize    = "24px";
     figcaptionElt.style.color       = "#901C1C";
-    figcaptionElt.style.fontSize    = "120%";
     
     photographerSection.appendChild(liElt);
     liElt.appendChild(figureElt);
