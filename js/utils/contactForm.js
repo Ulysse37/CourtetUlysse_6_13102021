@@ -4,6 +4,7 @@ const modal                 = document.getElementById("contact_modal");
 const photographerHeader    = document.querySelector(".photograph-header");
 const imageGallery          = document.querySelector(".photograph-gallery");
 const closeModalBtn         = document.querySelector(".close-modal-elt");
+const labelByOrder          = document.getElementById("labelTriage");
 const orderBy               = document.getElementById("orderBy");
 
 /**
@@ -15,6 +16,7 @@ function displayModal() {
     modal.setAttribute("aria-hidden", "false");
     photographerHeader.setAttribute("aria-hidden", "true");
     imageGallery.setAttribute("aria-hidden", "true");
+    labelByOrder.setAttribute("aria-hidden", "true");
     orderBy.setAttribute("aria-hidden", "true");
     closeModalBtn.focus();
 }
@@ -28,6 +30,7 @@ function closeModal() {
     modal.setAttribute("aria-hidden", "true");
     photographerHeader.setAttribute("aria-hidden", "false");
     imageGallery.setAttribute("aria-hidden", "false");
+    labelByOrder.setAttribute("aria-hidden", "false");
     orderBy.setAttribute("aria-hidden", "false");
 }
 

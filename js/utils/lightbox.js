@@ -1,5 +1,6 @@
 "use strict";
 
+//lightbox const
 const lightboxId = document.querySelector("#lightbox");
 const lightbox = document.querySelector(".lightbox-container");
 const lightboxCloseBtn = document.querySelector(".close_lightbox_btn");
@@ -55,6 +56,11 @@ function displayMedia(media) {
 function openLightbox(media) {
 
   lightboxId.setAttribute("aria-hidden", "false");
+  photographerHeader.setAttribute("aria-hidden", "true");
+  imageGallery.setAttribute("aria-hidden", "true");
+  labelByOrder.setAttribute("aria-hidden", "true");
+  orderBy.setAttribute("aria-hidden", "true");
+
   lightboxId.style.display = "flex";
   const index = medias.indexOf(media); // trouve l'index du media dans le tableau medias
   currentIndex = index; // définit l'index de l'image/vidéo actuellement affichée
@@ -65,6 +71,11 @@ function openLightbox(media) {
 function closeLightbox() {
 
   lightboxId.setAttribute("aria-hidden", "true");
+  photographerHeader.setAttribute("aria-hidden", "false");
+  imageGallery.setAttribute("aria-hidden", "false");
+  labelByOrder.setAttribute("aria-hidden", "false");
+  orderBy.setAttribute("aria-hidden", "false");
+
   lightboxId.style.display = "none";
 }
 
