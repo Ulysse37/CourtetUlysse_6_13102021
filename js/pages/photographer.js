@@ -130,6 +130,7 @@ function createVideoElt(video, figureElt) {
     videoElt.controls               = "controls";
     videoElt.src                    = "../images/" + video.photographerId + "/" + video.video;
     videoElt.type                   = "video/mp4";
+    videoElt.ariaLabel             = video.title;
 
     videoElt.style.width            = "100%";
     videoElt.style.height           = "100%";

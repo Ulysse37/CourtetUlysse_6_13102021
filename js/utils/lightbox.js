@@ -41,6 +41,7 @@ function displayMedia(media) {
     video.type = media.type;
     video.controls = true;
     lightboxMediaFigcaption.innerText = media.alt;
+    console.log(lightboxMediaFigcaption);
     lightboxMediaContainer.appendChild(video);
   } else { // crée une <img> dans la lightbox si le media cliqué est une <img>
 
@@ -48,6 +49,7 @@ function displayMedia(media) {
     img.src = media.src;
     img.alt = media.alt;
     lightboxMediaFigcaption.innerText = media.alt;
+    console.log(lightboxMediaFigcaption);
     lightboxMediaContainer.appendChild(img);
   }
 }
