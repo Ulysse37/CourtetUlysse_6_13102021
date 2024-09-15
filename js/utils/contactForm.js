@@ -12,6 +12,7 @@ const orderBy               = document.getElementById("orderBy");
 function displayModal() {
 
 	modal.style.display = "block";
+    modal.setAttribute("aria-hidden", "false");
     photographerHeader.setAttribute("aria-hidden", "true");
     imageGallery.setAttribute("aria-hidden", "true");
     orderBy.setAttribute("aria-hidden", "true");
@@ -24,6 +25,7 @@ function displayModal() {
 function closeModal() {
 
     modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
     photographerHeader.setAttribute("aria-hidden", "false");
     imageGallery.setAttribute("aria-hidden", "false");
     orderBy.setAttribute("aria-hidden", "false");
