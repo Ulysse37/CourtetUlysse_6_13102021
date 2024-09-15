@@ -237,12 +237,34 @@ select {
 }
 
 .lightbox-media-container {
+    position: absolute;
+    top: 250px;
+    width: 37%;
+    height: 37%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 1850px) { /* ! CSS à revoir avec Phillipe pour le responsive lightbox */
+    .lightbox-media-container {
+        position: static;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* .lightbox-media-container {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
+
 
 .lightbox-media-container img,
 .lightbox-media-container video {
@@ -256,11 +278,30 @@ select {
 }
 
 .lightbox-media-figcaption {
-    width: 57%;
+    position: absolute;
+    top: 870px;
+    width: 37%;
     font-weight: 400;
     font-size: 24px;
     color: var(--red-color);
 }
+
+@media (min-width: 1850px) { /* ! CSS à revoir avec Phillipe pour le responsive lightbox */
+    .lightbox-media-figcaption {
+        position: static;
+        width: 57%;
+        font-weight: 400;
+        font-size: 24px;
+        color: var(--red-color);
+    }
+}
+
+/* .lightbox-media-figcaption {
+    width: 57%;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--red-color);
+} */
 
 .close_lightbox_btn {
     position: absolute;
