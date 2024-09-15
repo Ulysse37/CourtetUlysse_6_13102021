@@ -109,3 +109,18 @@ function nextMedia() {
 // Ajout d'un événement click sur les boutons précédent et suivant
 lightboxPrev.addEventListener("click", prevMedia);
 lightboxNext.addEventListener("click", nextMedia);
+
+// Ajout d'un événement keydown pour naviguer entre les images et quitter la lightbox
+document.addEventListener("keydown", (e) => {
+  if (lightboxId.style.display === "flex") {
+    if (e.key === "ArrowLeft") { // si touche flèche gauche pressée, appel de la fonction prevMedia 
+      prevMedia();
+    } else if (e.key === "ArrowRight") { // si touche flèche droite pressée, appel de la fonction nextMedia
+      nextMedia();
+    }
+    
+    else if (e.key === "Escape") { // Quitter la lightbox avec la touche escape
+      closeLightbox();
+    }
+  }
+});
