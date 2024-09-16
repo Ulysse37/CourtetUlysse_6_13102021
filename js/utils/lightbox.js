@@ -85,8 +85,11 @@ setTimeout(() => {
 
   lis.forEach((li) => {
     li.addEventListener('click', (e) => {
-
       const media = e.target.closest('img, video'); // target l'img/vidéo la plus proche de la <li>
+
+      if (media.tagName === 'VIDEO') {
+        e.preventDefault(); // annule comportement par défaut de lecture automatique afin de lancer lightbox au clic sur 1 vidéo
+      }
       openLightbox(media);
     });
   });
@@ -124,3 +127,4 @@ document.addEventListener("keydown", (e) => {
     }
   }
 });
+

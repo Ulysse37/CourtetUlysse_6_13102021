@@ -136,7 +136,7 @@ function createVideoElt(video, figureElt) {
     videoElt.style.height           = "100%";
     videoElt.style.objectFit        = "cover";
     videoElt.style.borderRadius     = "2%";
-
+      
     figureElt.appendChild(videoElt);
 
     return videoElt;
@@ -209,7 +209,6 @@ async function displayPhotographerGallery(allMedia) {
 }
 
 //! **************************** LIGHTBOX  ******************************
-
 
 
 //! **************************** INIT *******************************
