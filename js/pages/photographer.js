@@ -1,7 +1,7 @@
 "use strict";
 
-const photographUrlId = parseInt(location.href.split("=")[1], 10); // va chercher l'id du photographe dans l'url
-const photographerSection = document.querySelector(".photograph-gallery");
+const photographUrlId       = parseInt(location.href.split("=")[1], 10); // va chercher l'id du photographe dans l'url
+const photographerSection   = document.querySelector(".photograph-gallery");
 
 async function fetchPhotographer() {
     
@@ -193,9 +193,12 @@ function createPhotographerMedia(media) {
 
     heartElt.addEventListener("click", function() {
         if (!heartElt.classList.contains("liked")) {
-          const currentLikeCount = parseInt(likeCounterElt.textContent);
-          likeCounterElt.textContent = currentLikeCount + 1;
-          heartElt.classList.add("liked");
+            const currentLikeCount = parseInt(likeCounterElt.textContent);
+            likeCounterElt.textContent = currentLikeCount + 1;
+            heartElt.classList.add("liked");
+
+            // Mets à jour le compteur de like total
+            updateTotalLikes();
         }
     });
 }
@@ -230,6 +233,17 @@ async function displayPhotographerGallery(allMedia) {
 
 //! **************************** LIKES ******************************
 
+function updateTotalLikes() { // Fonction qui va calculer la somme des likes
+    const likeCounterElts = document.querySelectorAll('.like-count');
+    const totalLikes = Array.from(likeCounterElts).reduce((acc, counter) => { // calcule somme des valeurs de chaque compteur de like
+      return acc + parseInt(counter.textContent);
+    }, 0);
+    document.querySelector('.total-likes').textContent = totalLikes; // affiche le résultatdans l'encart de bas de page
+}
+
+setTimeout(function() { // update le nombre total de like au chargement de la page
+    updateTotalLikes();
+}, 1000); // attendre 1 seconde avant d'exécuter le code
 
 //! **************************** INIT *******************************
 
