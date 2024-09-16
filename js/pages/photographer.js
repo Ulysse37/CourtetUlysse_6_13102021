@@ -182,6 +182,7 @@ function createPhotographerMedia(media) {
     figcaptionElt.style.fontWeight      = "400";
     figcaptionElt.style.fontSize        = "24px";
     figcaptionElt.style.color           = "#901C1C";
+    likeContainer.style.margin          = "0";
     
     photographerSection.appendChild(liElt);
     liElt.appendChild(figureElt);

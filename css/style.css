@@ -4,7 +4,7 @@
     --grey-color: #525252;
 }
 
-/* Css global */
+/*********** Css global **********/
 
 body {
     font-family: 'DM Sans', sans-serif;
@@ -42,7 +42,7 @@ h1 {
     color: var(--red-color);
 }
 
-/* css index */
+/*********** CSS INDEX **********/
 
 .photographer_section {
     display: flex;
@@ -66,8 +66,8 @@ h1 {
         margin: 0 7rem;
     }
 }
+/*********** CSS PAGE PHOTOGRAPHE **********/
 
-/* Css page photographe */
 ul {
     display: flex;
     flex-wrap: wrap;
@@ -154,6 +154,13 @@ label {
 
 .modal h2 {
     margin: 1rem auto;
+}
+
+/*********** LIKES **********/
+
+.fa-heart {
+    margin-left: 10px;
+    font-size: 24px;
 }
 
 /*********** TRIEUR **********/
