@@ -150,34 +150,53 @@ function createVideoElt(video, figureElt) {
  */
 function createPhotographerMedia(media) {
 
-    const liElt         = document.createElement("li");
-    const figureElt     = document.createElement("figure");
-    const figcaptionElt = document.createElement("figcaption");
-    //const linkElt       = document.createElement("a");
+    const liElt             = document.createElement("li");
+    const figureElt         = document.createElement("figure");
+    const figcaptionElt     = document.createElement("figcaption");
+    const likeContainer     = document.createElement("p");
+    const likeCounterElt    = document.createElement("span");
+    const heartElt          = document.createElement("i");
     
     if (media.image) {
-        let imgElt = createImgElt(media, figureElt);
+        createImgElt(media, figureElt);
     }
 
     if (media.video) {
-        let videoElt = createVideoElt(media, figureElt);
+        createVideoElt(media, figureElt);
     }
-    
-    figcaptionElt.innerText = media.title;
-    figureElt.className = "media";
-    
-    liElt.style.margin              = "2rem 2rem";
-    /* figureElt.style.width           = "400px";
-    figureElt.style.height          = "400px"; */
-    figureElt.style.width           = "330px";
-    figureElt.style.height          = "330px";
-    figcaptionElt.style.fontWeight  = "400";
-    figcaptionElt.style.fontSize    = "24px";
-    figcaptionElt.style.color       = "#901C1C";
+
+    figureElt.className         = "media";
+    figcaptionElt.innerText     = media.title;
+    likeContainer.className     = "likes";
+    likeCounterElt.className    = "like-count";
+    likeCounterElt.innerText    = media.likes;
+    heartElt.className          = "fas fa-heart";
+
+    liElt.style.margin                  = "2rem 2rem";
+    /* figureElt.style.width            = "400px";
+    figureElt.style.height              = "400px"; */
+    figureElt.style.width               = "330px";
+    figureElt.style.height              = "330px";
+    figcaptionElt.style.display         = "flex";
+    figcaptionElt.style.justifyContent  = "space-between";
+    figcaptionElt.style.fontWeight      = "400";
+    figcaptionElt.style.fontSize        = "24px";
+    figcaptionElt.style.color           = "#901C1C";
     
     photographerSection.appendChild(liElt);
     liElt.appendChild(figureElt);
-    figureElt.appendChild(figcaptionElt); 
+    figureElt.appendChild(figcaptionElt);
+    figcaptionElt.appendChild(likeContainer);
+    likeContainer.appendChild(likeCounterElt);
+    likeContainer.appendChild(heartElt);
+
+    heartElt.addEventListener("click", function() {
+        if (!heartElt.classList.contains("liked")) {
+          const currentLikeCount = parseInt(likeCounterElt.textContent);
+          likeCounterElt.textContent = currentLikeCount + 1;
+          heartElt.classList.add("liked");
+        }
+    });
 }
 
 /**
@@ -208,7 +227,7 @@ async function displayPhotographerGallery(allMedia) {
     createPhotographerGallery(photographerGallery);
 }
 
-//! **************************** LIGHTBOX  ******************************
+//! **************************** LIKES ******************************
 
 
 //! **************************** INIT *******************************
