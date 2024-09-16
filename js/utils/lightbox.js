@@ -85,8 +85,12 @@ setTimeout(() => {
 
   lis.forEach((li) => {
     li.addEventListener('click', (e) => {
-      const media = e.target.closest('img, video'); // target l'img/vidéo la plus proche de la <li>
-
+      const target = e.target;
+      if (target.classList.contains('fa-heart')) {
+        
+        return; // Ne pas ouvrir la lightbox si l'utilisateur clique sur l'icône like
+      }
+      const media = target.closest('img, video');
       if (media.tagName === 'VIDEO') {
         e.preventDefault(); // annule comportement par défaut de lecture automatique afin de lancer lightbox au clic sur 1 vidéo
       }
