@@ -89,6 +89,14 @@ function showPhotographerInfo(data) {
     pictureElt.style.objectFit                  = "cover";
 }
 
+// Affiche le prix du photographe dans l'encart de bas de page
+function displayPhotographerPrice(data) { 
+    const { price } = data;
+    const photographerPrice      = document.querySelector(".photograph-price");
+
+    photographerPrice.innerText  = data.price + "€/jour";
+}
+
 /**
  * Sort les data du photographe de la page
  * @param {object} photographers 
@@ -99,6 +107,7 @@ async function displayPhotographer(photographers) {
         
         if (photographers[i].id === photographUrlId) {
             showPhotographerInfo(photographers[i]);
+            displayPhotographerPrice(photographers[i]);
             //console.log(photographers[i]);
             //return photographers[i];    
         }
@@ -256,7 +265,6 @@ async function init() {
     //const { media } = await fetchPhotographer();
     displayPhotographer(photographers);  
     displayPhotographerGallery(media);
-    
 };
 
 init();

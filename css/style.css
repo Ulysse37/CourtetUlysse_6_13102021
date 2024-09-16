@@ -163,6 +163,29 @@ label {
     font-size: 24px;
 }
 
+/*********** ENCART **********/
+
+.encart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 375px;
+    height: 60px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #DB8876;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.total-likes-container {
+    margin-left: 20px;
+}
+
+.photograph-price {
+    margin-right: 20px;
+}
+
 /*********** TRIEUR **********/
 select {
     border: none;
