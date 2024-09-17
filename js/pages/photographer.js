@@ -70,14 +70,14 @@ function createPhotographerInfoStyle(data) {
  * @param {object} data 
  */
 function showPhotographerInfo(data) {
-    const { id, name, city, country, tagline, portrait, price } = data;
+    const { name, portrait } = data;
 
     const photographerName      = document.querySelector(".photographer-name");
     const picture       = `../images/photographers/${portrait}`; 
     const pictureElt    = document.createElement("img");
 
-    let photographerHeader = createPhotographerStyle(pictureElt);
-    let photographerInfo  = createPhotographerInfoStyle(data);
+    createPhotographerStyle(pictureElt);
+    createPhotographerInfoStyle(data);
 
     photographerName.innerText  = "Contactez-moi \n" + name; // Affiche le nom du photographe dans la modale Contactez-moi
     pictureElt.src              = picture;
@@ -182,8 +182,6 @@ function createPhotographerMedia(media) {
     heartElt.className          = "fas fa-heart";
 
     liElt.style.margin                  = "2rem 2rem";
-    /* figureElt.style.width            = "400px";
-    figureElt.style.height              = "400px"; */
     figureElt.style.width               = "330px";
     figureElt.style.height              = "330px";
     figcaptionElt.style.display         = "flex";
@@ -262,7 +260,7 @@ setTimeout(function() { // update le nombre total de like au chargement de la pa
 async function init() {
 
     const { photographers, media } = await fetchPhotographer();
-    //const { media } = await fetchPhotographer();
+
     displayPhotographer(photographers);  
     displayPhotographerGallery(media);
 };

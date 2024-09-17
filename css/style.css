@@ -324,7 +324,7 @@ select {
 
 @media (min-width: 1920px) { 
     .lightbox-media-figcaption {
-        width: 54%;
+        width: 1050px;
         top: 960px;
         font-weight: 400;
         font-size: 24px;
