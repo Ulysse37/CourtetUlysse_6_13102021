@@ -200,7 +200,7 @@ function createPhotographerMedia(media) {
     likeContainer.appendChild(likeCounterElt);
     likeContainer.appendChild(heartElt);
 
-    heartElt.addEventListener("click", function() {
+    heartElt.addEventListener("click", function() { // Met à jour le compteur de like du media 
         if (!heartElt.classList.contains("liked")) {
             const currentLikeCount = parseInt(likeCounterElt.textContent);
             likeCounterElt.textContent = currentLikeCount + 1;

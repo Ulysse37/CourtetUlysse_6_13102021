@@ -268,19 +268,17 @@ select {
 
 .lightbox-media-container {
     position: absolute;
-    top: 250px;
+    top: 0px;
     width: 37%;
-    height: 37%;
+    height: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-@media (min-width: 1850px) { /* ! CSS à revoir avec Phillipe pour le responsive lightbox */
+@media (min-width: 1920px) { /* ! CSS à revoir avec Phillipe pour le responsive lightbox */
     .lightbox-media-container {
-        position: static;
         width: 100%;
-        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -299,7 +297,7 @@ select {
 .lightbox-media-container img,
 .lightbox-media-container video {
     width: 1050px;
-    height: 900px;
+    height: 700px;
     object-fit: cover;
 }
 
@@ -309,17 +307,16 @@ select {
 
 .lightbox-media-figcaption {
     position: absolute;
-    top: 870px;
+    top: 760px;
     width: 37%;
     font-weight: 400;
     font-size: 24px;
     color: var(--red-color);
 }
 
-@media (min-width: 1850px) { /* ! CSS à revoir avec Phillipe pour le responsive lightbox */
+@media (min-width: 1920px) { /* ! CSS à revoir avec Phillipe pour le responsive lightbox */
     .lightbox-media-figcaption {
-        position: static;
-        width: 57%;
+        width: 54%;
         font-weight: 400;
         font-size: 24px;
         color: var(--red-color);
@@ -335,7 +332,7 @@ select {
 
 .close_lightbox_btn {
     position: absolute;
-    top: 20px;
+    top: 50px;
     right: 330px;
     border: none;
     background-color: transparent;
