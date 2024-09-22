@@ -6,6 +6,7 @@ const lightbox = document.querySelector(".lightbox-container");
 const lightboxCloseBtn = document.querySelector(".close_lightbox_btn");
 const lightboxPrev = document.querySelector(".prev_lightbox_btn");
 const lightboxNext = document.querySelector(".next_lightbox_btn");
+const encartContainer = document.querySelector(".encart");
 
 // Tableau des médias (images/vidéos)
 const medias = [];
@@ -60,8 +61,11 @@ function openLightbox(media) {
   imageGallery.setAttribute("aria-hidden", "true");
   labelByOrder.setAttribute("aria-hidden", "true");
   orderBy.setAttribute("aria-hidden", "true");
+  encartContainer.setAttribute("aria-hidden", "true");
 
   lightboxId.style.display = "flex";
+  encartContainer.style.display = "none";
+  
   const index = medias.indexOf(media); // trouve l'index du media dans le tableau medias
   currentIndex = index; // définit l'index de l'image/vidéo actuellement affichée
   displayMedia(media);
@@ -75,8 +79,10 @@ function closeLightbox() {
   imageGallery.setAttribute("aria-hidden", "false");
   labelByOrder.setAttribute("aria-hidden", "false");
   orderBy.setAttribute("aria-hidden", "false");
+  encartContainer.setAttribute("aria-hidden", "false");
 
   lightboxId.style.display = "none";
+  encartContainer.style.display = "flex";
 }
 
 // ajout événement clic sur les éléments de la gallery pour afficher la lightbox sur le media cliqué

@@ -169,6 +169,9 @@ label {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    bottom: 0;
+    right: 50px;
     width: 375px;
     height: 60px;
     border-top-left-radius: 5px;
