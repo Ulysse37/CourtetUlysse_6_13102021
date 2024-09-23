@@ -1,9 +1,21 @@
 :root {
     --red-color: #901C1C; 
-    --beige-color: #D3573C;
+    --beige-color: #DB8876;
     --grey-color: #525252;
 }
-/* Css global */
+
+/*********** Css global **********/
+
+body {
+    font-family: 'DM Sans', sans-serif;
+}
+
+body, 
+ul,
+figure {
+    margin: 0;
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -25,10 +37,12 @@ video {
 }
 
 h1 {
+    font-weight: 400;
+    font-size: 36px;
     color: var(--red-color);
 }
 
-/* css index */
+/*********** CSS INDEX **********/
 
 .photographer_section {
     display: flex;
@@ -37,22 +51,29 @@ h1 {
     justify-content: center;
 }
 
-/* Css page photographe */
+.photographer_section figure {
+    margin: 0 2rem;
+}
+
+@media (min-width: 1576px) {
+    .photographer_section figure {
+        margin: 0 4rem;
+    }
+}
+
+@media (min-width: 1782px) {
+    .photographer_section figure {
+        margin: 0 7rem;
+    }
+}
+/*********** CSS PAGE PHOTOGRAPHE **********/
+
 ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 0rem 3.5rem 0rem 1rem;
+    margin: 0rem 3.5rem 4rem 1rem;
     list-style: none;
-}
-
-select {
-    border: none;
-    border-radius: 5px;
-    padding: 12px 10px;
-    background-color: var(--red-color);
-    color: white;
-    font-weight: bold;
 }
 
 i {
@@ -64,8 +85,15 @@ label {
     font-size: 25px;
 }
 
+@media (min-width: 1560px) { 
+    .media { /* width photo gallery */
+        width: 400px !important;
+        height: 400px !important;
+    }
+}
+
 .logo {
-    margin: 1rem 3.2rem;
+    margin: 1rem 6rem;
 }
 
 .contact_button {
@@ -128,14 +156,73 @@ label {
     margin: 1rem auto;
 }
 
-#labelTriage {
-    margin-left: 6rem;
-    margin-right: 1rem;
-    font-weight: bold;
-    font-size: medium;
+.media {
+    position: relative;
 }
 
-#contact_modal {
+.media figcaption {
+    width: calc(100% - 65px);
+}
+
+/*********** LIKES **********/
+
+.fa-heart {
+    margin-left: 10px;
+    font-size: 24px;
+}
+
+.likes {
+    position: absolute;
+    right: 0;
+}
+
+/*********** ENCART **********/
+
+.encart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    right: 50px;
+    width: 375px;
+    height: 60px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #DB8876;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.total-likes-container {
+    margin-left: 20px;
+}
+
+.photograph-price {
+    margin-right: 20px;
+}
+
+/*********** TRIEUR **********/
+select {
+    width: 170px;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 10px;
+    background-color: var(--red-color);
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+[id=labelTriage] {
+    margin-left: 6rem;
+    margin-right: 1rem;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+/*********** MODALE CONTACT **********/
+[id=contact_modal] {
     display: none;
     position: fixed;
     left: 0;
@@ -146,23 +233,22 @@ label {
     overflow: auto;
 }
 
-#message {
+[id=message] {
     height: 150px;
     font-size: 22px;
     font-family: inherit;
 }
 
-#modal_button {
+[id=modal_button] {
     margin: 1.5rem 1rem;
 }
 
-#modal_button:hover {
+[id=modal_button]:hover {
     background-color: green;
 }
 
-/* Lightbox */
-
-.close {
+/********** LIGHTBOX **********/
+/* .close {
     color: var(--red-color);
     font-size: 35px;
     font-weight: bold;
@@ -175,9 +261,138 @@ label {
 
 .cursor {
     cursor: pointer;
-  }
+  } */
 
-#lightbox {
+[id=lightbox] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-container {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox-media-container {
+    position: absolute;
+    top: 0px;
+    width: 37%;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 1920px) { 
+    .lightbox-media-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 1000px;
+    }
+}
+
+/* .lightbox-media-container {      code de base lightbox sans responsive
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+
+.lightbox-media-container img,
+.lightbox-media-container video {
+    width: 1050px;
+    height: 700px;
+    object-fit: cover;
+}
+
+.lightbox-media-container img {
+    object-position: 50% 35%;
+}
+
+.lightbox-media-figcaption {
+    position: absolute;
+    top: 760px;
+    width: 37%;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--red-color);
+}
+
+@media (min-width: 1920px) { 
+    .lightbox-media-container img,
+    .lightbox-media-container video {
+        height: 900px;
+    }
+}
+
+@media (min-width: 1920px) { 
+    .lightbox-media-figcaption {
+        width: 1050px;
+        top: 960px;
+        font-weight: 400;
+        font-size: 24px;
+        color: var(--red-color);
+    }
+}
+
+/* .lightbox-media-figcaption {     code de base lightbox sans responsive
+    width: 57%;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--red-color);
+} */
+
+.close_lightbox_btn {
+    position: absolute;
+    top: 50px;
+    right: 330px;
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    color: var(--red-color);
+    cursor: pointer;
+}
+
+.lightbox_btn {
+    position: absolute;
+    top: 35%;
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    color: var(--red-color);
+    cursor: pointer;
+}
+
+.prev_lightbox_btn {
+    left: 330px;
+}
+
+.next_lightbox_btn {
+    right: 330px;
+}
+
+@media (min-width: 1920px) { 
+    .lightbox_btn {
+        top: 43%;
+    }
+}
+
+/* [id=lightbox] {
     display:none;
     position: fixed;
     z-index: 1;
@@ -188,4 +403,4 @@ label {
     top: 0;
     overflow: auto;
     background-color: white;
-}
+} */

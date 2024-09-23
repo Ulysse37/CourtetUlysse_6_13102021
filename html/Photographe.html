@@ -6,35 +6,33 @@
     <title>Fisheye - photographe</title>
     <link rel="icon" type="image/png" href="../images/favicon.png"> <!--Rechanger le lien quand j'aurais l'icône -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
-  <header>
+  <nav role="navigation">
     <a href="../index.html">
       <img src="../images/Logo/logo-fisheye.svg" class="logo" alt="Fisheye Home page"/>
     </a>
-  </header>
-  <article id="article">
-    <div class="photograph-header">
+  </nav>
+  <main>
+    <header class="photograph-header">
       <div class="photograph-header-info"></div>
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-    </div>
+      <button class="contact_button" onclick="displayModal()" aria-label="Contactez-moi">Contactez-moi</button>
+    </header>
     <label id="labelTriage" for="orderBy">Trier par</label>
-    <select id="orderBy" name="Triage" aria-labelledby="Trier par">
-      <option value="Popularité">Popularité</option>
-      <option value="Date">Date</option>
-      <option value="Titre">Titre</option>
+    <select id="orderBy" name="Triage" aria-labelledby="Trier les photos par">
+      <option value="date">Date</option>
+      <option value="popularity">Popularité</option>
+      <option value="title">Titre</option>
     </select>
     <ul class="photograph-gallery"></ul> <!-- ajout des li incluant les figure / figcaption via js -->
     <div id="contact_modal">
-      <div class="modal">
+      <div class="modal" role="dialog">
         <span class="close_modal">
-          <i class="fa-solid fa-xmark" onclick="closeModal()"></i>
+          <i class="fa-solid fa-xmark close-modal-elt" onclick="closeModal()" aria-label="Fermer le formulaire"></i>
         </span>
         <header>
-          <h2>Contactez-moi</h2>
           <h2 class="photographer-name"></h2>
           <!--<img src="assets/icons/close.svg" onclick="closeModal()" /> -->
           </header>
@@ -42,38 +40,53 @@
           <div class="formData">
             <label for="firstName">Prénom</label>
             <br>
-            <input class="text-control" type="text" id="firstName" name="First name" aria-labelledby="First name" required="" minlength="2">
+            <input class="text-control" id="firstName" aria-labelledby="First name" required minlength="2">
           </div>
           <div class="formData">
             <label for="lastName">Nom</label>
             <br>
-            <input class="text-control" type="text" id="lastName" name="Last name" aria-labelledby="Last name" required="" minlength="2">
+            <input class="text-control" id="lastName" aria-labelledby="Last name" required minlength="2">
           </div>
           <div class="formData">
             <label for="email">Email</label>
             <br>
-            <input class="text-control" type="email" id="email" name="Email" aria-labelledby="Email" required="">
+            <input class="text-control" type="email" id="email" aria-labelledby="Email" required>
           </div>
           <div class="formData">
             <label for="message">Votre message</label>
             <br>
-            <textarea class="text-control" type="text" id="message" name="Your message" aria-labelledby="Your message" required="" minlength="10"></textarea>
+            <textarea class="text-control" id="message" aria-labelledby="Your message" required minlength="10"></textarea>
           </div>
-          <button class="contact_button" id="modal_button" onclick="validate()">Envoyer</button>
+          <button type=submit class="contact_button" id="modal_button" onclick="validate()" aria-label="Envoyer">Envoyer</button>
           <!-- <input type="submit" class="contact_button" id="modal_button" value="Envoyer"> -->
         </form>
       </div>
     </div>
     <div id="lightbox">
-      <span class="close cursor" onclick="closeLightbox()">&times;</span>
       <div class="lightbox-container">
-        <a class="prev control cursor" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next control cursor" onclick="plusSlides(1)">&#10095;</a>
+        <figure class="lightbox-media-container"></figure> 
+        <figcaption class="lightbox-media-figcaption"></figcaption>
+        <button type="button" class="close_lightbox_btn" onclick="closeLightbox()">
+          <i class="fas fa-times"></i>
+        </button>
+        <button type="button" class="prev_lightbox_btn lightbox_btn">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button type="button" class="next_lightbox_btn lightbox_btn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
       </div>
     </div>
-  </article>
+    <div class="encart" aria-label="Likes et prix du photographe" aria-hidden="false">
+      <p class="total-likes-container">
+        <span class="total-likes"></span> 
+        <i class="fas fa-heart"></i>
+      </p>
+      <p class="photograph-price"></p>
+    </div>
+  </main>
+  <script src="../js/pages/photographer.js"></script>
   <script src="../js/utils/contactForm.js"></script>
   <script src="../js/utils/lightbox.js"></script>
-  <script src="../js/pages/photographer.js"></script>
 </body>
 </html>

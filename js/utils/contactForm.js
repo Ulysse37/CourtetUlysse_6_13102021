@@ -1,18 +1,37 @@
 "use strict";
+
+const modal                 = document.getElementById("contact_modal");
+const photographerHeader    = document.querySelector(".photograph-header");
+const imageGallery          = document.querySelector(".photograph-gallery");
+const closeModalBtn         = document.querySelector(".close-modal-elt");
+const labelByOrder          = document.getElementById("labelTriage");
+const orderBy               = document.getElementById("orderBy");
+
 /**
  *Affiche la modale quand on appuie sur le bouton contactez-moi
  */
 function displayModal() {
-    const modal = document.getElementById("contact_modal");
+
 	modal.style.display = "block";
+    modal.setAttribute("aria-hidden", "false");
+    photographerHeader.setAttribute("aria-hidden", "true");
+    imageGallery.setAttribute("aria-hidden", "true");
+    labelByOrder.setAttribute("aria-hidden", "true");
+    orderBy.setAttribute("aria-hidden", "true");
+    closeModalBtn.focus();
 }
 
 /**
  *Ferme la modale quand on appuie sur la croix 
  */
 function closeModal() {
-    const modal = document.getElementById("contact_modal");
+
     modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
+    photographerHeader.setAttribute("aria-hidden", "false");
+    imageGallery.setAttribute("aria-hidden", "false");
+    labelByOrder.setAttribute("aria-hidden", "false");
+    orderBy.setAttribute("aria-hidden", "false");
 }
 
 const first     = document.getElementById("firstName");
@@ -25,7 +44,7 @@ let hasLastName   = false;
 let hasEmail      = false;
 let hasMessage    = false;
 
-function checkFirstName(e) {
+function checkFirstName(e) { // Vérifie que le prénom est bien > 2 caractères
     let value = e.target.value;
     first.style.border = "5px solid red";
 
@@ -35,7 +54,7 @@ function checkFirstName(e) {
     }
 }
 
-function checkLastName(e) {
+function checkLastName(e) { // vérifie que le nom est bien > 2 caractères
     let value = e.target.value;
     last.style.border = "5px solid red";
     
@@ -45,7 +64,7 @@ function checkLastName(e) {
     }
 }
 
-function checkEmail(e) {
+function checkEmail(e) { // Vérifie que l'email est valide
     let value = e.target.value;
     let validMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     email.style.border = "6px solid red";
@@ -56,7 +75,7 @@ function checkEmail(e) {
     } 
   }
 
-  function checkMessage(e) {
+  function checkMessage(e) { // Vérifie que le message est >= 10 caractères
     let value = e.target.value;
     message.style.border = "5px solid red";
 
@@ -66,7 +85,7 @@ function checkEmail(e) {
     } 
 }
 
-function validate() {
+function validate() { // Vérifie que tous les champs sont correctement remplis
     event.preventDefault();
     let isValidate = hasFirstName && hasLastName && hasEmail && hasMessage;
     
@@ -84,3 +103,10 @@ first.addEventListener('change', checkFirstName);
 last.addEventListener('change', checkLastName);
 email.addEventListener('change', checkEmail);
 message.addEventListener('change', checkMessage);
+
+// Ferme la modale à l'utilisation de la touche Escape
+document.addEventListener('keydown', function(event) { 
+    if (event.key === 'Escape' && modal.style.display === 'block') {
+      closeModal();
+    }
+  });
