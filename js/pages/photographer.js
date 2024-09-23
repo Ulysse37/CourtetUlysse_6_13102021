@@ -215,6 +215,8 @@ function createPhotographerMedia(media) {
  * @param {object} data 
  */
 function createPhotographerGallery(data) {
+    // Supprimer les éléments existants dans la galerie afin d'éviter doublons quand utilisation du trieur
+    photographerSection.innerHTML = ''; 
     
     for (let i = 0; i < data.length; i++) {
         createPhotographerMedia(data[i]);
@@ -223,20 +225,54 @@ function createPhotographerGallery(data) {
 
 /**
  * sort les photos du photographe de la page
- * @param {object} allMedia
+ * @param {object} allMedia -> contient toutes les photos de tous les photographes
  */
+let photographerGallery = []; /* va contenir toutes les photo du photographe de la page */
 async function displayPhotographerGallery(allMedia) {
-    let photographerGallery = [];
     
     for (let i = 0; i < allMedia.length; i++) {
         if (allMedia[i].photographerId === photographUrlId) {
             
             photographerGallery.push(allMedia[i]);
+            /* console.log(allMedia); */
         }
     }
-    //console.log(photographerGallery);
+    /* console.log(photographerGallery); */
     createPhotographerGallery(photographerGallery);
 }
+
+//! **************************** TRIEUR ******************************
+
+const orderBySelect = document.getElementById('orderBy');
+
+function sortMedia(sortBy) {
+    // Récupérer les médias à trier
+    const mediaToSort = photographerGallery;
+    
+    // Trier les médias en fonction de la sélection
+    switch (sortBy) {
+      case 'popularity':
+        mediaToSort.sort((a, b) => b.likes - a.likes);
+        break;
+      case 'date':
+        mediaToSort.sort((a, b) => new Date(a.date) - new Date(b.date));
+        break;
+      case 'title':
+        mediaToSort.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      default:
+        console.error('Erreur de tri');
+    }
+    
+    // Mettre à jour la galerie avec les médias triés
+    createPhotographerGallery(mediaToSort);
+}
+
+orderBySelect.addEventListener('change', (e) => {
+    const selectedValue = e.target.value;
+    // Appelle de la fonction pour trier les médias en fonction de l'option select
+    sortMedia(selectedValue);
+  });
 
 //! **************************** LIKES ******************************
 
