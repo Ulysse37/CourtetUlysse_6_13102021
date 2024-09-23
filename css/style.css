@@ -72,7 +72,7 @@ ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 0rem 3.5rem 0rem 1rem;
+    margin: 0rem 3.5rem 4rem 1rem;
     list-style: none;
 }
 
@@ -93,7 +93,7 @@ label {
 }
 
 .logo {
-    margin: 1rem 3.2rem;
+    margin: 1rem 6rem;
 }
 
 .contact_button {
@@ -156,11 +156,24 @@ label {
     margin: 1rem auto;
 }
 
+.media {
+    position: relative;
+}
+
+.media figcaption {
+    width: calc(100% - 65px);
+}
+
 /*********** LIKES **********/
 
 .fa-heart {
     margin-left: 10px;
     font-size: 24px;
+}
+
+.likes {
+    position: absolute;
+    right: 0;
 }
 
 /*********** ENCART **********/
