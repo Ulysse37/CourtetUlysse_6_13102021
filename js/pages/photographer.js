@@ -255,7 +255,7 @@ function sortMedia(sortBy) {
         mediaToSort.sort((a, b) => b.likes - a.likes);
         break;
       case 'date':
-        mediaToSort.sort((a, b) => new Date(a.date) - new Date(b.date));
+        mediaToSort.sort((a, b) => new Date(b.date) - new Date(a.date));
         break;
       case 'title':
         mediaToSort.sort((a, b) => a.title.localeCompare(b.title));
