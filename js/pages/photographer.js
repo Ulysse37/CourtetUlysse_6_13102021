@@ -289,6 +289,17 @@ orderBySelect.addEventListener('change', () => {
     }
 });
 
+// style du chevron du trieur
+const trieurIcon   = document.querySelector(".trieur-icon");
+
+orderBySelect.addEventListener('click', () => {
+    trieurIcon.classList.toggle("rotated"); // Ajoute ou supprime la classe 'rotated' au clic sur le trieur
+});
+
+orderBySelect.addEventListener('blur', () => {  // Supprime la classe 'rotated' à la perte du focus
+    trieurIcon.classList.remove("rotated");
+});
+
 //! **************************** LIKES ******************************
 
 function updateTotalLikes() { // Fonction qui va calculer la somme des likes

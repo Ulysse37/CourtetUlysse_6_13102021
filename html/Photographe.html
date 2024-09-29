@@ -20,12 +20,15 @@
       <div class="photograph-header-info"></div>
       <button class="contact_button" onclick="displayModal()" aria-label="Contactez-moi">Contactez-moi</button>
     </header>
-    <label id="labelTriage" for="orderBy">Trier par</label>
-    <select id="orderBy" name="Triage" aria-labelledby="Trier les photos par">
-      <option value="date">Date</option>
-      <option value="popularity">Popularité</option>
-      <option value="title">Titre</option>
-    </select>
+    <div class="trieur-container">
+      <label id="labelTriage" for="orderBy">Trier par</label>
+      <select id="orderBy" name="Triage" aria-labelledby="Trier les photos par">
+        <option value="date">Date</option>
+        <option value="popularity">Popularité</option>
+        <option value="title">Titre</option>
+      </select>
+      <i class="fas fa-chevron-down fa-chevron-up fa-lg trieur-icon"></i>
+    </div>
     <ul class="photograph-gallery"></ul> <!-- ajout des li incluant les figure / figcaption via js -->
     <div id="contact_modal">
       <div class="modal" role="dialog">
