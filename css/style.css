@@ -106,11 +106,13 @@ label {
     background-color: var(--red-color);
     color: white;
     text-decoration: none;
-    font-size: 14px;
+    font-weight: 700;
+    font-size: 18px;
 }
 
 .contact_button:hover {
     background-color: var(--beige-color);
+    color: black;
 }
 
 .modal {

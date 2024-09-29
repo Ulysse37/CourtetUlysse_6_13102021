@@ -272,7 +272,22 @@ orderBySelect.addEventListener('change', (e) => {
     const selectedValue = e.target.value;
     // Appelle de la fonction pour trier les médias en fonction de l'option select
     sortMedia(selectedValue);
-  });
+});
+
+// masque l'option sélectionnée au clic sur select
+orderBySelect.addEventListener('click', () => {
+  const selectedIndex = orderBySelect.selectedIndex;
+  const options = orderBySelect.options;
+  options[selectedIndex].style.display = 'none';
+});
+
+// réaffiche toutes les options à change changement du filtre du trieur.
+orderBySelect.addEventListener('change', () => {
+    const options = orderBySelect.options;
+    for (let i = 0; i < options.length; i++) {
+      options[i].style.display = 'block';
+    }
+});
 
 //! **************************** LIKES ******************************
 
