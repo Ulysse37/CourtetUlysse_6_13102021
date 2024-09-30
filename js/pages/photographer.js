@@ -2,6 +2,8 @@
 
 const photographUrlId       = parseInt(location.href.split("=")[1], 10); // va chercher l'id du photographe dans l'url
 const photographerSection   = document.querySelector(".photograph-gallery");
+const orderBySelect         = document.getElementById('orderBy');
+let medias = []; // Tableau des médias (images/vidéos) qui seront injectés dans la lightbox
 
 async function fetchPhotographer() {
     
@@ -242,8 +244,16 @@ async function displayPhotographerGallery(allMedia) {
 }
 
 //! **************************** TRIEUR ******************************
+// Fonction pour ajouter les médias de la gallery dans le tableau medias pour la lightbox
+function addMedias() {
+    const lis = document.querySelectorAll('.photograph-gallery li');
+    lis.forEach((li) => {
+      const media = li.querySelector('img, video');
+      medias.push(media);
+    });
+}
 
-const orderBySelect = document.getElementById('orderBy');
+
 
 function sortMedia(sortBy) {
     // Récupérer les médias à trier
@@ -266,6 +276,9 @@ function sortMedia(sortBy) {
     
     // Mettre à jour la galerie avec les médias triés
     createPhotographerGallery(mediaToSort);
+    // met à jour tableau medias avec les medias triés pour la lightbox
+    medias = [];
+    addMedias();
 }
 
 orderBySelect.addEventListener('change', (e) => {
@@ -328,8 +341,3 @@ async function init() {
 };
 
 init();
-
-// Initialise le code seulement après que le DOM soit chargé
-/*document.addEventListener('DOMContentLoaded', function(event) {
-    init();
-});*/

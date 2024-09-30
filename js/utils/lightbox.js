@@ -8,20 +8,8 @@ const lightboxPrev = document.querySelector(".prev_lightbox_btn");
 const lightboxNext = document.querySelector(".next_lightbox_btn");
 const encartContainer = document.querySelector(".encart");
 
-// Tableau des médias (images/vidéos)
-const medias = [];
-
 // Index de l'image/vidéo actuellement affichée
 let currentIndex = 0;
-
-// Fonction pour ajouter les médias dans le tableau
-function addMedias() {
-  const lis = document.querySelectorAll('.photograph-gallery li');
-  lis.forEach((li) => {
-    const media = li.querySelector('img, video');
-    medias.push(media);
-  });
-}
 
 // Appel de la fonction pour ajouter les médias après un délai pour laisser l'injection de la gallery
 setTimeout(() => {
@@ -55,7 +43,7 @@ function displayMedia(media) {
 
 // Fonction pour ouvrir la lightbox sur le media cliqué
 function openLightbox(media) {
-
+  
   lightboxId.setAttribute("aria-hidden", "false");
   photographerHeader.setAttribute("aria-hidden", "true");
   imageGallery.setAttribute("aria-hidden", "true");
@@ -85,25 +73,14 @@ function closeLightbox() {
   encartContainer.style.display = "flex";
 }
 
-// ajout événement clic sur les éléments de la gallery pour afficher la lightbox sur le media cliqué
-setTimeout(() => {
-  const lis = document.querySelectorAll('.photograph-gallery li');
-
-  lis.forEach((li) => {
-    li.addEventListener('click', (e) => {
-      const target = e.target;
-      if (target.classList.contains('fa-heart')) {
-        
-        return; // Ne pas ouvrir la lightbox si l'utilisateur clique sur l'icône like
-      }
-      const media = target.closest('img, video');
-      if (media.tagName === 'VIDEO') {
-        e.preventDefault(); // annule comportement par défaut de lecture automatique afin de lancer lightbox au clic sur 1 vidéo
-      }
-      openLightbox(media);
-    });
-  });
-}, 1000); // délai afin de laisser le temps à la gallery de s'injecter
+// ajout événement clic sur la gallery pour afficher la lightbox sur le media cliqué
+photographerSection.addEventListener('click', (event) => {
+  if (event.target.tagName === 'IMG' || event.target.tagName === 'VIDEO') {
+    event.preventDefault(); // empêche la vidéo de se lancer automatiquement
+    const media = event.target;
+    openLightbox(media);
+  }
+});
 
 // Fonction pour afficher le média précédent
 function prevMedia() {
