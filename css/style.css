@@ -216,7 +216,7 @@ select {
     font-weight: 700;
     font-size: 18px;
     cursor: pointer;
-    appearance: none;
+    appearance: none; /* supprime le chevron de base */
 }
 
 select:hover {
@@ -233,6 +233,11 @@ select:hover + .trieur-icon {
     margin-right: 1rem;
     font-weight: 700;
     font-size: 18px;
+}
+
+.disabled-options {
+    font-size: 1px; 
+    background-color: white;
 }
 
 .trieur-container {

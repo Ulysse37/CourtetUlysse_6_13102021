@@ -253,8 +253,6 @@ function addMedias() {
     });
 }
 
-
-
 function sortMedia(sortBy) {
     // Récupérer les médias à trier
     const mediaToSort = photographerGallery;
@@ -311,6 +309,34 @@ orderBySelect.addEventListener('click', () => {
 
 orderBySelect.addEventListener('blur', () => {  // Supprime la classe 'rotated' à la perte du focus
     trieurIcon.classList.remove("rotated");
+});
+
+const firstSeparator    = document.querySelector(".separator-1");
+const secondSeparator   = document.querySelector(".separator-2");
+const thirdSeparator    = document.querySelector(".separator-3");
+const fourthSeparator   = document.querySelector(".separator-4");
+
+orderBySelect.addEventListener("change", function() {
+    const selectedValue = orderBySelect.value;
+    
+    if (selectedValue === "date") {
+        firstSeparator.style.display = "none";
+        secondSeparator.style.display = "block";
+        thirdSeparator.style.display = "block";
+        fourthSeparator.style.display = "none";
+    }
+    if (selectedValue === "popularity") {
+        firstSeparator.style.display = "block";
+        secondSeparator.style.display = "none";
+        thirdSeparator.style.display = "block";
+        fourthSeparator.style.display = "none";
+    }
+    if (selectedValue === "title") {
+        firstSeparator.style.display = "block";
+        secondSeparator.style.display = "block";
+        thirdSeparator.style.display = "none";
+        fourthSeparator.style.display = "none";
+    }
 });
 
 //! **************************** LIKES ******************************

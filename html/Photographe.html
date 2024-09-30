@@ -23,9 +23,13 @@
     <div class="trieur-container">
       <label id="labelTriage" for="orderBy">Trier par</label>
       <select id="orderBy" name="Triage" aria-labelledby="Trier les photos par">
+        <option disabled class ="disabled-options separator-1" style="display: none;"></option>
         <option value="date">Date</option>
+        <option disabled class ="disabled-options separator-2"></option>
         <option value="popularity">Popularité</option>
+        <option disabled class ="disabled-options separator-3"></option>
         <option value="title">Titre</option>
+        <option disabled class ="disabled-options separator-4" style="display: none;"></option>
       </select>
       <i class="fas fa-chevron-down fa-chevron-up fa-lg trieur-icon"></i>
     </div>
