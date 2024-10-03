@@ -73,15 +73,6 @@ function closeLightbox() {
   encartContainer.style.display = "flex";
 }
 
-// ajout événement clic sur la gallery pour afficher la lightbox sur le media cliqué
-photographerSection.addEventListener('click', (event) => {
-  if (event.target.tagName === 'IMG' || event.target.tagName === 'VIDEO') {
-    event.preventDefault(); // empêche la vidéo de se lancer automatiquement
-    const media = event.target;
-    openLightbox(media);
-  }
-});
-
 // Fonction pour afficher le média précédent
 function prevMedia() {
   currentIndex--; // décrémentation de l'index pour passer au media précédent
@@ -114,3 +105,22 @@ document.addEventListener("keydown", (e) => {
     }
   }
 });
+
+// ouvre la lightbox au clic ou pression touche enter sur une img ou une video de la gallery
+function handleMediaEvent(photographerSection) {
+  function openMedia(event) { // ouvre la lightbox si clic sur une <img> ou <video> de la gallery
+    if (event.target.tagName === 'IMG' || event.target.tagName === 'VIDEO') {
+      const media = event.target;
+      openLightbox(media);
+    }
+}
+
+  photographerSection.addEventListener('click', openMedia); // lance lightbox au clic
+  photographerSection.addEventListener('keydown', function(event) { // lance lightbox au clavier sur enter
+    if (event.key === "Enter") {
+      openMedia(event);
+    }
+  });
+}
+
+handleMediaEvent(photographerSection);

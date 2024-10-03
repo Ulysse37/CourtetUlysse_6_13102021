@@ -128,6 +128,7 @@ function createImgElt(image, figureElt) {
     imgElt.style.height         = "100%";
     imgElt.style.objectFit      = "cover";
     imgElt.style.borderRadius   = "2%";
+    imgElt.tabIndex             = "0";
         
     figureElt.appendChild(imgElt);
 
@@ -141,7 +142,8 @@ function createVideoElt(video, figureElt) {
     videoElt.controls               = "controls";
     videoElt.src                    = "../images/" + video.photographerId + "/" + video.video;
     videoElt.type                   = "video/mp4";
-    videoElt.ariaLabel             = video.title;
+    videoElt.ariaLabel              = video.title;
+    videoElt.tabIndex               = "0";
 
     videoElt.style.width            = "100%";
     videoElt.style.height           = "100%";
@@ -177,13 +179,13 @@ function createPhotographerMedia(media) {
     }
 
     figureElt.className         = "media";
-    figureElt.tabIndex          = "0";
+    /* figureElt.tabIndex          = "0"; */
     figcaptionElt.innerText     = media.title;
     likeContainer.className     = "likes";
     likeCounterElt.className    = "like-count";
     likeCounterElt.innerText    = media.likes;
     heartElt.className          = "fas fa-heart";
-    heartElt.tabIndex          = "0";
+    heartElt.tabIndex           = "0";
 
     liElt.style.margin                  = "2rem 2rem";
     figureElt.style.width               = "330px";
