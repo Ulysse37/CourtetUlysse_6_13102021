@@ -177,11 +177,13 @@ function createPhotographerMedia(media) {
     }
 
     figureElt.className         = "media";
+    figureElt.tabIndex          = "0";
     figcaptionElt.innerText     = media.title;
     likeContainer.className     = "likes";
     likeCounterElt.className    = "like-count";
     likeCounterElt.innerText    = media.likes;
     heartElt.className          = "fas fa-heart";
+    heartElt.tabIndex          = "0";
 
     liElt.style.margin                  = "2rem 2rem";
     figureElt.style.width               = "330px";
@@ -200,16 +202,7 @@ function createPhotographerMedia(media) {
     likeContainer.appendChild(likeCounterElt);
     likeContainer.appendChild(heartElt);
 
-    heartElt.addEventListener("click", function() { // Met à jour le compteur de like du media 
-        if (!heartElt.classList.contains("liked")) {
-            const currentLikeCount = parseInt(likeCounterElt.textContent);
-            likeCounterElt.textContent = currentLikeCount + 1;
-            heartElt.classList.add("liked");
-
-            // Mets à jour le compteur de like total
-            updateTotalLikes();
-        }
-    });
+    handleLikeEvent(heartElt, likeCounterElt); // appelle fonction pour ajouter 1 like au media + compteur total de like
 }
 
 /**
@@ -352,6 +345,25 @@ function updateTotalLikes() { // Fonction qui va calculer la somme des likes
 setTimeout(function() { // update le nombre total de like au chargement de la page
     updateTotalLikes();
 }, 1000); // attendre 1 seconde avant d'exécuter le code
+
+function handleLikeEvent(heartElt, likeCounterElt) {
+    function updateMediaLikesCount() { // Fonction qui va ajouter +1 au like du media
+        if (!heartElt.classList.contains("liked")) {
+            const currentLikeCount = parseInt(likeCounterElt.textContent);
+            likeCounterElt.textContent = currentLikeCount + 1;
+            heartElt.classList.add("liked");
+
+            // Mets à jour le compteur de like total
+            updateTotalLikes();
+        }
+    }
+    heartElt.addEventListener("click", updateMediaLikesCount); // ajoute +1 au like au clic
+    heartElt.addEventListener("keydown", function(event) { // ajoute +1 au like à la pression touche enter
+      if (event.key === "Enter") {
+        updateMediaLikesCount();
+      }
+    });
+}
 
 //! **************************** INIT *******************************
 

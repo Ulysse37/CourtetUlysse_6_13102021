@@ -219,15 +219,6 @@ select {
     appearance: none; /* supprime le chevron de base */
 }
 
-select:hover {
-    background-color: var(--beige-color);
-    color: black;
-}
-
-select:hover + .trieur-icon {
-    color: black;
-}
-
 [id=labelTriage] {
     margin-left: 6rem;
     margin-right: 1rem;
