@@ -98,9 +98,13 @@ document.addEventListener("keydown", (e) => {
       prevMedia();
     } else if (e.key === "ArrowRight") { // si touche flèche droite pressée, appel de la fonction nextMedia
       nextMedia();
-    }
-    
-    else if (e.key === "Escape") { // Quitter la lightbox avec la touche escape
+    } else if (e.key === " ") { // Si lightbox sur une video, permet de lancer la video avec touche espace
+      const lightboxMediaContainer  = document.querySelector('.lightbox-media-container');
+      const video                   = lightboxMediaContainer.querySelector('video');
+      if (video) {
+        video.play();
+      }
+    } else if (e.key === "Escape") { // Quitter la lightbox avec la touche escape
       closeLightbox();
     }
   }
