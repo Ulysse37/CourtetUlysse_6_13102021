@@ -121,14 +121,14 @@ async function displayPhotographer(photographers) {
 function createImgElt(image, figureElt) {
     let imgElt = document.createElement("img");
 
-    imgElt.src      = "../images/" + image.photographerId + "/" + image.image;
-    imgElt.alt      = image.title;
+    imgElt.src          = "../images/" + image.photographerId + "/" + image.image;
+    imgElt.alt          = image.title;
+    imgElt.tabIndex     = "0";
         
     imgElt.style.width          = "100%";
     imgElt.style.height         = "100%";
     imgElt.style.objectFit      = "cover";
     imgElt.style.borderRadius   = "2%";
-    imgElt.tabIndex             = "0";
         
     figureElt.appendChild(imgElt);
 
