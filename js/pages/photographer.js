@@ -280,12 +280,18 @@ orderBySelect.addEventListener('change', (e) => {
     sortMedia(selectedValue);
 });
 
-// masque l'option sélectionnée au clic sur select
-orderBySelect.addEventListener('click', () => {
-  const selectedIndex = orderBySelect.selectedIndex;
-  const options = orderBySelect.options;
-  options[selectedIndex].style.display = 'none';
-});
+// masque l'option sélectionnée au clic ou via la barre espace du clavier sur select
+function handleOrderBySelect(e) {
+    if (e.type === 'click' || (e.type === 'keydown' && e.key === " ")) {
+      const selectedIndex   = orderBySelect.selectedIndex;
+      const options         = orderBySelect.options;
+
+      options[selectedIndex].style.display = 'none';
+    }
+}
+
+orderBySelect.addEventListener('click', handleOrderBySelect);
+orderBySelect.addEventListener('keydown', handleOrderBySelect);
 
 // réaffiche toutes les options à change changement du filtre du trieur.
 orderBySelect.addEventListener('change', () => {
@@ -306,6 +312,7 @@ orderBySelect.addEventListener('blur', () => {  // Supprime la classe 'rotated' 
     trieurIcon.classList.remove("rotated");
 });
 
+// Style les lignes blanches entre les options
 const firstSeparator    = document.querySelector(".separator-1");
 const secondSeparator   = document.querySelector(".separator-2");
 const thirdSeparator    = document.querySelector(".separator-3");
