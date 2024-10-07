@@ -24,6 +24,7 @@ async function fetchPhotographer() {
  * @param {object} pictureElt 
  */
 function createPhotographerStyle(pictureElt) {
+
     let photographerHeader      = document.querySelector(".photograph-header");
     let figureElt               = document.createElement("figure");
     
@@ -72,11 +73,12 @@ function createPhotographerInfoStyle(data) {
  * @param {object} data 
  */
 function showPhotographerInfo(data) {
+
     const { name, portrait } = data;
 
     const photographerName      = document.querySelector(".photographer-name");
-    const picture       = `../images/photographers/${portrait}`; 
-    const pictureElt    = document.createElement("img");
+    const picture               = `../images/photographers/${portrait}`; 
+    const pictureElt            = document.createElement("img");
 
     createPhotographerStyle(pictureElt);
     createPhotographerInfoStyle(data);
@@ -85,7 +87,6 @@ function showPhotographerInfo(data) {
     pictureElt.src              = picture;
     pictureElt.alt              = name;
 
-    /* pictureElt.style.objectPosition = "50% 20%"; */
     pictureElt.style.width                      = "100%";
     pictureElt.style.height                     = "100%";
     pictureElt.style.objectFit                  = "cover";
@@ -93,6 +94,7 @@ function showPhotographerInfo(data) {
 
 // Affiche le prix du photographe dans l'encart de bas de page
 function displayPhotographerPrice(data) { 
+
     const { price } = data;
     const photographerPrice      = document.querySelector(".photograph-price");
 
@@ -109,9 +111,7 @@ async function displayPhotographer(photographers) {
         
         if (photographers[i].id === photographUrlId) {
             showPhotographerInfo(photographers[i]);
-            displayPhotographerPrice(photographers[i]);
-            //console.log(photographers[i]);
-            //return photographers[i];    
+            displayPhotographerPrice(photographers[i]);  
         }
     };
 }
@@ -119,6 +119,7 @@ async function displayPhotographer(photographers) {
 //! ****************************** GALLERY  ******************************
 
 function createImgElt(image, figureElt) {
+
     let imgElt = document.createElement("img");
 
     imgElt.src          = "../images/" + image.photographerId + "/" + image.image;
@@ -132,11 +133,11 @@ function createImgElt(image, figureElt) {
         
     figureElt.appendChild(imgElt);
 
-
     return imgElt;
 }
 
 function createVideoElt(video, figureElt) {
+
     let videoElt = document.createElement("video");
 
     videoElt.controls               = "controls";
@@ -149,13 +150,11 @@ function createVideoElt(video, figureElt) {
     videoElt.style.height           = "100%";
     videoElt.style.objectFit        = "cover";
     videoElt.style.borderRadius     = "2%";
-      
+
     figureElt.appendChild(videoElt);
 
     return videoElt;
 }
-
-
 
 /**
  * Affiche et style la photo ou la video
@@ -179,7 +178,6 @@ function createPhotographerMedia(media) {
     }
 
     figureElt.className         = "media";
-    /* figureElt.tabIndex          = "0"; */
     figcaptionElt.innerText     = media.title;
     likeContainer.className     = "likes";
     likeCounterElt.className    = "like-count";
@@ -231,16 +229,15 @@ async function displayPhotographerGallery(allMedia) {
         if (allMedia[i].photographerId === photographUrlId) {
             
             photographerGallery.push(allMedia[i]);
-            /* console.log(allMedia); */
         }
     }
-    /* console.log(photographerGallery); */
     createPhotographerGallery(photographerGallery);
 }
 
 //! **************************** TRIEUR ******************************
-// Fonction pour ajouter les médias de la gallery dans le tableau medias pour la lightbox
+// Fonction pour ajouter les médias de la gallery dans le tableau medias pour la lightbox dans l'odre des tris
 function addMedias() {
+
     const lis = document.querySelectorAll('.photograph-gallery li');
     lis.forEach((li) => {
       const media = li.querySelector('img, video');
@@ -267,7 +264,7 @@ function sortMedia(sortBy) {
         console.error('Erreur de tri');
     }
     
-    // Mettre à jour la galerie avec les médias triés
+    // Met à jour la galerie avec les médias triés
     createPhotographerGallery(mediaToSort);
     // met à jour tableau medias avec les medias triés pour la lightbox
     medias = [];
@@ -275,6 +272,7 @@ function sortMedia(sortBy) {
 }
 
 orderBySelect.addEventListener('change', (e) => {
+
     const selectedValue = e.target.value;
     // Appelle de la fonction pour trier les médias en fonction de l'option select
     sortMedia(selectedValue);
@@ -282,6 +280,7 @@ orderBySelect.addEventListener('change', (e) => {
 
 // masque l'option sélectionnée au clic ou via la barre espace du clavier sur select
 function handleOrderBySelect(e) {
+
     if (e.type === 'click' || (e.type === 'keydown' && e.key === " ")) {
       const selectedIndex   = orderBySelect.selectedIndex;
       const options         = orderBySelect.options;
@@ -295,7 +294,9 @@ orderBySelect.addEventListener('keydown', handleOrderBySelect);
 
 // réaffiche toutes les options à change changement du filtre du trieur.
 orderBySelect.addEventListener('change', () => {
+
     const options = orderBySelect.options;
+
     for (let i = 0; i < options.length; i++) {
       options[i].style.display = 'block';
     }
@@ -319,32 +320,35 @@ const thirdSeparator    = document.querySelector(".separator-3");
 const fourthSeparator   = document.querySelector(".separator-4");
 
 orderBySelect.addEventListener("change", function() {
+
     const selectedValue = orderBySelect.value;
     
     if (selectedValue === "date") {
-        firstSeparator.style.display = "none";
-        secondSeparator.style.display = "block";
-        thirdSeparator.style.display = "block";
-        fourthSeparator.style.display = "none";
+        firstSeparator.style.display    = "none";
+        secondSeparator.style.display   = "block";
+        thirdSeparator.style.display    = "block";
+        fourthSeparator.style.display   = "none";
     }
     if (selectedValue === "popularity") {
-        firstSeparator.style.display = "block";
-        secondSeparator.style.display = "none";
-        thirdSeparator.style.display = "block";
-        fourthSeparator.style.display = "none";
+        firstSeparator.style.display    = "block";
+        secondSeparator.style.display   = "none";
+        thirdSeparator.style.display    = "block";
+        fourthSeparator.style.display   = "none";
     }
     if (selectedValue === "title") {
-        firstSeparator.style.display = "block";
-        secondSeparator.style.display = "block";
-        thirdSeparator.style.display = "none";
-        fourthSeparator.style.display = "none";
+        firstSeparator.style.display    = "block";
+        secondSeparator.style.display   = "block";
+        thirdSeparator.style.display    = "none";
+        fourthSeparator.style.display   = "none";
     }
 });
 
 //! **************************** LIKES ******************************
 
 function updateTotalLikes() { // Fonction qui va calculer la somme des likes
+
     const likeCounterElts = document.querySelectorAll('.like-count');
+
     const totalLikes = Array.from(likeCounterElts).reduce((acc, counter) => { // calcule somme des valeurs de chaque compteur de like
       return acc + parseInt(counter.textContent);
     }, 0);
@@ -356,10 +360,14 @@ setTimeout(function() { // update le nombre total de like au chargement de la pa
 }, 1000); // attendre 1 seconde avant d'exécuter le code
 
 function handleLikeEvent(heartElt, likeCounterElt) {
+
     function updateMediaLikesCount() { // Fonction qui va ajouter +1 au like du media
+
         if (!heartElt.classList.contains("liked")) {
-            const currentLikeCount = parseInt(likeCounterElt.textContent);
-            likeCounterElt.textContent = currentLikeCount + 1;
+
+            const currentLikeCount      = parseInt(likeCounterElt.textContent);
+
+            likeCounterElt.textContent  = currentLikeCount + 1;
             heartElt.classList.add("liked");
 
             // Mets à jour le compteur de like total
@@ -368,6 +376,7 @@ function handleLikeEvent(heartElt, likeCounterElt) {
     }
     heartElt.addEventListener("click", updateMediaLikesCount); // ajoute +1 au like au clic
     heartElt.addEventListener("keydown", function(event) { // ajoute +1 au like à la pression touche enter
+
       if (event.key === "Enter") {
         updateMediaLikesCount();
       }

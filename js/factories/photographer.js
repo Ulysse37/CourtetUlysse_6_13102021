@@ -24,21 +24,17 @@ function photographerFactory(data) {
         cityElt.textContent     = city + ", " + country;
         taglineElt.textContent  = tagline;
         priceElt.textContent    = price + "€/jour";
-        /* priceElt.className      = "prix"; */
-        /* cityElt.className       = "location"; */
         
         pictureElt.style.width          = "100%";
         pictureElt.style.height         = "100%";
         pictureElt.style.objectFit      = "cover";
         figureElt.style.width           = "300px";
         figureElt.style.height          = "300px";
-        //figureElt.style.marginBottom    = "40px"
         figureElt.style.borderRadius    = "50%";
         figureElt.style.overflow        = "hidden";
         article.style.display           = "flex";
         article.style.flexDirection     = "column"; 
         article.style.alignItems        = "center";
-        /* article.style.margin            = "0 5rem 6rem 5rem" */
         article.style.margin            = "50px 35px"
         figureElt.style.display         = "flex";
         figureElt.style.flexDirection   = "column";
@@ -46,7 +42,6 @@ function photographerFactory(data) {
         figureElt.style.marginBottom    = "65px"
         figCaptionElt.style.color       = "#D3573C";
         figCaptionElt.style.position    = "absolute";
-        //figCaptionElt.style.bottom      = "-5px";
         nameElt.style.position          = "relative";
         nameElt.style.top               = "300px"
         cityElt.style.margin            = "0";

@@ -85,12 +85,7 @@ label {
     font-size: 25px;
 }
 
-@media (min-width: 1560px) { 
-    .media { /* width photo gallery */
-        width: 400px !important;
-        height: 400px !important;
-    }
-}
+
 
 .logo {
     margin: 1rem 6rem;
@@ -115,55 +110,19 @@ label {
     color: black;
 }
 
-.modal {
-    margin: 5% auto;
-    width: 100%;
-    max-width: 550px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: -5px 5px 15px 1px var(--grey-color);
-    border-radius: 4px;
-    background-color: var(--beige-color);
-    
-}
-
-.close_modal {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    font-size: 130%;
-    color: white;
-}
-
-.formData {
-    margin: 1.5rem 1rem;
-}
-
-.text-control {
-    width: 100%;
-    border: 0.8px solid var(--grey-color);
-    border-radius: 8px;
-    font-size: 20px;
-    height: 40px;
-    margin: 0;
-}
-
-.modal header {
-    display: block;
-    margin: auto 1rem;
-    font-size: 180%;
-}
-
-.modal h2 {
-    margin: 1rem auto;
-}
-
 .media {
     position: relative;
 }
 
 .media figcaption {
     width: calc(100% - 65px);
+}
+
+@media (min-width: 1560px) { 
+    .media { /* width photo gallery */
+        width: 400px !important;
+        height: 400px !important;
+    }
 }
 
 /*********** LIKES **********/
@@ -248,6 +207,50 @@ select {
 }
 
 /*********** MODALE CONTACT **********/
+
+.modal {
+    margin: 5% auto;
+    width: 100%;
+    max-width: 550px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: -5px 5px 15px 1px var(--grey-color);
+    border-radius: 4px;
+    background-color: var(--beige-color);
+    
+}
+
+.close_modal {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 130%;
+    color: white;
+}
+
+.formData {
+    margin: 1.5rem 1rem;
+}
+
+.text-control {
+    width: 100%;
+    border: 0.8px solid var(--grey-color);
+    border-radius: 8px;
+    font-size: 20px;
+    height: 40px;
+    margin: 0;
+}
+
+.modal header {
+    display: block;
+    margin: auto 1rem;
+    font-size: 180%;
+}
+
+.modal h2 {
+    margin: 1rem auto;
+}
+
 [id=contact_modal] {
     display: none;
     position: fixed;
@@ -274,20 +277,6 @@ select {
 }
 
 /********** LIGHTBOX **********/
-/* .close {
-    color: var(--red-color);
-    font-size: 35px;
-    font-weight: bold;
-}
-
-.control {
-    color: var(--red-color);
-    font-size: 25px;
-}
-
-.cursor {
-    cursor: pointer;
-  } */
 
 [id=lightbox] {
     position: fixed;
@@ -330,15 +319,6 @@ select {
     }
 }
 
-/* .lightbox-media-container {      code de base lightbox sans responsive
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-
-
 .lightbox-media-container img,
 .lightbox-media-container video {
     width: 1050px;
@@ -376,13 +356,6 @@ select {
     }
 }
 
-/* .lightbox-media-figcaption {     code de base lightbox sans responsive
-    width: 57%;
-    font-weight: 400;
-    font-size: 24px;
-    color: var(--red-color);
-} */
-
 .close_lightbox_btn {
     position: absolute;
     top: 50px;
@@ -417,16 +390,3 @@ select {
         top: 43%;
     }
 }
-
-/* [id=lightbox] {
-    display:none;
-    position: fixed;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    overflow: auto;
-    background-color: white;
-} */
