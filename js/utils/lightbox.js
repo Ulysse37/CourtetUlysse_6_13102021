@@ -8,6 +8,7 @@ const lightboxPrev      = document.querySelector(".prev_lightbox_btn");
 const lightboxNext      = document.querySelector(".next_lightbox_btn");
 const encartContainer   = document.querySelector(".encart");
 
+let isLightboxOpen = false;
 // Index de l'image/vidéo actuellement affichée
 let currentIndex = 0;
 
@@ -49,15 +50,22 @@ function displayMedia(media) {
   }
 }
 
+let currentOverlay;
 // Fonction pour ouvrir la lightbox sur le media cliqué
-function openLightbox(media) {
-  
+function openLightbox(media, overlay) {
+
+  if (overlay) { // cache l'overlay de la vidéo à l'ouverture de la lightbox s'il y en a une
+    overlay.classList.add('hidden');
+  }
+  currentOverlay = overlay;
+
   lightboxId.setAttribute("aria-hidden", "false");
   photographerHeader.setAttribute("aria-hidden", "true");
   imageGallery.setAttribute("aria-hidden", "true");
   labelByOrder.setAttribute("aria-hidden", "true");
   orderBy.setAttribute("aria-hidden", "true");
   encartContainer.setAttribute("aria-hidden", "true");
+  isLightboxOpen = true;
 
   lightboxId.style.display      = "flex";
   encartContainer.style.display = "none";
@@ -70,13 +78,18 @@ function openLightbox(media) {
 // Fonction pour fermer la lightbox
 function closeLightbox() {
 
+  if (currentOverlay) {
+    currentOverlay.classList.remove('hidden');
+  }
+
   lightboxId.setAttribute("aria-hidden", "true");
   photographerHeader.setAttribute("aria-hidden", "false");
   imageGallery.setAttribute("aria-hidden", "false");
   labelByOrder.setAttribute("aria-hidden", "false");
   orderBy.setAttribute("aria-hidden", "false");
   encartContainer.setAttribute("aria-hidden", "false");
-
+  isLightboxOpen = false;
+  
   lightboxId.style.display      = "none";
   encartContainer.style.display = "flex";
 }
@@ -132,15 +145,15 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+
 // ouvre la lightbox au clic ou pression touche enter sur une img ou une video de la gallery
 function handleMediaEvent(photographerSection) {
+  
   function openMedia(event) { // ouvre la lightbox si clic sur une <img> ou <video> de la gallery
-
+  
     if (event.target.tagName === 'IMG' || event.target.tagName === 'VIDEO') {
-
       const media = event.target;
-      
-      openLightbox(media);
+      openLightbox(media, currentOverlay);
     }
   }
 

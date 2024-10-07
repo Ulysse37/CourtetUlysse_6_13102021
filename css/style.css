@@ -42,6 +42,10 @@ h1 {
     color: var(--red-color);
 }
 
+.hidden {
+    display: none;
+}
+
 /*********** CSS INDEX **********/
 
 .photographer_section {

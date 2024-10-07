@@ -138,7 +138,10 @@ function createImgElt(image, figureElt) {
 
 function createVideoElt(video, figureElt) {
 
-    let videoElt = document.createElement("video");
+    let videoElt        = document.createElement("video");
+
+    let videoContainer  = document.createElement('div');
+    let overlay         = document.createElement('div'); // Overlay pour empêcher lecture de la video au clic et lancer lightbox
 
     videoElt.controls               = "controls";
     videoElt.src                    = "../images/" + video.photographerId + "/" + video.video;
@@ -146,12 +149,37 @@ function createVideoElt(video, figureElt) {
     videoElt.ariaLabel              = video.title;
     videoElt.tabIndex               = "0";
 
+    videoContainer.style.width      = "100%";
+    videoContainer.style.height     = "100%";
+    videoContainer.style.position   = "relative";
+
+    overlay.className               = "overlay";
+    overlay.style.width             = "100%";
+    overlay.style.height            = "90%";
+    overlay.style.position          = "absolute";
+    overlay.style.top               = "0";
+    overlay.style.left              = "0";
+    overlay.style.zIndex            = "1";
+    overlay.style.background        = "transparent";
+    overlay.tabIndex                = "-1";
+
     videoElt.style.width            = "100%";
     videoElt.style.height           = "100%";
     videoElt.style.objectFit        = "cover";
     videoElt.style.borderRadius     = "2%";
 
-    figureElt.appendChild(videoElt);
+    overlay.addEventListener('click', function(event) { // lance la lightbox au clic sur l'overlay au lieu de lancer la vidéo
+        event.preventDefault();
+        event.stopPropagation();
+        if (!isLightboxOpen) {
+          openLightbox(videoElt, overlay);
+        }
+    });
+
+    /* figureElt.appendChild(videoElt); */
+    figureElt.appendChild(videoContainer);
+    videoContainer.appendChild(videoElt);
+    videoContainer.appendChild(overlay);
 
     return videoElt;
 }
