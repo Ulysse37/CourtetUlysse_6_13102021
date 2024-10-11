@@ -3,6 +3,7 @@
 //lightbox const
 const lightboxId        = document.querySelector("#lightbox");
 const lightbox          = document.querySelector(".lightbox-container");
+const lightboxMediaContainer      = document.querySelector('.lightbox-media-container');
 const lightboxCloseBtn  = document.querySelector(".close_lightbox_btn");
 const lightboxPrev      = document.querySelector(".prev_lightbox_btn");
 const lightboxNext      = document.querySelector(".next_lightbox_btn");
@@ -22,8 +23,12 @@ setTimeout(() => {
 function displayMedia(media) {
 
   const lightboxMediaContainer      = document.querySelector('.lightbox-media-container');
-  const lightboxMediaFigcaption     = document.querySelector('.lightbox-media-figcaption');
-  lightboxMediaContainer.innerHTML  = '';
+
+  lightboxMediaContainer.innerHTML  = ''; // vide les éléments de la lightbox précédente avant de créer la nouvelle
+  // recrée la figcaption du media de la lightbox
+  const lightboxFigcaption = document.createElement('figcaption');
+  lightboxFigcaption.className = 'lightbox-media-figcaption';
+  lightboxMediaContainer.appendChild(lightboxFigcaption);
   
   if (media.tagName === 'VIDEO') { // crée une <video> dans la lightbox si le media cliqué est une <video>
     
@@ -32,9 +37,9 @@ function displayMedia(media) {
     video.src       = media.src;
     video.type      = media.type;
     video.controls  = true;
-
-    lightboxMediaFigcaption.innerText = media.getAttribute('aria-label');
-
+    
+    lightboxFigcaption.innerText = media.getAttribute('aria-label');
+    
     lightboxMediaContainer.appendChild(video);
 
   } else { // crée une <img> dans la lightbox si le media cliqué est une <img>
@@ -43,9 +48,9 @@ function displayMedia(media) {
 
     img.src   = media.src;
     img.alt   = media.alt;
-
-    lightboxMediaFigcaption.innerText = media.alt;
-
+    
+    lightboxFigcaption.innerText = media.alt;
+    
     lightboxMediaContainer.appendChild(img);
   }
 }
@@ -72,6 +77,7 @@ function openLightbox(media, overlay) {
   
   const index   = medias.indexOf(media); // trouve l'index du media dans le tableau medias
   currentIndex  = index; // définit l'index de l'image/vidéo actuellement affichée
+
   displayMedia(media);
 }
 
