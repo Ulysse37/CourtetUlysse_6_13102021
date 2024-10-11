@@ -22,7 +22,7 @@
     </header>
     <div class="trieur-container">
       <label id="labelTriage" for="orderBy">Trier par</label>
-      <select id="orderBy" name="Triage" aria-labelledby="Trier les photos par">
+      <select id="orderBy" name="Triage">
         <option disabled class ="disabled-options separator-1" style="display: none;"></option>
         <option value="date">Date</option>
         <option disabled class ="disabled-options separator-2"></option>
@@ -46,22 +46,22 @@
           <div class="formData">
             <label for="firstName">Prénom</label>
             <br>
-            <input class="text-control focusableElt" id="firstName" aria-labelledby="First name" required minlength="2">
+            <input class="text-control focusableElt" id="firstName" required minlength="2">
           </div>
           <div class="formData">
             <label for="lastName">Nom</label>
             <br>
-            <input class="text-control focusableElt" id="lastName" aria-labelledby="Last name" required minlength="2">
+            <input class="text-control focusableElt" id="lastName" required minlength="2">
           </div>
           <div class="formData">
             <label for="email">Email</label>
             <br>
-            <input class="text-control focusableElt" type="email" id="email" aria-labelledby="Email" required>
+            <input class="text-control focusableElt" type="email" id="email" required>
           </div>
           <div class="formData">
             <label for="message">Votre message</label>
             <br>
-            <textarea class="text-control focusableElt" id="message" aria-labelledby="Your message" required minlength="10"></textarea>
+            <textarea class="text-control focusableElt" id="message" required minlength="10"></textarea>
           </div>
           <button type=submit class="contact_button focusableElt" id="modal_button" onclick="validate()" aria-label="Envoyer">Envoyer</button>
         </form>
