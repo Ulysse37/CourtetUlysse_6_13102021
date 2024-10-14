@@ -135,13 +135,13 @@ function createImgElt(image, figureElt) {
 
     return imgElt;
 }
-
+let overlay         = document.createElement('div'); // Overlay pour empêcher lecture de la video au clic et lancer lightbox
 function createVideoElt(video, figureElt) {
 
     let videoElt        = document.createElement("video");
 
     let videoContainer  = document.createElement('div');
-    let overlay         = document.createElement('div'); // Overlay pour empêcher lecture de la video au clic et lancer lightbox
+    
 
     videoElt.controls               = "controls";
     videoElt.src                    = "../images/" + video.photographerId + "/" + video.video;
@@ -273,9 +273,10 @@ function addMedias() {
     });
 }
 
-const trieurButton = document.querySelector('.trieur-button');
-const trieurListe = document.querySelector('.trieur-liste');
-const trieurItems = document.querySelectorAll('.trieur-item');
+const trieurButton  = document.querySelector('.trieur-button');
+const trieurListe   = document.querySelector('.trieur-liste');
+const trieurItems   = document.querySelectorAll('.trieur-item');
+const trieurIcon    = document.querySelector(".trieur-icon");
 
 function sortMedia(sortBy) {
     // Récupérer les médias à trier
@@ -303,9 +304,27 @@ function sortMedia(sortBy) {
     addMedias();
 }
 
-// Affiche la liste du trieur au clic sur le bouton
-trieurButton.addEventListener('click', () => {
+// Ajoute une classe qui va display = block la liste déroulante
+function ouvrirListe() {
     trieurListe.classList.toggle('visible');
+    overlay.style.zIndex            = "0";
+
+    if (trieurListe.classList.contains('visible')) {
+        const firstItem = trieurListe.querySelector('.trieur-item');
+        if (firstItem) {
+            firstItem.focus();
+        }
+    }
+}
+
+trieurButton.tabIndex = 0;
+trieurButton.addEventListener('click', ouvrirListe);// Affiche la liste du trieur au clic sur le bouton
+trieurButton.addEventListener('keydown', (e) => { // affiche la liste du trieur avec la touche entré sur le bouton
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        ouvrirListe();
+        trieurIcon.classList.toggle("rotated");
+    }
 });
 
 // Cache la liste au clic hors de la liste.
@@ -317,6 +336,7 @@ document.addEventListener('click', function(event) {
 
 // Appelle la fonction sortMedia au clique sur chacun des éléments du trieur
 trieurItems.forEach((item) => {
+    item.tabIndex = 0;
     item.addEventListener('click', () => {
       const sortBy = item.getAttribute('data-sort');
       trieurButton.textContent = item.textContent; // met à jour le texte du bouton
@@ -326,8 +346,6 @@ trieurItems.forEach((item) => {
 });
 
 // style du chevron du trieur
-const trieurIcon   = document.querySelector(".trieur-icon");
-
 trieurButton.addEventListener('click', () => {
     trieurIcon.classList.toggle("rotated"); // Ajoute ou supprime la classe 'rotated' au clic sur le trieur
 });
@@ -336,6 +354,33 @@ trieurButton.addEventListener('blur', () => {  // Supprime la classe 'rotated' �
     trieurIcon.classList.remove("rotated");
 });
 
+// permet de naviguer dans la liste déroulante avec les touches fléchées et la touche entrée
+trieurListe.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') {
+      const currentItem = trieurListe.querySelector('.trieur-item:focus');
+      const nextItem = currentItem.nextElementSibling;
+      if (nextItem) {
+        nextItem.focus();
+      }
+      e.preventDefault();
+    } else if (e.key === 'ArrowUp') {
+      const currentItem = trieurListe.querySelector('.trieur-item:focus');
+      const prevItem = currentItem.previousElementSibling;
+      if (prevItem) {
+        prevItem.focus();
+      }
+      e.preventDefault();
+    } else if (e.key === 'Enter') {
+      const currentItem = trieurListe.querySelector('.trieur-item:focus');
+      if (currentItem.classList.contains('trieur-item')) {
+        // Lancer le triage sur le filtre où on enclenche entrée
+        const sortBy = currentItem.getAttribute('data-sort');
+        trieurButton.textContent = currentItem.textContent; // met à jour texte du bouton
+        sortMedia(sortBy);
+        trieurListe.classList.remove('visible'); // Fermer la liste déroulante après avoir appuyé sur entré
+      }
+    }
+});
 
 //! **************************** LIKES ******************************
 

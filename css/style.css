@@ -210,7 +210,7 @@ label {
     font-size: 18px;
 }
   
-.trieur-liste li {
+.trieur-item {
     width: 148px;
     padding: 14px 12px;
     background-color: var(--red-color);
@@ -220,17 +220,17 @@ label {
     font-size: 18px;
 }
 
-.trieur-liste li:first-child {
+.trieur-item:first-child {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
 
-.trieur-liste li:last-child {
+.trieur-item:last-child {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
 
-.trieur-liste li:not(:last-child)::after { /* border de séparation blanche entre les li */
+.trieur-item:not(:last-child)::after { /* border de séparation blanche entre les li */
     position: relative;
     top: 11px;
     content: "";
@@ -252,49 +252,6 @@ label {
 .trieur-icon.rotated {
     transform: rotate(180deg);
 }
-
-
-
-/* select {
-    width: 170px;
-    border: none;
-    border-radius: 5px;
-    padding: 12px 10px;
-    background-color: var(--red-color);
-    color: white;
-    font-weight: 700;
-    font-size: 18px;
-    cursor: pointer;
-    appearance: none; supprime le chevron de base
-}
-
-[id=labelTriage] {
-    margin-left: 6rem;
-    margin-right: 1rem;
-    font-weight: 700;
-    font-size: 18px;
-}
-
-.disabled-options {
-    font-size: 1px; 
-    background-color: white;
-}
-
-.trieur-container {
-    position: relative;
-}
-
-.trieur-icon {
-    position: absolute;
-    top: 22px;
-    left: 330px;
-    transition: transform 0.2s;
-    color: white;
-}
-
-.trieur-icon.rotated {
-    transform: rotate(180deg);
-} */
 
 /*********** MODALE CONTACT **********/
 

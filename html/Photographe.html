@@ -19,14 +19,14 @@
       <div class="photograph-header-info"></div>
       <button class="contact_button" onclick="displayModal()" aria-label="Contactez-moi">Contactez-moi</button>
     </header>
-    <div class="trieur-container">
+    <div class="trieur-container" role="menu">
       <label for="trieur-select" aria-label="Trier par" class="trieur-label">Trier par</label>
-      <button id="trieur-select" class="trieur-button" data-sort="date">Date</button>
+      <button id="trieur-select" class="trieur-button" data-sort="date" aria-haspopup="true" aria-expanded="false">Date</button>
       <i class="fas fa-chevron-down fa-chevron-up fa-lg trieur-icon"></i>
-      <ul class="trieur-liste">
-        <li class="trieur-item" data-sort="date">Date</li>
-        <li class="trieur-item" data-sort="popularity">Popularité</li>
-        <li class="trieur-item" data-sort="title">Titre</li>
+      <ul class="trieur-liste" role="menu" aria-label="Trier par">
+        <li class="trieur-item" role="menuitem" data-sort="date">Date</li>
+        <li class="trieur-item" role="menuitem" data-sort="popularity">Popularité</li>
+        <li class="trieur-item" role="menuitem" data-sort="title">Titre</li>
       </ul>
     </div>
     <ul class="photograph-gallery"></ul> <!-- ajout des li incluant les figure / figcaption via js -->
