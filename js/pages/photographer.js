@@ -345,15 +345,6 @@ trieurItems.forEach((item) => {
     });
 });
 
-// style du chevron du trieur
-trieurButton.addEventListener('click', () => {
-    trieurIcon.classList.toggle("rotated"); // Ajoute ou supprime la classe 'rotated' au clic sur le trieur
-});
-
-trieurButton.addEventListener('blur', () => {  // Supprime la classe 'rotated' à la perte du focus
-    trieurIcon.classList.remove("rotated");
-});
-
 // permet de naviguer dans la liste déroulante avec les touches fléchées et la touche entrée
 trieurListe.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowDown') {
@@ -377,9 +368,18 @@ trieurListe.addEventListener('keydown', (e) => {
         const sortBy = currentItem.getAttribute('data-sort');
         trieurButton.textContent = currentItem.textContent; // met à jour texte du bouton
         sortMedia(sortBy);
-        trieurListe.classList.remove('visible'); // Fermer la liste déroulante après avoir appuyé sur entré
+        trieurListe.classList.remove('visible'); // Fermer la liste déroulante après avoir appuyé sur entrée
       }
     }
+});
+
+// style du chevron du trieur
+trieurButton.addEventListener('click', () => {
+    trieurIcon.classList.toggle("rotated"); // Ajoute ou supprime la classe 'rotated' au clic sur le trieur
+});
+
+trieurButton.addEventListener('blur', () => {  // Supprime la classe 'rotated' à la perte du focus
+    trieurIcon.classList.remove("rotated");
 });
 
 //! **************************** LIKES ******************************

@@ -211,7 +211,8 @@ label {
 }
   
 .trieur-item {
-    width: 148px;
+    width: 172px;
+    box-sizing: border-box;
     padding: 14px 12px;
     background-color: var(--red-color);
     color: white;
