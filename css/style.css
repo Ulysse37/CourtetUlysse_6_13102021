@@ -46,6 +46,10 @@ h1 {
     display: none;
 }
 
+.visible {
+    display: block !important;
+}
+
 /*********** CSS INDEX **********/
 
 .photographer_section {
@@ -76,7 +80,7 @@ ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 0rem 3.5rem 4rem 1rem;
+    margin: 0rem 3.5rem 4rem 1.2rem;
     list-style: none;
 }
 
@@ -169,7 +173,89 @@ label {
 
 /*********** TRIEUR **********/
 
-select {
+.trieur-container {
+    position: relative;
+    margin-left: 5.5rem;
+}
+
+.trieur-label   {
+    margin-right: 25px;
+    font-weight: 700;
+    font-size: 18px;
+}
+  
+.trieur-button  {
+    width: 170px;
+    border-radius: 10px;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 10px;
+    background-color: var(--red-color);
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: left;
+}
+  
+.trieur-liste {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 18px;
+}
+  
+.trieur-liste li {
+    width: 148px;
+    padding: 14px 12px;
+    background-color: var(--red-color);
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.trieur-liste li:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.trieur-liste li:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.trieur-liste li:not(:last-child)::after { /* border de séparation blanche entre les li */
+    position: relative;
+    top: 11px;
+    content: "";
+    display: block;
+    width: 140px;
+    margin: 0 auto;
+    border-bottom: 1px solid white;
+}
+
+.trieur-icon {
+    position: absolute;
+    top: 22px;
+    left: 230px;
+    transition: transform 0.2s;
+    color: white;
+    z-index: 2;
+}
+
+.trieur-icon.rotated {
+    transform: rotate(180deg);
+}
+
+
+
+/* select {
     width: 170px;
     border: none;
     border-radius: 5px;
@@ -179,7 +265,7 @@ select {
     font-weight: 700;
     font-size: 18px;
     cursor: pointer;
-    appearance: none; /* supprime le chevron de base */
+    appearance: none; supprime le chevron de base
 }
 
 [id=labelTriage] {
@@ -208,7 +294,7 @@ select {
 
 .trieur-icon.rotated {
     transform: rotate(180deg);
-}
+} */
 
 /*********** MODALE CONTACT **********/
 
@@ -337,10 +423,15 @@ select {
 .lightbox-media-figcaption {
     position: absolute;
     top: 760px;
-    left: 0;
+    /* left: 0; */
     font-weight: 400;
     font-size: 24px;
     color: var(--red-color);
+}
+@media (max-width: 1919px) {
+    .lightbox-media-figcaption{
+        left: 0 !important;
+    }
 }
 
 @media (min-width: 1920px) { 

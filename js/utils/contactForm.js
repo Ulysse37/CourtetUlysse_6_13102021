@@ -22,13 +22,13 @@ function displayModal() {
     modal.setAttribute("aria-hidden", "false");
     photographerHeader.setAttribute("aria-hidden", "true");
     imageGallery.setAttribute("aria-hidden", "true");
-    labelByOrder.setAttribute("aria-hidden", "true");
-    orderBy.setAttribute("aria-hidden", "true");
+    /* labelByOrder.setAttribute("aria-hidden", "true");
+    orderBy.setAttribute("aria-hidden", "true"); */
     
     formElements[0].focus(); // focus sur le premier elt de la modale à son ouverture 
     
     // Passes les autres éléments de la page quand modale ouverte en tabindex -1 pour ne pas pouvoir entrer en focus dessus
-    orderBy.tabIndex        = -1; 
+   /*  orderBy.tabIndex        = -1;  */
 
     const mediaElements     = imageGallery.querySelectorAll('img, video, i');
 
@@ -46,10 +46,10 @@ function closeModal() {
     modal.setAttribute("aria-hidden", "true");
     photographerHeader.setAttribute("aria-hidden", "false");
     imageGallery.setAttribute("aria-hidden", "false");
-    labelByOrder.setAttribute("aria-hidden", "false");
-    orderBy.setAttribute("aria-hidden", "false");
+    /* labelByOrder.setAttribute("aria-hidden", "false");
+    orderBy.setAttribute("aria-hidden", "false"); */
 
-    orderBy.tabIndex        = 0;
+ /*    orderBy.tabIndex        = 0; */
 
     const mediaElements     = imageGallery.querySelectorAll('img, video, i');
 

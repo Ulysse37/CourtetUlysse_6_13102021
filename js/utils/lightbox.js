@@ -67,8 +67,8 @@ function openLightbox(media, overlay) {
   lightboxId.setAttribute("aria-hidden", "false");
   photographerHeader.setAttribute("aria-hidden", "true");
   imageGallery.setAttribute("aria-hidden", "true");
-  labelByOrder.setAttribute("aria-hidden", "true");
-  orderBy.setAttribute("aria-hidden", "true");
+  /* labelByOrder.setAttribute("aria-hidden", "true");
+  orderBy.setAttribute("aria-hidden", "true"); */
   encartContainer.setAttribute("aria-hidden", "true");
   isLightboxOpen = true;
 
@@ -91,8 +91,8 @@ function closeLightbox() {
   lightboxId.setAttribute("aria-hidden", "true");
   photographerHeader.setAttribute("aria-hidden", "false");
   imageGallery.setAttribute("aria-hidden", "false");
-  labelByOrder.setAttribute("aria-hidden", "false");
-  orderBy.setAttribute("aria-hidden", "false");
+  /* labelByOrder.setAttribute("aria-hidden", "false");
+  orderBy.setAttribute("aria-hidden", "false"); */
   encartContainer.setAttribute("aria-hidden", "false");
   isLightboxOpen = false;
   

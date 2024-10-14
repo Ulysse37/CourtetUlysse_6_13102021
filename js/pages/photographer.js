@@ -2,7 +2,7 @@
 
 const photographUrlId       = parseInt(location.href.split("=")[1], 10); // va chercher l'id du photographe dans l'url
 const photographerSection   = document.querySelector(".photograph-gallery");
-const orderBySelect         = document.getElementById('orderBy');
+/* const orderBySelect         = document.getElementById('orderBy'); */
 let medias = []; // Tableau des médias (images/vidéos) qui seront injectés dans la lightbox
 
 async function fetchPhotographer() {
@@ -98,7 +98,7 @@ function displayPhotographerPrice(data) {
     const { price } = data;
     const photographerPrice      = document.querySelector(".photograph-price");
 
-    photographerPrice.innerText  = data.price + "€/jour";
+    photographerPrice.innerText  = data.price + "€ / jour";
 }
 
 /**
@@ -273,6 +273,10 @@ function addMedias() {
     });
 }
 
+const trieurButton = document.querySelector('.trieur-button');
+const trieurListe = document.querySelector('.trieur-liste');
+const trieurItems = document.querySelectorAll('.trieur-item');
+
 function sortMedia(sortBy) {
     // Récupérer les médias à trier
     const mediaToSort = photographerGallery;
@@ -299,77 +303,39 @@ function sortMedia(sortBy) {
     addMedias();
 }
 
-orderBySelect.addEventListener('change', (e) => {
-
-    const selectedValue = e.target.value;
-    // Appelle de la fonction pour trier les médias en fonction de l'option select
-    sortMedia(selectedValue);
+// Affiche la liste du trieur au clic sur le bouton
+trieurButton.addEventListener('click', () => {
+    trieurListe.classList.toggle('visible');
 });
 
-// masque l'option sélectionnée au clic ou via la barre espace du clavier sur select
-function handleOrderBySelect(e) {
-
-    if (e.type === 'click' || (e.type === 'keydown' && e.key === " ")) {
-      const selectedIndex   = orderBySelect.selectedIndex;
-      const options         = orderBySelect.options;
-
-      options[selectedIndex].style.display = 'none';
+// Cache la liste au clic hors de la liste.
+document.addEventListener('click', function(event) {
+    if (trieurListe.classList.contains('visible') && !trieurListe.contains(event.target) && event.target !== trieurButton) {
+        trieurListe.classList.remove('visible');
     }
-}
+});
 
-orderBySelect.addEventListener('click', handleOrderBySelect);
-orderBySelect.addEventListener('keydown', handleOrderBySelect);
-
-// réaffiche toutes les options à change changement du filtre du trieur.
-orderBySelect.addEventListener('change', () => {
-
-    const options = orderBySelect.options;
-
-    for (let i = 0; i < options.length; i++) {
-      options[i].style.display = 'block';
-    }
+// Appelle la fonction sortMedia au clique sur chacun des éléments du trieur
+trieurItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      const sortBy = item.getAttribute('data-sort');
+      trieurButton.textContent = item.textContent; // met à jour le texte du bouton
+      sortMedia(sortBy);
+      trieurListe.classList.remove('visible');
+    });
 });
 
 // style du chevron du trieur
 const trieurIcon   = document.querySelector(".trieur-icon");
 
-orderBySelect.addEventListener('click', () => {
+trieurButton.addEventListener('click', () => {
     trieurIcon.classList.toggle("rotated"); // Ajoute ou supprime la classe 'rotated' au clic sur le trieur
 });
 
-orderBySelect.addEventListener('blur', () => {  // Supprime la classe 'rotated' à la perte du focus
+trieurButton.addEventListener('blur', () => {  // Supprime la classe 'rotated' à la perte du focus
     trieurIcon.classList.remove("rotated");
 });
 
-// Style les lignes blanches entre les options
-const firstSeparator    = document.querySelector(".separator-1");
-const secondSeparator   = document.querySelector(".separator-2");
-const thirdSeparator    = document.querySelector(".separator-3");
-const fourthSeparator   = document.querySelector(".separator-4");
-
-orderBySelect.addEventListener("change", function() {
-
-    const selectedValue = orderBySelect.value;
-    
-    if (selectedValue === "date") {
-        firstSeparator.style.display    = "none";
-        secondSeparator.style.display   = "block";
-        thirdSeparator.style.display    = "block";
-        fourthSeparator.style.display   = "none";
-    }
-    if (selectedValue === "popularity") {
-        firstSeparator.style.display    = "block";
-        secondSeparator.style.display   = "none";
-        thirdSeparator.style.display    = "block";
-        fourthSeparator.style.display   = "none";
-    }
-    if (selectedValue === "title") {
-        firstSeparator.style.display    = "block";
-        secondSeparator.style.display   = "block";
-        thirdSeparator.style.display    = "none";
-        fourthSeparator.style.display   = "none";
-    }
-});
 
 //! **************************** LIKES ******************************
 

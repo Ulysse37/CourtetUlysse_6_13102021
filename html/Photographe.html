@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
 </head>
-
 <body>
   <nav role="navigation">
     <a href="../index.html">
@@ -21,17 +20,14 @@
       <button class="contact_button" onclick="displayModal()" aria-label="Contactez-moi">Contactez-moi</button>
     </header>
     <div class="trieur-container">
-      <label id="labelTriage" for="orderBy">Trier par</label>
-      <select id="orderBy" name="Triage">
-        <option disabled class ="disabled-options separator-1" style="display: none;"></option>
-        <option value="date">Date</option>
-        <option disabled class ="disabled-options separator-2"></option>
-        <option value="popularity">Popularité</option>
-        <option disabled class ="disabled-options separator-3"></option>
-        <option value="title">Titre</option>
-        <option disabled class ="disabled-options separator-4" style="display: none;"></option>
-      </select>
+      <label for="trieur-select" aria-label="Trier par" class="trieur-label">Trier par</label>
+      <button id="trieur-select" class="trieur-button" data-sort="date">Date</button>
       <i class="fas fa-chevron-down fa-chevron-up fa-lg trieur-icon"></i>
+      <ul class="trieur-liste">
+        <li class="trieur-item" data-sort="date">Date</li>
+        <li class="trieur-item" data-sort="popularity">Popularité</li>
+        <li class="trieur-item" data-sort="title">Titre</li>
+      </ul>
     </div>
     <ul class="photograph-gallery"></ul> <!-- ajout des li incluant les figure / figcaption via js -->
     <div id="contact_modal">
