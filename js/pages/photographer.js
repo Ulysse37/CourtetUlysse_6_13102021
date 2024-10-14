@@ -2,6 +2,8 @@
 
 const photographUrlId       = parseInt(location.href.split("=")[1], 10); // va chercher l'id du photographe dans l'url
 const photographerSection   = document.querySelector(".photograph-gallery");
+/* const orderBySelect         = document.getElementById('orderBy'); */
+let medias = []; // Tableau des médias (images/vidéos) qui seront injectés dans la lightbox
 
 async function fetchPhotographer() {
     
@@ -22,6 +24,7 @@ async function fetchPhotographer() {
  * @param {object} pictureElt 
  */
 function createPhotographerStyle(pictureElt) {
+
     let photographerHeader      = document.querySelector(".photograph-header");
     let figureElt               = document.createElement("figure");
     
@@ -70,11 +73,12 @@ function createPhotographerInfoStyle(data) {
  * @param {object} data 
  */
 function showPhotographerInfo(data) {
+
     const { name, portrait } = data;
 
     const photographerName      = document.querySelector(".photographer-name");
-    const picture       = `../images/photographers/${portrait}`; 
-    const pictureElt    = document.createElement("img");
+    const picture               = `../images/photographers/${portrait}`; 
+    const pictureElt            = document.createElement("img");
 
     createPhotographerStyle(pictureElt);
     createPhotographerInfoStyle(data);
@@ -83,7 +87,6 @@ function showPhotographerInfo(data) {
     pictureElt.src              = picture;
     pictureElt.alt              = name;
 
-    /* pictureElt.style.objectPosition = "50% 20%"; */
     pictureElt.style.width                      = "100%";
     pictureElt.style.height                     = "100%";
     pictureElt.style.objectFit                  = "cover";
@@ -91,10 +94,11 @@ function showPhotographerInfo(data) {
 
 // Affiche le prix du photographe dans l'encart de bas de page
 function displayPhotographerPrice(data) { 
+
     const { price } = data;
     const photographerPrice      = document.querySelector(".photograph-price");
 
-    photographerPrice.innerText  = data.price + "€/jour";
+    photographerPrice.innerText  = data.price + "€ / jour";
 }
 
 /**
@@ -107,9 +111,7 @@ async function displayPhotographer(photographers) {
         
         if (photographers[i].id === photographUrlId) {
             showPhotographerInfo(photographers[i]);
-            displayPhotographerPrice(photographers[i]);
-            //console.log(photographers[i]);
-            //return photographers[i];    
+            displayPhotographerPrice(photographers[i]);  
         }
     };
 }
@@ -117,10 +119,12 @@ async function displayPhotographer(photographers) {
 //! ****************************** GALLERY  ******************************
 
 function createImgElt(image, figureElt) {
+
     let imgElt = document.createElement("img");
 
-    imgElt.src      = "../images/" + image.photographerId + "/" + image.image;
-    imgElt.alt      = image.title;
+    imgElt.src          = "../images/" + image.photographerId + "/" + image.image;
+    imgElt.alt          = image.title;
+    imgElt.tabIndex     = "0";
         
     imgElt.style.width          = "100%";
     imgElt.style.height         = "100%";
@@ -129,29 +133,56 @@ function createImgElt(image, figureElt) {
         
     figureElt.appendChild(imgElt);
 
-
     return imgElt;
 }
-
+let overlay         = document.createElement('div'); // Overlay pour empêcher lecture de la video au clic et lancer lightbox
 function createVideoElt(video, figureElt) {
-    let videoElt = document.createElement("video");
+
+    let videoElt        = document.createElement("video");
+
+    let videoContainer  = document.createElement('div');
+    
 
     videoElt.controls               = "controls";
     videoElt.src                    = "../images/" + video.photographerId + "/" + video.video;
     videoElt.type                   = "video/mp4";
-    videoElt.ariaLabel             = video.title;
+    videoElt.ariaLabel              = video.title;
+    videoElt.tabIndex               = "0";
+
+    videoContainer.style.width      = "100%";
+    videoContainer.style.height     = "100%";
+    videoContainer.style.position   = "relative";
+
+    overlay.className               = "overlay";
+    overlay.style.width             = "100%";
+    overlay.style.height            = "90%";
+    overlay.style.position          = "absolute";
+    overlay.style.top               = "0";
+    overlay.style.left              = "0";
+    overlay.style.zIndex            = "1";
+    overlay.style.background        = "transparent";
+    overlay.tabIndex                = "-1";
 
     videoElt.style.width            = "100%";
     videoElt.style.height           = "100%";
     videoElt.style.objectFit        = "cover";
     videoElt.style.borderRadius     = "2%";
-      
-    figureElt.appendChild(videoElt);
+
+    overlay.addEventListener('click', function(event) { // lance la lightbox au clic sur l'overlay au lieu de lancer la vidéo
+        event.preventDefault();
+        event.stopPropagation();
+        if (!isLightboxOpen) {
+          openLightbox(videoElt, overlay);
+        }
+    });
+
+    /* figureElt.appendChild(videoElt); */
+    figureElt.appendChild(videoContainer);
+    videoContainer.appendChild(videoElt);
+    videoContainer.appendChild(overlay);
 
     return videoElt;
 }
-
-
 
 /**
  * Affiche et style la photo ou la video
@@ -180,6 +211,7 @@ function createPhotographerMedia(media) {
     likeCounterElt.className    = "like-count";
     likeCounterElt.innerText    = media.likes;
     heartElt.className          = "fas fa-heart";
+    heartElt.tabIndex           = "0";
 
     liElt.style.margin                  = "2rem 2rem";
     figureElt.style.width               = "330px";
@@ -198,16 +230,7 @@ function createPhotographerMedia(media) {
     likeContainer.appendChild(likeCounterElt);
     likeContainer.appendChild(heartElt);
 
-    heartElt.addEventListener("click", function() { // Met à jour le compteur de like du media 
-        if (!heartElt.classList.contains("liked")) {
-            const currentLikeCount = parseInt(likeCounterElt.textContent);
-            likeCounterElt.textContent = currentLikeCount + 1;
-            heartElt.classList.add("liked");
-
-            // Mets à jour le compteur de like total
-            updateTotalLikes();
-        }
-    });
+    handleLikeEvent(heartElt, likeCounterElt); // appelle fonction pour ajouter 1 like au media + compteur total de like
 }
 
 /**
@@ -234,16 +257,26 @@ async function displayPhotographerGallery(allMedia) {
         if (allMedia[i].photographerId === photographUrlId) {
             
             photographerGallery.push(allMedia[i]);
-            /* console.log(allMedia); */
         }
     }
-    /* console.log(photographerGallery); */
     createPhotographerGallery(photographerGallery);
 }
 
 //! **************************** TRIEUR ******************************
+// Fonction pour ajouter les médias de la gallery dans le tableau medias pour la lightbox dans l'odre des tris
+function addMedias() {
 
-const orderBySelect = document.getElementById('orderBy');
+    const lis = document.querySelectorAll('.photograph-gallery li');
+    lis.forEach((li) => {
+      const media = li.querySelector('img, video');
+      medias.push(media);
+    });
+}
+
+const trieurButton  = document.querySelector('.trieur-button');
+const trieurListe   = document.querySelector('.trieur-liste');
+const trieurItems   = document.querySelectorAll('.trieur-item');
+const trieurIcon    = document.querySelector(".trieur-icon");
 
 function sortMedia(sortBy) {
     // Récupérer les médias à trier
@@ -264,20 +297,97 @@ function sortMedia(sortBy) {
         console.error('Erreur de tri');
     }
     
-    // Mettre à jour la galerie avec les médias triés
+    // Met à jour la galerie avec les médias triés
     createPhotographerGallery(mediaToSort);
+    // met à jour tableau medias avec les medias triés pour la lightbox
+    medias = [];
+    addMedias();
 }
 
-orderBySelect.addEventListener('change', (e) => {
-    const selectedValue = e.target.value;
-    // Appelle de la fonction pour trier les médias en fonction de l'option select
-    sortMedia(selectedValue);
-  });
+// Ajoute une classe qui va display = block la liste déroulante
+function ouvrirListe() {
+    trieurListe.classList.toggle('visible');
+    overlay.style.zIndex            = "0";
+
+    if (trieurListe.classList.contains('visible')) {
+        const firstItem = trieurListe.querySelector('.trieur-item');
+        if (firstItem) {
+            firstItem.focus();
+        }
+    }
+}
+
+trieurButton.tabIndex = 0;
+trieurButton.addEventListener('click', ouvrirListe);// Affiche la liste du trieur au clic sur le bouton
+trieurButton.addEventListener('keydown', (e) => { // affiche la liste du trieur avec la touche entré sur le bouton
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        ouvrirListe();
+        trieurIcon.classList.toggle("rotated");
+    }
+});
+
+// Cache la liste au clic hors de la liste.
+document.addEventListener('click', function(event) {
+    if (trieurListe.classList.contains('visible') && !trieurListe.contains(event.target) && event.target !== trieurButton) {
+        trieurListe.classList.remove('visible');
+    }
+});
+
+// Appelle la fonction sortMedia au clique sur chacun des éléments du trieur
+trieurItems.forEach((item) => {
+    item.tabIndex = 0;
+    item.addEventListener('click', () => {
+      const sortBy = item.getAttribute('data-sort');
+      trieurButton.textContent = item.textContent; // met à jour le texte du bouton
+      sortMedia(sortBy);
+      trieurListe.classList.remove('visible');
+    });
+});
+
+// permet de naviguer dans la liste déroulante avec les touches fléchées et la touche entrée
+trieurListe.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') {
+      const currentItem = trieurListe.querySelector('.trieur-item:focus');
+      const nextItem = currentItem.nextElementSibling;
+      if (nextItem) {
+        nextItem.focus();
+      }
+      e.preventDefault();
+    } else if (e.key === 'ArrowUp') {
+      const currentItem = trieurListe.querySelector('.trieur-item:focus');
+      const prevItem = currentItem.previousElementSibling;
+      if (prevItem) {
+        prevItem.focus();
+      }
+      e.preventDefault();
+    } else if (e.key === 'Enter') {
+      const currentItem = trieurListe.querySelector('.trieur-item:focus');
+      if (currentItem.classList.contains('trieur-item')) {
+        // Lancer le triage sur le filtre où on enclenche entrée
+        const sortBy = currentItem.getAttribute('data-sort');
+        trieurButton.textContent = currentItem.textContent; // met à jour texte du bouton
+        sortMedia(sortBy);
+        trieurListe.classList.remove('visible'); // Fermer la liste déroulante après avoir appuyé sur entrée
+      }
+    }
+});
+
+// style du chevron du trieur
+trieurButton.addEventListener('click', () => {
+    trieurIcon.classList.toggle("rotated"); // Ajoute ou supprime la classe 'rotated' au clic sur le trieur
+});
+
+trieurButton.addEventListener('blur', () => {  // Supprime la classe 'rotated' à la perte du focus
+    trieurIcon.classList.remove("rotated");
+});
 
 //! **************************** LIKES ******************************
 
 function updateTotalLikes() { // Fonction qui va calculer la somme des likes
+
     const likeCounterElts = document.querySelectorAll('.like-count');
+
     const totalLikes = Array.from(likeCounterElts).reduce((acc, counter) => { // calcule somme des valeurs de chaque compteur de like
       return acc + parseInt(counter.textContent);
     }, 0);
@@ -287,6 +397,30 @@ function updateTotalLikes() { // Fonction qui va calculer la somme des likes
 setTimeout(function() { // update le nombre total de like au chargement de la page
     updateTotalLikes();
 }, 1000); // attendre 1 seconde avant d'exécuter le code
+
+function handleLikeEvent(heartElt, likeCounterElt) {
+
+    function updateMediaLikesCount() { // Fonction qui va ajouter +1 au like du media
+
+        if (!heartElt.classList.contains("liked")) {
+
+            const currentLikeCount      = parseInt(likeCounterElt.textContent);
+
+            likeCounterElt.textContent  = currentLikeCount + 1;
+            heartElt.classList.add("liked");
+
+            // Mets à jour le compteur de like total
+            updateTotalLikes();
+        }
+    }
+    heartElt.addEventListener("click", updateMediaLikesCount); // ajoute +1 au like au clic
+    heartElt.addEventListener("keydown", function(event) { // ajoute +1 au like à la pression touche enter
+
+      if (event.key === "Enter") {
+        updateMediaLikesCount();
+      }
+    });
+}
 
 //! **************************** INIT *******************************
 
@@ -302,8 +436,3 @@ async function init() {
 };
 
 init();
-
-// Initialise le code seulement après que le DOM soit chargé
-/*document.addEventListener('DOMContentLoaded', function(event) {
-    init();
-});*/
