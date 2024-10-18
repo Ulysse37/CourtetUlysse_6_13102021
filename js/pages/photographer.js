@@ -2,7 +2,6 @@
 
 const photographUrlId       = parseInt(location.href.split("=")[1], 10); // va chercher l'id du photographe dans l'url
 const photographerSection   = document.querySelector(".photograph-gallery");
-/* const orderBySelect         = document.getElementById('orderBy'); */
 let medias = []; // Tableau des médias (images/vidéos) qui seront injectés dans la lightbox
 
 async function fetchPhotographer() {
@@ -135,6 +134,7 @@ function createImgElt(image, figureElt) {
 
     return imgElt;
 }
+
 let overlay         = document.createElement('div'); // Overlay pour empêcher lecture de la video au clic et lancer lightbox
 function createVideoElt(video, figureElt) {
 
@@ -425,7 +425,7 @@ function handleLikeEvent(heartElt, likeCounterElt) {
 //! **************************** INIT *******************************
 
 /**
- * Initialise le code
+ * Initialise le code de la galerie
  */
 async function init() {
 
