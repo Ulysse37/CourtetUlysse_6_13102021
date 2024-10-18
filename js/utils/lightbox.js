@@ -1,13 +1,13 @@
 "use strict";
 
 //lightbox const
-const lightboxId        = document.querySelector("#lightbox");
-const lightbox          = document.querySelector(".lightbox-container");
-const lightboxMediaContainer      = document.querySelector('.lightbox-media-container');
-const lightboxCloseBtn  = document.querySelector(".close_lightbox_btn");
-const lightboxPrev      = document.querySelector(".prev_lightbox_btn");
-const lightboxNext      = document.querySelector(".next_lightbox_btn");
-const encartContainer   = document.querySelector(".encart");
+const lightboxId              = document.querySelector("#lightbox");
+const lightbox                = document.querySelector(".lightbox-container");
+const lightboxMediaContainer  = document.querySelector('.lightbox-media-container');
+const lightboxCloseBtn        = document.querySelector(".close_lightbox_btn");
+const lightboxPrev            = document.querySelector(".prev_lightbox_btn");
+const lightboxNext            = document.querySelector(".next_lightbox_btn");
+const encartContainer         = document.querySelector(".encart");
 
 let isLightboxOpen = false;
 // Index de l'image/vidéo actuellement affichée
@@ -67,8 +67,6 @@ function openLightbox(media, overlay) {
   lightboxId.setAttribute("aria-hidden", "false");
   photographerHeader.setAttribute("aria-hidden", "true");
   imageGallery.setAttribute("aria-hidden", "true");
-  /* labelByOrder.setAttribute("aria-hidden", "true");
-  orderBy.setAttribute("aria-hidden", "true"); */
   encartContainer.setAttribute("aria-hidden", "true");
   isLightboxOpen = true;
 
@@ -91,8 +89,6 @@ function closeLightbox() {
   lightboxId.setAttribute("aria-hidden", "true");
   photographerHeader.setAttribute("aria-hidden", "false");
   imageGallery.setAttribute("aria-hidden", "false");
-  /* labelByOrder.setAttribute("aria-hidden", "false");
-  orderBy.setAttribute("aria-hidden", "false"); */
   encartContainer.setAttribute("aria-hidden", "false");
   isLightboxOpen = false;
   
